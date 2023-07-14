@@ -39,21 +39,22 @@ Welcome to the repository for our MERN (MongoDB, Express, React, Node.js) applic
     
     bashCopy code
     
-    `cd rental-app/backend
+    `cd server
     npm install` 
     
 3.  Install the dependencies for the frontend:
     
     bashCopy code
     
-    `cd ../frontend
+    `cd client
     npm install` 
     
 4.  Start the development server:
     
     bashCopy code
     
-    `npm run dev` 
+    `npm run serve` 
+    `npm run dev`
     
     The application will be accessible at `http://localhost:3000`.
     
