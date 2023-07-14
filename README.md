@@ -1,4 +1,4 @@
-# MERN App for Car, Motorcycle, and Boat Rentals
+# RentMo!: MERN App for Car, Motorcycle, and Boat Rentals
 
 
 Welcome to the repository for our MERN (MongoDB, Express, React, Node.js) application for car, motorcycle, and boat rentals. This application provides a convenient platform for users to rent vehicles and enjoy their travel experiences.
