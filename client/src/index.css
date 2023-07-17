@@ -1,69 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  --yellow: #FCD116;
+  --dark-900: #121113;
+  --dark-800: #131313;
+  --dark-700: #000000B3;
+  --dark-600: #747474;
+  --dark-500: #00000029;
+  --dark-400: #D9D9D9;
+  --dark-300: #E3E3E3;
+  --dark-200: #00000014;
+  --dark-100: #00000012;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+@font-face {
+  font-family: 'Messina Sans';
+  src: url('./assets/font/MessinaSans-BlackItalic.eot');
+  src: local('Messina Sans Black Italic'), local('MessinaSans-BlackItalic'),
+      url('./assets/font/MessinaSans-BlackItalic.eot?#iefix') format('embedded-opentype'),
+      url('./assets/font/MessinaSans-BlackItalic.woff2') format('woff2'),
+      url('./assets/font/MessinaSans-BlackItalic.woff') format('woff'),
+      url('./assets/font/MessinaSans-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+@font-face {
+  font-family: 'Messina Sans';
+  src: url('MessinaSans-SemiBold.eot');
+  src: local('Messina Sans SemiBold'), local('MessinaSans-SemiBold'),
+      url('./assets/font/MessinaSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+      url('./assets/font/MessinaSans-SemiBold.woff2') format('woff2'),
+      url('./assets/font/MessinaSans-SemiBold.woff') format('woff'),
+      url('./assets/font/MessinaSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+@font-face {
+  font-family: 'Messina Sans';
+  src: url('./assets/font/MessinaSans-Black.eot');
+  src: local('Messina Sans Black'), local('MessinaSans-Black'),
+      url('./assets/font/MessinaSans-Black.eot?#iefix') format('embedded-opentype'),
+      url('./assets/font/MessinaSans-Black.woff2') format('woff2'),
+      url('./assets/font/MessinaSans-Black.woff') format('woff'),
+      url('./assets/font/MessinaSans-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+@font-face {
+  font-family: 'Messina Sans';
+  src: url('./assets/font/MessinaSans-Bold.eot');
+  src: local('Messina Sans Bold'), local('MessinaSans-Bold'),
+      url('./assets/font/MessinaSans-Bold.eot?#iefix') format('embedded-opentype'),
+      url('./assets/font/MessinaSans-Bold.woff2') format('woff2'),
+      url('./assets/font/MessinaSans-Bold.woff') format('woff'),
+      url('./assets/font/MessinaSans-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
 }
+
+@font-face {
+  font-family: 'Messina Sans';
+  src: url('./assets/font/MessinaSans-SemiBoldItalic.eot');
+  src: local('Messina Sans SemiBold Italic'), local('MessinaSans-SemiBoldItalic'),
+      url('./assets/font/MessinaSans-SemiBoldItalic.eot?#iefix') format('embedded-opentype'),
+      url('./assets/font/MessinaSans-SemiBoldItalic.woff2') format('woff2'),
+      url('./assets/font/MessinaSans-SemiBoldItalic.woff') format('woff'),
+      url('./assets/font/MessinaSans-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Messina Sans';
+  src: url('./assets/font/MessinaSans-Regular.eot');
+  src: local('Messina Sans Regular'), local('MessinaSans-Regular'),
+      url('./assets/font/MessinaSans-Regular.eot?#iefix') format('embedded-opentype'),
+      url('./assets/font/MessinaSans-Regular.woff2') format('woff2'),
+      url('./assets/font/MessinaSans-Regular.woff') format('woff'),
+      url('./assets/font/MessinaSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Messina Sans';
+  src: url('./assets/font/MessinaSans-LightItalic.eot');
+  src: local('Messina Sans Light Italic'), local('MessinaSans-LightItalic'),
+      url('./assets/font/MessinaSans-LightItalic.eot?#iefix') format('embedded-opentype'),
+      url('./assets/font/MessinaSans-LightItalic.woff2') format('woff2'),
+      url('./assets/font/MessinaSans-LightItalic.woff') format('woff'),
+      url('./assets/font/MessinaSans-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Messina Sans';
+  src: url('./assets/font/MessinaSans-BoldItalic.eot');
+  src: local('Messina Sans Bold Italic'), local('MessinaSans-BoldItalic'),
+      url('./assets/font/MessinaSans-BoldItalic.eot?#iefix') format('embedded-opentype'),
+      url('./assets/font/MessinaSans-BoldItalic.woff2') format('woff2'),
+      url('./assets/font/MessinaSans-BoldItalic.woff') format('woff'),
+      url('./assets/font/MessinaSans-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Messina Sans';
+  src: url('./assets/font/MessinaSans-RegularItalic.eot');
+  src: local('Messina Sans Regular Italic'), local('MessinaSans-RegularItalic'),
+      url('./assets/font/MessinaSans-RegularItalic.eot?#iefix') format('embedded-opentype'),
+      url('./assets/font/MessinaSans-RegularItalic.woff2') format('woff2'),
+      url('./assets/font/MessinaSans-RegularItalic.woff') format('woff'),
+      url('./assets/font/MessinaSans-RegularItalic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Messina Sans';
+  src: url('./assets/font/MessinaSans-Light.eot');
+  src: local('Messina Sans Light'), local('MessinaSans-Light'),
+      url('./assets/font/MessinaSans-Light.eot?#iefix') format('embedded-opentype'),
+      url('./assets/font/MessinaSans-Light.woff2') format('woff2'),
+      url('./assets/font/MessinaSans-Light.woff') format('woff'),
+      url('./assets/font/MessinaSans-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
