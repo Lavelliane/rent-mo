@@ -11,7 +11,8 @@ import authRouter from './routes/authRoutes.js'
 declare var process : {
     env: {
       MONGO_URL: string,
-      NODE_ENV: string
+      NODE_ENV: string,
+      JWT_SECRET: string,
     }
 }
 
