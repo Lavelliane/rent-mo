@@ -14,21 +14,50 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateUser = exports.login = exports.register = void 0;
 const User_1 = __importDefault(require("../models/User"));
+const errors_1 = require("../errors");
+const http_status_codes_1 = require("http-status-codes");
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const user = yield User_1.default.create(req.body);
-        return res.status(200).json(user);
+        const { firstName, lastName, email, password, country, state, city, phoneNumber } = req.body;
+        if (!firstName || !lastName || !email || !password || !country || !state || !city || !phoneNumber) {
+            throw new errors_1.BadRequestError("Please provide all values");
+        }
+        const userAlreadyExists = yield User_1.default.findOne({ email });
+        if (userAlreadyExists) {
+            throw new errors_1.BadRequestError("User already exists");
+        }
+        const user = yield User_1.default.create({
+            firstName,
+            lastName,
+            email,
+            password,
+            country,
+            state,
+            city,
+            phoneNumber
+        });
+        const token = user.createJWT();
+        res
+            .status(http_status_codes_1.StatusCodes.CREATED)
+            .json({
+            user: {
+                email: user.email,
+                name: user.name,
+                location: `${user.city}, ${user.state}, ${user.country}`
+            },
+            token,
+        });
     }
     catch (error) {
-        res.status(500).json({ msg: 'There was an error creating the user' });
+        throw new errors_1.BadRequestError("Invalid credentials. Please try again");
     }
 });
 exports.register = register;
 const login = (req, res) => {
-    res.send('login user');
+    res.send("login user");
 };
 exports.login = login;
 const updateUser = (req, res) => {
-    res.send('updateUser');
+    res.send("updateUser");
 };
 exports.updateUser = updateUser;
