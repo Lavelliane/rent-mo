@@ -10,12 +10,8 @@ const register = async (req: Request, res: Response) => {
         lastName, 
         email, 
         password,
-        country, 
-        state, 
-        city, 
-        phoneNumber 
     } = req.body;
-    if(!firstName || !lastName || !email || !password || !country || !state || !city  || !phoneNumber){
+    if(!firstName || !lastName || !email || !password){
         throw new BadRequestError("Please provide all values")
     }
     const userAlreadyExists = await User.findOne({email})
@@ -28,10 +24,10 @@ const register = async (req: Request, res: Response) => {
         lastName, 
         email, 
         password,
-        country, 
-        state, 
-        city, 
-        phoneNumber 
+        country: 'Philippines', 
+        state: 'NCR', 
+        city: 'Metro Manila', 
+        phoneNumber: '09123456789'
     })
     const token = user.createJWT()
     res
@@ -46,7 +42,7 @@ const register = async (req: Request, res: Response) => {
     });
 
   } catch (error) {
-    throw new BadRequestError("Invalid credentials. Please try again");
+    throw new BadRequestError(`${error}`);
   }
 };
 const login = (req: Request, res: Response) => {

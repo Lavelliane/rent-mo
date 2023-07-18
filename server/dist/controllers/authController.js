@@ -18,8 +18,8 @@ const errors_1 = require("../errors");
 const http_status_codes_1 = require("http-status-codes");
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { firstName, lastName, email, password, country, state, city, phoneNumber } = req.body;
-        if (!firstName || !lastName || !email || !password || !country || !state || !city || !phoneNumber) {
+        const { firstName, lastName, email, password, } = req.body;
+        if (!firstName || !lastName || !email || !password) {
             throw new errors_1.BadRequestError("Please provide all values");
         }
         const userAlreadyExists = yield User_1.default.findOne({ email });
@@ -31,10 +31,10 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             lastName,
             email,
             password,
-            country,
-            state,
-            city,
-            phoneNumber
+            country: 'Philippines',
+            state: 'NCR',
+            city: 'Metro Manila',
+            phoneNumber: '09123456789'
         });
         const token = user.createJWT();
         res
@@ -49,7 +49,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
     catch (error) {
-        throw new errors_1.BadRequestError("Invalid credentials. Please try again");
+        throw new errors_1.BadRequestError(`${error}`);
     }
 });
 exports.register = register;
