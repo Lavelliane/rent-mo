@@ -19,6 +19,7 @@ declare var process : {
 dotenv.config()
 const app = express()
 
+
 app.get('/api/v1', (req, res) => {
     res.status(200).json({msg: "Hello"})
 })
