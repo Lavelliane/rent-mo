@@ -12,13 +12,13 @@ declare var process : {
 interface IUser extends Document {
   firstName: string;
   lastName: string;
-  name: string;
+  name?: string;
   email: string;
   password: string;
-  country: string;
-  state: string;
-  city: string;
-  phoneNumber: string;
+  country?: string;
+  state?: string;
+  city?: string;
+  phoneNumber?: string;
   createJWT: () => void;
 }
 
