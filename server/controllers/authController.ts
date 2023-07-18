@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import User from "../models/User";
 import { BadRequestError } from "../errors";
 import { StatusCodes } from "http-status-codes";
+import attachCookies from "../utils/attachCookies";
 
 const register = async (req: Request, res: Response) => {
   try {
@@ -30,6 +31,7 @@ const register = async (req: Request, res: Response) => {
         phoneNumber: '09123456789'
     })
     const token = user.createJWT()
+    attachCookies({res, token})
     res
     .status(StatusCodes.CREATED)
     .json({ 

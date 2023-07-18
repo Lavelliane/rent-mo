@@ -16,6 +16,7 @@ exports.updateUser = exports.login = exports.register = void 0;
 const User_1 = __importDefault(require("../models/User"));
 const errors_1 = require("../errors");
 const http_status_codes_1 = require("http-status-codes");
+const attachCookies_1 = __importDefault(require("../utils/attachCookies"));
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { firstName, lastName, email, password, } = req.body;
@@ -37,6 +38,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             phoneNumber: '09123456789'
         });
         const token = user.createJWT();
+        (0, attachCookies_1.default)({ res, token });
         res
             .status(http_status_codes_1.StatusCodes.CREATED)
             .json({
