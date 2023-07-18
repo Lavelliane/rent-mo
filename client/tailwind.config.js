@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        searchbox: "var(--searchbox-shadow)",
+        buttonbox: "var(--buttonbox-shadow)",
+      },
       fontFamily: {
         'Messina-Sans': ['Messina Sans', 'sans-serif']
       },
