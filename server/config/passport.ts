@@ -1,10 +1,18 @@
 import passport from "passport";
 import passportGoogle from "passport-google-oauth20";
 import User, { IUser } from "../models/User";
-import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from "./keys";
+// import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from "./keys";
 
 import dotenv from 'dotenv';
 dotenv.config();
+
+declare var process : {
+  env: {
+    GOOGLE_CLIENT_ID: string,
+    GOOGLE_CLIENT_SECRET: string
+  }
+}
+
 
 const GoogleStrategy = passportGoogle.Strategy;
 
@@ -20,8 +28,8 @@ passport.deserializeUser(async (id, done) => {
 passport.use(
   new GoogleStrategy(
     {
-      clientID: GOOGLE_CLIENT_ID,
-      clientSecret: GOOGLE_CLIENT_SECRET,
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "/api/v1/auth/google/redirect",
     },
     async (accessToken, refreshToken, profile, done) => {

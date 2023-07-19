@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const passport_1 = __importDefault(require("passport"));
 const passport_google_oauth20_1 = __importDefault(require("passport-google-oauth20"));
 const User_1 = __importDefault(require("../models/User"));
-const keys_1 = require("./keys");
+// import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from "./keys";
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const GoogleStrategy = passport_google_oauth20_1.default.Strategy;
@@ -27,8 +27,8 @@ passport_1.default.deserializeUser((id, done) => __awaiter(void 0, void 0, void 
     done(null, user);
 }));
 passport_1.default.use(new GoogleStrategy({
-    clientID: keys_1.GOOGLE_CLIENT_ID,
-    clientSecret: keys_1.GOOGLE_CLIENT_SECRET,
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "/api/v1/auth/google/redirect",
 }, (accessToken, refreshToken, profile, done) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
