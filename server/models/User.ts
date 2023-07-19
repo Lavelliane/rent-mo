@@ -20,6 +20,7 @@ interface IUser extends Document {
   city?: string;
   phoneNumber?: string;
   createJWT: () => void;
+  comparePassword: (password: string) => boolean;
 }
 
 const emailValidator = (email: string) => {
@@ -96,6 +97,11 @@ UserSchema.methods.createJWT = function() {
   }, process.env.JWT_SECRET , {
     expiresIn: process.env.JWT_LIFETIME 
   });
+}
+
+UserSchema.methods.comparePassword = async function (candidatePassword: string){
+  const isMatch = await bcrypt.compare(candidatePassword, this.password);
+  return isMatch;
 }
 
 export default mongoose.model<IUser>('User', UserSchema);

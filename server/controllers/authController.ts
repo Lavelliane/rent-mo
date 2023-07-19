@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import User from "../models/User";
-import { BadRequestError } from "../errors";
+import { BadRequestError, UnAuthenticatedError } from "../errors";
 import { StatusCodes } from "http-status-codes";
+import attachCookies from "../utils/attachCookies";
 
 const register = async (req: Request, res: Response) => {
   try {
@@ -30,24 +31,55 @@ const register = async (req: Request, res: Response) => {
         phoneNumber: '09123456789'
     })
     const token = user.createJWT()
+    attachCookies({res, token})
+
+    //---- return response
     res
-    .status(StatusCodes.CREATED)
-    .json({ 
-      user: { 
-        email: user.email,
-        name: user.name,
-        location: `${user.city}, ${user.state}, ${user.country}`
-      }, 
-      token, 
-    });
+      .status(StatusCodes.CREATED)
+      .json({ 
+        user: { 
+          email: user.email,
+          name: user.name,
+          location: `${user.city}, ${user.state}, ${user.country}`
+        },  
+      });
 
   } catch (error) {
     throw new BadRequestError(`${error}`);
   }
 };
-const login = (req: Request, res: Response) => {
-  res.send("login user");
+
+
+
+/////////////////////////////////////////////////////////////////////////////////
+const login = async (req: Request, res: Response) => {
+  const { email, password } = req.body
+  if(!email || !password){
+    throw new BadRequestError("Please provide all values")
+  }
+    //find user and get password
+    const user = await User.findOne({email}).select("+password")
+
+    if(!user){
+      throw new UnAuthenticatedError("Invalid credentials")
+    }
+    const isPasswordCorrect = await user.comparePassword(password)
+    if(!isPasswordCorrect){
+      throw new UnAuthenticatedError('Invalid Credentials');
+    }
+    const token = user.createJWT()
+    user.password = ''
+    attachCookies({res, token})
+
+    res.status(StatusCodes.OK).json({user, location: `${user.city}, ${user.state}, ${user.country}`})
+
 };
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
 const updateUser = (req: Request, res: Response) => {
   res.send("updateUser");
 };
