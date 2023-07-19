@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {Routes, Route, BrowserRouter} from "react-router-dom";
-import HeroPage from "./pages/HeroPage.tsx"
-import Registration from "./components/Registration.tsx";
+import MainPage from './pages/MainPage.tsx'
+import Registration from "./pages/Registration.tsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -10,7 +10,7 @@ function App() {
     <>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<HeroPage/>}></Route>
+        <Route path='/' element={<MainPage/>}></Route>
         <Route path='/register' element={<Registration/>}></Route>
       </Routes>
     </BrowserRouter>

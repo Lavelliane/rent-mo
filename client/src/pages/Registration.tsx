@@ -24,6 +24,9 @@ const Registration = () => {
     try {
       const req = await axios.post("/api/v1/auth/register", user);
       console.log(req.data);
+      //assign to context
+
+      //redirect user to landing
     } catch (error) {
       console.log(error);
     }
@@ -44,7 +47,7 @@ const Registration = () => {
       >
         <div className="flex w-full justify-center items-center">
           <img
-            className=" w-56 inline self-center no-select md:py-9 py-9"
+            className=" w-56 inline self-center no-select md:pb-6 pb-9"
             src="../src/assets/logo/RentMo-logo.svg"
           ></img>
         </div>

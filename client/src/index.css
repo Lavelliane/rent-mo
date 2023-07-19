@@ -145,3 +145,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
 }
+
+.date-input::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Replace with your desired color */
+}
