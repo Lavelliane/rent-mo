@@ -119,4 +119,5 @@ UserSchema.methods.comparePassword = function (candidatePassword) {
         return isMatch;
     });
 };
-exports.default = mongoose_1.default.model('User', UserSchema);
+const User = mongoose_1.default.model('User', UserSchema);
+exports.default = User;

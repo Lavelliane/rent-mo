@@ -22,9 +22,12 @@ const connect_js_1 = __importDefault(require("./db/connect.js"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const helmet_1 = __importDefault(require("helmet"));
 const xss_clean_1 = __importDefault(require("xss-clean"));
+const cookie_session_1 = __importDefault(require("cookie-session"));
 const authRoutes_js_1 = __importDefault(require("./routes/authRoutes.js"));
 const bookingRouter_js_1 = __importDefault(require("./routes/bookingRouter.js"));
 const auth_js_1 = __importDefault(require("./middleware/auth.js"));
+const passport_1 = __importDefault(require("passport"));
+require("./config/passport");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.get('/api/v1', (req, res) => {
@@ -37,6 +40,13 @@ app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 app.use((0, helmet_1.default)());
 app.use((0, xss_clean_1.default)());
+app.use((0, cookie_session_1.default)({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [process.env.JWT_SECRET],
+}));
+// initialize passport
+app.use(passport_1.default.initialize());
+app.use(passport_1.default.session());
 app.use('/api/v1/auth', authRoutes_js_1.default);
 app.use('/api/v1/booking', auth_js_1.default, bookingRouter_js_1.default);
 app.use(not_found_js_1.default);
