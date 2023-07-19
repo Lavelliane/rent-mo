@@ -5,8 +5,14 @@ import morgan from 'morgan'
 import notFoundMiddleware from './middleware/not-found.js'
 import errorHandlerMiddleware from './middleware/error-handler.js'
 import connectDB from './db/connect.js'
+import cookieParser from 'cookie-parser'
+import helmet from 'helmet'
+import xss from 'xss-clean'
 
 import authRouter from './routes/authRoutes.js'
+import bookingRouter from './routes/bookingRouter.js'
+
+import authenticateUser from './middleware/auth.js'
 
 declare var process : {
     env: {
@@ -28,8 +34,12 @@ if(process.env.NODE_ENV !== 'production'){
     app.use(morgan('dev'))
 }
 app.use(express.json())
+app.use(cookieParser())
+app.use(helmet())
+app.use(xss())
 
 app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/booking', authenticateUser, bookingRouter)
 
 
 app.use(notFoundMiddleware)

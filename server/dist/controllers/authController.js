@@ -39,6 +39,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
         const token = user.createJWT();
         (0, attachCookies_1.default)({ res, token });
+        //---- return response
         res
             .status(http_status_codes_1.StatusCodes.CREATED)
             .json({
@@ -47,7 +48,6 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 name: user.name,
                 location: `${user.city}, ${user.state}, ${user.country}`
             },
-            token,
         });
     }
     catch (error) {
@@ -55,10 +55,28 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.register = register;
-const login = (req, res) => {
-    res.send("login user");
-};
+/////////////////////////////////////////////////////////////////////////////////
+const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email, password } = req.body;
+    if (!email || !password) {
+        throw new errors_1.BadRequestError("Please provide all values");
+    }
+    //find user and get password
+    const user = yield User_1.default.findOne({ email }).select("+password");
+    if (!user) {
+        throw new errors_1.UnAuthenticatedError("Invalid credentials");
+    }
+    const isPasswordCorrect = yield user.comparePassword(password);
+    if (!isPasswordCorrect) {
+        throw new errors_1.UnAuthenticatedError('Invalid Credentials');
+    }
+    const token = user.createJWT();
+    user.password = '';
+    (0, attachCookies_1.default)({ res, token });
+    res.status(http_status_codes_1.StatusCodes.OK).json({ user, location: `${user.city}, ${user.state}, ${user.country}` });
+});
 exports.login = login;
+//////////////////////////////////////////////////////////////////////////////////////////
 const updateUser = (req, res) => {
     res.send("updateUser");
 };

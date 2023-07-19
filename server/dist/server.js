@@ -19,7 +19,12 @@ const morgan_1 = __importDefault(require("morgan"));
 const not_found_js_1 = __importDefault(require("./middleware/not-found.js"));
 const error_handler_js_1 = __importDefault(require("./middleware/error-handler.js"));
 const connect_js_1 = __importDefault(require("./db/connect.js"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const helmet_1 = __importDefault(require("helmet"));
+const xss_clean_1 = __importDefault(require("xss-clean"));
 const authRoutes_js_1 = __importDefault(require("./routes/authRoutes.js"));
+const bookingRouter_js_1 = __importDefault(require("./routes/bookingRouter.js"));
+const auth_js_1 = __importDefault(require("./middleware/auth.js"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.get('/api/v1', (req, res) => {
@@ -29,7 +34,11 @@ if (process.env.NODE_ENV !== 'production') {
     app.use((0, morgan_1.default)('dev'));
 }
 app.use(express_1.default.json());
+app.use((0, cookie_parser_1.default)());
+app.use((0, helmet_1.default)());
+app.use((0, xss_clean_1.default)());
 app.use('/api/v1/auth', authRoutes_js_1.default);
+app.use('/api/v1/booking', auth_js_1.default, bookingRouter_js_1.default);
 app.use(not_found_js_1.default);
 app.use(error_handler_js_1.default);
 const port = 5000;
