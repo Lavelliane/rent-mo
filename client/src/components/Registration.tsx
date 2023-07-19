@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BgHomepage from "../assets/images/Rent-mo-hero-bg.png";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 interface UserSignUp {
   firstName: string;
@@ -28,6 +29,11 @@ const Registration = () => {
       console.log(error);
     }
   };
+
+  const handleGoogleAuth = async () => {
+    const response = await axios.get('/api/v1/auth/google')
+    console.log(response)
+  }
 
   const handleChange = (e: any) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
@@ -61,6 +67,7 @@ const Registration = () => {
             </p>
 
             <button
+              onClick={handleGoogleAuth}
               aria-label="Continue with google"
               role="button"
               className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 p-3 border rounded-lg border-gray-700 flex items-center w-full mt-10 hover:bg-gray-100"
