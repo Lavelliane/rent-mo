@@ -9,7 +9,8 @@ declare var process : {
     JWT_LIFETIME: string
   }
 }
-interface IUser extends Document {
+export interface IUser extends Document {
+  id: string;
   firstName: string;
   lastName: string;
   name?: string;
@@ -19,7 +20,7 @@ interface IUser extends Document {
   state?: string;
   city?: string;
   phoneNumber?: string;
-  createJWT: () => void;
+  createJWT: () => string;
   comparePassword: (password: string) => boolean;
 }
 
@@ -104,4 +105,6 @@ UserSchema.methods.comparePassword = async function (candidatePassword: string){
   return isMatch;
 }
 
-export default mongoose.model<IUser>('User', UserSchema);
+const User =  mongoose.model<IUser>('User', UserSchema);
+
+export default User

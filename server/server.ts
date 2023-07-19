@@ -8,11 +8,14 @@ import connectDB from './db/connect.js'
 import cookieParser from 'cookie-parser'
 import helmet from 'helmet'
 import xss from 'xss-clean'
+import cookieSession from 'cookie-session'
 
 import authRouter from './routes/authRoutes.js'
 import bookingRouter from './routes/bookingRouter.js'
 
 import authenticateUser from './middleware/auth.js'
+import passport from 'passport'
+import './config/passport'
 
 declare var process : {
     env: {
@@ -37,6 +40,16 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(helmet())
 app.use(xss())
+
+app.use(
+    cookieSession({
+      maxAge: 24 * 60 * 60 * 1000,
+      keys: [process.env.JWT_SECRET],
+    })
+  );
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/booking', authenticateUser, bookingRouter)
