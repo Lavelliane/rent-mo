@@ -16,18 +16,19 @@ require("express-async-errors");
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const morgan_1 = __importDefault(require("morgan"));
-const not_found_js_1 = __importDefault(require("./middleware/not-found.js"));
-const error_handler_js_1 = __importDefault(require("./middleware/error-handler.js"));
-const connect_js_1 = __importDefault(require("./db/connect.js"));
+const not_found_1 = __importDefault(require("./middleware/not-found"));
+const error_handler_1 = __importDefault(require("./middleware/error-handler"));
+const connect_1 = __importDefault(require("./db/connect"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const helmet_1 = __importDefault(require("helmet"));
 const xss_clean_1 = __importDefault(require("xss-clean"));
 const cookie_session_1 = __importDefault(require("cookie-session"));
-const authRoutes_js_1 = __importDefault(require("./routes/authRoutes.js"));
-const bookingRouter_js_1 = __importDefault(require("./routes/bookingRouter.js"));
-const auth_js_1 = __importDefault(require("./middleware/auth.js"));
+const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
+const bookingRouter_1 = __importDefault(require("./routes/bookingRouter"));
+const auth_1 = __importDefault(require("./middleware/auth"));
 const passport_1 = __importDefault(require("passport"));
 require("./config/passport");
+const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.get('/api/v1', (req, res) => {
@@ -47,14 +48,14 @@ app.use((0, cookie_session_1.default)({
 // initialize passport
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
-app.use('/api/v1/auth', authRoutes_js_1.default);
-app.use('/api/v1/booking', auth_js_1.default, bookingRouter_js_1.default);
-app.use(not_found_js_1.default);
-app.use(error_handler_js_1.default);
+app.use('/api/v1/auth', (0, cors_1.default)(), authRoutes_1.default);
+app.use('/api/v1/booking', auth_1.default, bookingRouter_1.default);
+app.use(not_found_1.default);
+app.use(error_handler_1.default);
 const port = 5000;
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield (0, connect_js_1.default)(process.env.MONGO_URL);
+        yield (0, connect_1.default)(process.env.MONGO_URL);
         app.listen(port, () => {
             console.log(`app listening at http://localhost:${port}`);
         });

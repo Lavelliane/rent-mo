@@ -13,12 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const passport_1 = __importDefault(require("passport"));
-const passport_google_oauth20_1 = __importDefault(require("passport-google-oauth20"));
+const passport_google_oauth2_1 = __importDefault(require("passport-google-oauth2"));
 const User_1 = __importDefault(require("../models/User"));
-// import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from "./keys";
+const crypto_1 = __importDefault(require("crypto"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const GoogleStrategy = passport_google_oauth20_1.default.Strategy;
+const GoogleStrategy = passport_google_oauth2_1.default.Strategy;
 passport_1.default.serializeUser((user, done) => {
     done(null, user.id);
 });
@@ -29,16 +29,22 @@ passport_1.default.deserializeUser((id, done) => __awaiter(void 0, void 0, void 
 passport_1.default.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "/api/v1/auth/google/redirect",
-}, (accessToken, refreshToken, profile, done) => __awaiter(void 0, void 0, void 0, function* () {
+    callbackURL: "http://localhost:5173/api/v1/auth/google/redirect",
+    passReqToCallback: true
+}, (req, accessToken, refreshToken, profile, done) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const user = yield User_1.default.findOne({ googleId: profile.id });
     // If user doesn't exist creates a new user. (similar to sign up)
     if (!user) {
         const newUser = yield User_1.default.create({
-            googleId: profile.id,
-            username: profile.displayName,
+            id: profile.id,
+            firstName: profile.displayName,
             email: (_a = profile.emails) === null || _a === void 0 ? void 0 : _a[0].value,
+            password: crypto_1.default.randomBytes(64).toString('hex'),
+            country: 'Philippines',
+            state: 'NCR',
+            city: 'Metro Manila',
+            phoneNumber: '09123456789'
         });
         if (newUser) {
             done(null, newUser);

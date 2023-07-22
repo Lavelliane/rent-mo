@@ -1,15 +1,16 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document, ObjectId } from "mongoose";
 import validator from 'validator';
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
-declare var process : {
+declare const process : {
   env: {
     JWT_SECRET: string,
     JWT_LIFETIME: string
   }
 }
 export interface IUser extends Document {
+  _id: ObjectId;
   id: string;
   firstName: string;
   lastName: string;

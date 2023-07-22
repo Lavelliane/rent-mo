@@ -1,7 +1,6 @@
 import express from 'express'
 import { register, login, updateUser } from "../controllers/authController.js";
 import passport from 'passport'
-import cors from 'cors';
 
 
 
@@ -14,8 +13,9 @@ router.route('/google').get(passport.authenticate("google", {
   scope: ["email", "profile"],
 }))
 
-router.get("/google/redirect", cors(), passport.authenticate("google"), (req, res) => {
-    res.redirect('/');
-  });
+router.route("/google/redirect").get(passport.authenticate("google",  {
+  successRedirect: '/',
+  failureRedirect: '/landing'
+}));
 
 export default router;

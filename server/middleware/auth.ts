@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { UnAuthenticatedError } from "../errors/index.js";
 import jwt from 'jsonwebtoken'
 
-declare var process : {
+declare const process : {
     env: {
       JWT_SECRET: string,
     }

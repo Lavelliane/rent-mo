@@ -2,22 +2,23 @@ import 'express-async-errors'
 import express from 'express'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
-import notFoundMiddleware from './middleware/not-found.js'
-import errorHandlerMiddleware from './middleware/error-handler.js'
-import connectDB from './db/connect.js'
+import notFoundMiddleware from './middleware/not-found'
+import errorHandlerMiddleware from './middleware/error-handler'
+import connectDB from './db/connect'
 import cookieParser from 'cookie-parser'
 import helmet from 'helmet'
 import xss from 'xss-clean'
 import cookieSession from 'cookie-session'
 
-import authRouter from './routes/authRoutes.js'
-import bookingRouter from './routes/bookingRouter.js'
+import authRouter from './routes/authRoutes'
+import bookingRouter from './routes/bookingRouter'
 
-import authenticateUser from './middleware/auth.js'
+import authenticateUser from './middleware/auth'
 import passport from 'passport'
 import './config/passport'
+import cors from 'cors'
 
-declare var process : {
+declare const process : {
     env: {
       MONGO_URL: string,
       NODE_ENV: string,
@@ -51,7 +52,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/auth', cors(), authRouter)
 app.use('/api/v1/booking', authenticateUser, bookingRouter)
 
 

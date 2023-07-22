@@ -30,10 +30,6 @@ const Registration = () => {
     }
   };
 
-  const handleGoogleAuth = async () => {
-    const response = await axios.get('/api/v1/auth/google')
-    console.log(response)
-  }
 
   const handleChange = (e: any) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
@@ -66,8 +62,8 @@ const Registration = () => {
               Start your journey here
             </p>
 
-            <button
-              onClick={handleGoogleAuth}
+            <a
+              href="/api/v1/auth/google"
               aria-label="Continue with google"
               role="button"
               className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 p-3 border rounded-lg border-gray-700 flex items-center w-full mt-10 hover:bg-gray-100"
@@ -99,7 +95,7 @@ const Registration = () => {
               <p className="text-base font-medium ml-4 text-gray-700">
                 Continue with Google
               </p>
-            </button>
+            </a>
             <button
               aria-label="Continue with twitter"
               role="button"
