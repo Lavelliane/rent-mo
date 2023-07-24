@@ -1,99 +1,34 @@
 import React from 'react'
 import BgHomepage from "../assets/images/Rent-mo-hero-bg.png";
 import Navbar from "../components/Navbar.tsx";
-import Button from "../components/Button.tsx";
+import SearchHero from "../components/SearchHero.tsx";
 import "../index.css";
 
 const HeroPage = () => {
   return (
-    <div
-        className="h-screen w-full bg-cover bg-center flex flex-col font-Messina-Sans"
-        style={{ backgroundImage: `url(${BgHomepage})` }}
-      >
+    <div className=" bg-cover pb-12 overflow-y-hidden h-screen font-Messina-Sans" style={{ minHeight: 700, backgroundImage: `url(${BgHomepage})`}} >
+    {/* Code block starts */}
+    <>
         <Navbar/>
-        <div className=" translate-y-[50%] px-[14%] items-center justify-center text-center flex flex-col text-white gap-6">
-          <h1 className="font-bold text-[9vh] select-none">Jump-Start You Next Adventure</h1>
-          <p className="font-regular text-[3.8vh] select-none">
-            Need a ride for your trip? Get the wheels you need in a matter of
-            minutes right here!
-          </p>
-          <div className="bg-white shadow-searchbox w-full h-20 rounded-full flex content-center items-center p-2 justify-evenly">
-            {/* Location */}
-            
-            <div className="flex flex-col justify-start items-start w-full ml-5">
-              <label
-                htmlFor="input-location"
-                className="text-black font-bold text-sm"
-              >
-                Location
-              </label>
-              <div className="flex">
-                <img className="h-6" src="../src/assets/logo/pin-loc.png"></img>
-                <div className="flex border-b-2 border-white hover:border-dark200 transition-colors w-full">
-                  <input
-                    id="input-location"
-                    type="search"
-                    placeholder="Drop Location"
-                    className="text-black bg-transparent text-lg focus:outline-none w-full"
-                    />
+        <div className="">
+            <div className="container mx-auto flex flex-col items-center xl:pt-12 2xl:pt-48 pt-6">
+                <div className="w-11/12 sm:w-2/3 lg:flex justify-center items-center flex-col mb-5 sm:mb-10">
+                    <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-6xl text-center text-white font-black leading-5 md:leading-5">
+                        Jump-Start Your Next
+                        <span className="text-yellow"> Adventure</span>
+                    </h1>
+                    <p className="mt-5 sm:mt-5 lg:w-full text-white font-normal text-center md:text-base lg:text-2xl text-base"> Need a ride for your trip? Get the wheels you need in a matter of
+      minutes right here!</p>
                 </div>
-              </div>
+                <div className="flex justify-center items-center">
+                </div>
             </div>
-            <span className=" w-1 h-12 bg-dark400 mx-4"></span>
-            {/* Start Trip */}
-            <div className="flex flex-col justify-start items-start w-3/4">
-              <label
-                htmlFor="input-start-trip"
-                className="text-black font-bold text-sm"
-              >
-                Start Trip
-              </label>
-              <div className="flex gap-4">
-                <input
-                  id="input-start-trip"
-                  type="date"
-                  placeholder="Drop Location"
-                  className="text-black bg-transparent text-lg focus:outline-none"
-                />
-                  <input
-                  id="input-start-trip-time"
-                  type="time"
-                  placeholder="Drop Location"
-                  className="text-black bg-transparent text-lg focus:outline-none"
-                />
-              </div>
-            </div>
-            <span className=" w-1 h-12 bg-dark400 mx-4"></span>
-            {/* End Trip */}
-            <div className="flex flex-col justify-start items-start w-3/4">
-              <label
-                htmlFor="input-start-trip"
-                className="text-black font-bold text-sm"
-              >
-                End Trip
-              </label>
-              <div className="flex gap-4">
-                <input
-                  id="input-end-trip"
-                  type="date"
-                  placeholder="Drop Location"
-                  className="text-black bg-transparent text-lg focus:outline-none"
-                />
-                <input
-                  id="input-end-trip-time"
-                  type="time"
-                  placeholder="Drop Location"
-                  className="text-black bg-transparent text-lg focus:outline-none"
-                />
-              </div>
-            </div>
-            <div className="flex self-end ml-4">
-                <Button/>
-            </div>
-         
-          </div>
         </div>
-      </div>
+        <SearchHero/>
+    </>
+    
+    {/* Code block ends */}
+</div>
   )
 }
 
