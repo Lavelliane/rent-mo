@@ -17,6 +17,7 @@ import authenticateUser from './middleware/auth'
 import passport from 'passport'
 import './config/passport'
 import cors from 'cors'
+import bodyParser from 'body-parser'
 
 declare const process : {
     env: {
@@ -30,14 +31,12 @@ dotenv.config()
 const app = express()
 
 
-app.get('/api/v1', (req, res) => {
-    res.status(200).json({msg: "Hello"})
-})
 
 if(process.env.NODE_ENV !== 'production'){
     app.use(morgan('dev'))
 }
-app.use(express.json())
+//app.use(express.json())
+app.use(bodyParser.json());
 app.use(cookieParser())
 app.use(helmet())
 app.use(xss())
@@ -51,6 +50,7 @@ app.use(
 // initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.use('/api/v1/auth', cors(), authRouter)
 app.use('/api/v1/booking', authenticateUser, bookingRouter)

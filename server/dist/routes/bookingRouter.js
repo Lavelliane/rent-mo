@@ -8,3 +8,4 @@ const bookingsController_1 = require("../controllers/bookingsController");
 const router = express_1.default.Router();
 router.route('/new/rental').post(bookingsController_1.createBooking);
 exports.default = router;
+//# sourceMappingURL=bookingRouter.js.map

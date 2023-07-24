@@ -29,3 +29,4 @@ const authenticateUser = (req, res, next) => __awaiter(void 0, void 0, void 0, f
     }
 });
 exports.default = authenticateUser;
+//# sourceMappingURL=auth.js.map

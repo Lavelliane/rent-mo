@@ -2,7 +2,7 @@ import { Response } from "express"
 
 interface ArgumentTypes {
     res: Response;
-    token: string;
+    token: string | undefined;
 };
 
 

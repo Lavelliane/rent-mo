@@ -81,3 +81,4 @@ const updateUser = (req, res) => {
     res.send("updateUser");
 };
 exports.updateUser = updateUser;
+//# sourceMappingURL=authController.js.map
