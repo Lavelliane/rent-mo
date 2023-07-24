@@ -10,3 +10,4 @@ const attachCookies = ({ res, token }) => {
     });
 };
 exports.default = attachCookies;
+//# sourceMappingURL=attachCookies.js.map

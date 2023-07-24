@@ -12,3 +12,4 @@ class UnAuthenticatedError extends custom_api_js_1.default {
     }
 }
 exports.default = UnAuthenticatedError;
+//# sourceMappingURL=unauthenticated.js.map

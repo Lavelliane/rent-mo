@@ -11,6 +11,7 @@ declare const process : {
 }
 export interface IUser extends Document {
   _id: ObjectId;
+  googleId?: string | null;
   id: string;
   firstName: string;
   lastName: string;

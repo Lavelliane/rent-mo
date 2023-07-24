@@ -5,3 +5,4 @@ const createBooking = (req, res) => {
     return res.status(200).json({ msg: "Created Booking" });
 };
 exports.createBooking = createBooking;
+//# sourceMappingURL=bookingsController.js.map

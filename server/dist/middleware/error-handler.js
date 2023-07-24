@@ -18,3 +18,4 @@ function errorHandlerMiddleware(err, req, res, next) {
     res.status(200).json({ message: defaultError.message });
 }
 exports.default = errorHandlerMiddleware;
+//# sourceMappingURL=error-handler.js.map

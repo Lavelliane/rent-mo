@@ -77,8 +77,6 @@ const login = async (req: Request, res: Response) => {
 
 
 
-
-
 //////////////////////////////////////////////////////////////////////////////////////////
 const updateUser = (req: Request, res: Response) => {
   res.send("updateUser");
