@@ -11,9 +11,9 @@ const HeroPage = () => {
     <>
         <Navbar/>
         <div className="">
-            <div className="container mx-auto flex flex-col items-center xl:pt-12 2xl:pt-48 pt-6">
-                <div className="w-11/12 sm:w-2/3 lg:flex justify-center items-center flex-col mb-5 sm:mb-10">
-                    <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-6xl text-center text-white font-black leading-5 md:leading-5">
+            <div className="container mx-auto flex flex-col items-center xl:pt-12 2xl:pt-32 pt-6">
+                <div className="w-11/12 2xl:w-full sm:w-2/3 lg:flex justify-center items-center flex-col mb-5 sm:mb-10">
+                    <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-6xl text-center text-white font-black leading-5 md:leading-10">
                         Jump-Start Your Next
                         <span className="text-yellow"> Adventure</span>
                     </h1>

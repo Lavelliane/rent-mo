@@ -3,7 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --yellow: #FCD116;
+  --yellow-0: #FCD116;
+  --yellow-100: #e3bc14;
+  --yellow-200: #caa712;
+  --yellow-300: #b0920f;
+  --yellow-400: #977d0d;
+  --yellow-500: #7e690b;
+  --yellow-600: #655409;
+  --yellow-700: #4c3f07;
+  --yellow-800: #322a04;
+  --yellow-900: #191502;
   --dark-900: #121113;
   --dark-800: #131313;
   --dark-700: #000000B3;
@@ -140,8 +149,14 @@
 
 .no-select {
   user-select: none;
+  pointer-events: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+}
+
+.no-select:focus {
+  outline: none;
+  border: none;
 }
