@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import BgHomepage from "../assets/images/Rent-mo-hero-bg.png";
 import axios from "axios";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useUser } from '../../hooks/zustand/useUser'
+
 
 interface UserSignUp {
   firstName: string;
@@ -18,14 +20,18 @@ const initialUserState: UserSignUp = {
 };
 
 const Login = () => {
- 
-  const [user, setUser] = useState(initialUserState);
+  const navigate = useNavigate();
+  const [user, setUserState] = useState(initialUserState);
+  const store = useUser();
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     try {
-      const req = await axios.post("/api/v1/auth/login", user);
-      console.log(req.data);
+      const res = await axios.post("/api/v1/auth/login", user);
+      if(res.data){
+        store.setUser(res.data)
+        navigate("/profile");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +40,7 @@ const Login = () => {
 
   const handleChange = (e: any) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setUserState({ ...user, [e.target.name]: e.target.value });
   };
 
   console.log(user);

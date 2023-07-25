@@ -27,9 +27,14 @@ router.route('/google').get(passport_1.default.authenticate("google", {
 router.route("/google/redirect").get(passport_1.default.authenticate("google"), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const user = yield User_js_1.default.findOne({ email: (_a = req === null || req === void 0 ? void 0 : req.user) === null || _a === void 0 ? void 0 : _a.email });
+    let location = '';
     const token = user === null || user === void 0 ? void 0 : user.createJWT();
     (0, attachCookies_js_1.default)({ res, token });
-    res.redirect('/');
+    if (user) {
+        user.password = '';
+        location = `${user.city}, ${user.state}, ${user.country}`;
+    }
+    res.status(200).json({ user, location }).redirect('/');
 }));
 router.route('/google/logout').get((req, res) => {
     req.logout(() => {

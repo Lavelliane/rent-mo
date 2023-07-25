@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar.tsx";
 import Reviews from "../components/Reviews.tsx";
 import ProfileCard from "../components/ProfileCard.tsx";
 import Footer from "../components/Footer.tsx";
+import { useUser } from "../../hooks/zustand/useUser.ts";
 
 const Profile = () => {
   // const [inputValue, setInputValue] = useState('');
@@ -10,8 +11,10 @@ const Profile = () => {
   // const handleInputChange = (event: any) => {
   //     setInputValue();
   //   };
+  const store = useUser()
+  
+  
 
-  const userName = "Vincent Abella";
   const yearJoined = "2023";
   const aboutMe =
     "Lorem ipsum dolor sit amet, consectetur  consectetur  consectetur  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea";
@@ -27,7 +30,7 @@ const Profile = () => {
           <div className="justify-center flex w-full h-full px-44 relative text-white gap-14">
           <ProfileCard />
           <div className="self-start flex flex-col mt-16 3xl:w-3/5 w-4/6 h-5/6">
-            <h1 className="text-6xl font-bold">{userName}</h1>
+            <h1 className="text-6xl font-bold">{store?.user?.user.firstName}</h1>
             <p className="ml-4 text-xl">Joined {yearJoined}</p>
             <div className="mt-10 text-dark900 text-lg">
               <div className="flex flex-col w-full h-fit">
