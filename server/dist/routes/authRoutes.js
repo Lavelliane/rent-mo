@@ -15,8 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const authController_js_1 = require("../controllers/authController.js");
 const passport_1 = __importDefault(require("passport"));
-const User_js_1 = __importDefault(require("../models/User.js"));
-const attachCookies_js_1 = __importDefault(require("../utils/attachCookies.js"));
 const router = express_1.default.Router();
 router.route('/register').post(authController_js_1.register);
 router.route('/login').post(authController_js_1.login);
@@ -25,10 +23,9 @@ router.route('/google').get(passport_1.default.authenticate("google", {
     scope: ["email", "profile"],
 }));
 router.route("/google/redirect").get(passport_1.default.authenticate("google"), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
-    const user = yield User_js_1.default.findOne({ email: (_a = req === null || req === void 0 ? void 0 : req.user) === null || _a === void 0 ? void 0 : _a.email });
-    const token = user === null || user === void 0 ? void 0 : user.createJWT();
-    (0, attachCookies_js_1.default)({ res, token });
+    // const user = await User.findOne({email: req?.user?.email})
+    // const token = user?.createJWT()
+    // attachCookies({res, token })
     res.redirect('/');
 }));
 router.route('/google/logout').get((req, res) => {
