@@ -17,10 +17,17 @@ router.route('/google').get(passport.authenticate("google", {
 }))
 
 router.route("/google/redirect").get(passport.authenticate("google"), async (req, res) => {
-  // const user = await User.findOne({email: req?.user?.email})
-  // const token = user?.createJWT()
-  // attachCookies({res, token })
-  res.redirect('/')
+  const user = await User.findOne({email: req?.user?.email})
+  let location = ''
+  const token = user?.createJWT()
+  attachCookies({res, token})
+
+  if(user){
+    user.password = ''
+    location = `${user.city}, ${user.state}, ${user.country}`
+  }
+
+  res.status(200).json({user, location }).redirect('/')
 });
 
 router.route('/google/logout').get((req, res) => {
