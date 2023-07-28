@@ -3,8 +3,7 @@ import BgHomepage from "../assets/images/Rent-mo-hero-bg.png";
 import axios from "axios";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
-import { useUser } from '../../hooks/zustand/useUser'
-
+import { useUser } from "../../hooks/zustand/useUser";
 
 interface UserSignUp {
   firstName: string;
@@ -20,27 +19,23 @@ const initialUserState: UserSignUp = {
 };
 
 const Login = () => {
+  const [user, setUser] = useState(initialUserState);
   const navigate = useNavigate();
-  const [user, setUserState] = useState(initialUserState);
   const store = useUser();
-
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     try {
       const res = await axios.post("/api/v1/auth/login", user);
-      if(res.data){
-        store.setUser(res.data)
-        navigate("/profile");
-      }
+      store.setUser(res.data);
+      navigate("/profile");
     } catch (error) {
       console.log(error);
     }
   };
 
-
   const handleChange = (e: any) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-    setUserState({ ...user, [e.target.name]: e.target.value });
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   console.log(user);
@@ -103,7 +98,7 @@ const Login = () => {
                 Continue with Google
               </p>
             </a>
-           
+
             <div className="w-full flex items-center justify-between py-5">
               <hr className="w-full bg-gray-400" />
               <p className="text-base font-medium leading-4 px-2.5 text-gray-500">
@@ -111,7 +106,7 @@ const Login = () => {
               </p>
               <hr className="w-full bg-gray-400" />
             </div>
-          
+
             <div className="mt-0 w-full">
               <label
                 htmlFor="email"
@@ -146,33 +141,31 @@ const Login = () => {
                   type="password"
                   className="bg-gray-200 border rounded text-xs font-medium leading-none text-gray-800 py-3 w-full px-3 mt-2"
                 />
-               
               </div>
             </div>
             <div className="flex gap-2">
-            <div className="mt-8 w-full flex">
-              <button
-                type="submit"
-                role="button"
-                className="focus:ring-2 focus:ring-offset-2 focus:ring-yellow text-sm font-semibold leading-none text-black focus:outline-none bg-yellow rounded hover:opacity-70 py-4 w-full"
-              >
-                Login
-              </button>
+              <div className="mt-8 w-full flex">
+                <button
+                  type="submit"
+                  role="button"
+                  className="focus:ring-2 focus:ring-offset-2 focus:ring-yellow text-sm font-semibold leading-none text-black focus:outline-none bg-yellow rounded hover:opacity-70 py-4 w-full"
+                >
+                  Login
+                </button>
+              </div>
+              <div className="mt-8 w-full flex">
+                <a
+                  href="/landing"
+                  className=" text-center focus:ring-2 focus:ring-offset-2 focus:ring-yellow text-sm font-semibold leading-none text-white focus:outline-none bg-dark600 rounded hover:opacity-70 py-4 w-full transition"
+                >
+                  Return
+                </a>
+              </div>
             </div>
-            <div className="mt-8 w-full flex">
-              <a
-                href="/landing"
-                className=" text-center focus:ring-2 focus:ring-offset-2 focus:ring-yellow text-sm font-semibold leading-none text-white focus:outline-none bg-dark600 rounded hover:opacity-70 py-4 w-full transition"
-              >
-                Return
-              </a>
-            </div>
-            </div>
-            
           </form>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };
