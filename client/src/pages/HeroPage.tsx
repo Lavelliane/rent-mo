@@ -1,4 +1,3 @@
-import React from "react";
 import BgHomepage from "../assets/images/Rent-mo-hero-bg.png";
 import Navbar from "../components/Navbar.tsx";
 import SearchHero from "../components/SearchHero.tsx";

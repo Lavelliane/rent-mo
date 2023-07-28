@@ -12,7 +12,7 @@ const Profile = () => {
 	//     setInputValue();
 	//   };
 
-  const store = useUser();
+    const store = useUser();
 	const userName = "Vincent Abella";
 	const yearJoined = "2023";
 	const aboutMe =

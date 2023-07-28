@@ -83,6 +83,12 @@ const UserSchema = new mongoose_1.Schema({
         trim: true,
         default: 'Cebu',
     },
+    unitAddress: {
+        type: String,
+        maxlength: 20,
+        trim: true,
+        default: 'Philippines',
+    },
     city: {
         type: String,
         maxlength: 20,

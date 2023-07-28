@@ -22,6 +22,7 @@ export interface IUser extends Document {
   state?: string;
   city?: string;
   phoneNumber?: string;
+  unitAddress?: string;
   createJWT: () => string;
   comparePassword: (password: string) => boolean;
 }
@@ -67,9 +68,15 @@ const UserSchema: Schema<IUser> = new Schema({
   },
   state: {
     type: String,
-    maxlength: 20,
+    maxlength: 20, 
     trim: true,
     default: 'Cebu',
+  },
+  unitAddress: {
+    type: String,
+    maxlength: 20,
+    trim: true,
+    default: 'Philippines',
   },
   city: {
     type: String,
@@ -77,6 +84,7 @@ const UserSchema: Schema<IUser> = new Schema({
     trim: true,
     default: 'Cebu City',
   },
+  
   phoneNumber: {
     type: String,
     required: true,
