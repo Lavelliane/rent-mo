@@ -101,7 +101,6 @@ const UserSchema = new mongoose_1.Schema({
     },
     phoneNumber: {
         type: String,
-        required: true,
         trim: true,
         validate: {
             validator: (value) => validator_1.default.isMobilePhone(value, 'any', { strictMode: false }),

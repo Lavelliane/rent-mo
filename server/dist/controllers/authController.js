@@ -32,10 +32,14 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             lastName,
             email,
             password,
-            country: 'Philippines',
-            state: 'NCR',
-            city: 'Metro Manila',
-            phoneNumber: '09123456789'
+            country: '',
+            state: '',
+            city: '',
+            phoneNumber: '09123456789',
+            unitAddress: "",
+            profession: "",
+            language: "Filipino",
+            aboutMe: "No biography written."
         });
         const token = user.createJWT();
         (0, attachCookies_1.default)({ res, token });

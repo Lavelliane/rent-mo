@@ -51,10 +51,11 @@ passport.use(
           country: "",
           state: "",
           city: "",
-          phoneNumber: "",
+          phoneNumber: "09123456789",
           unitAddress: "",
           profession: "",
           language: "Filipino",
+          aboutMe: "No biography written."
         });
 
         return done(null, user);

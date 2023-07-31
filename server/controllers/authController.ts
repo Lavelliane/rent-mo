@@ -25,10 +25,14 @@ const register = async (req: Request, res: Response) => {
         lastName, 
         email, 
         password,
-        country: 'Philippines', 
-        state: 'NCR', 
-        city: 'Metro Manila', 
-        phoneNumber: '09123456789'
+        country: '', 
+        state: '', 
+        city: '', 
+        phoneNumber: '09123456789',
+        unitAddress: "",
+        profession: "",
+        language: "Filipino",
+        aboutMe: "No biography written."
     })
     const token = user.createJWT()
     attachCookies({res, token})
