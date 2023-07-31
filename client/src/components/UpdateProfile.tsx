@@ -4,10 +4,7 @@ const UpdateProfile = (props: any) => {
 	return props.trigger ? (
 		<>
 			<div id='popup' className='z-50 fixed w-full flex justify-center inset-0 font-Messina-Sans'>
-				<div
-					onClick={() => props.setTrigger(false)}
-					className='w-full h-full bg-black bg-opacity-40 z-0 absolute inset-0'
-				/>
+				<div className='w-full h-full bg-black bg-opacity-40 z-0 absolute inset-0' />
 				<div className='mx-auto container'>
 					<div className='flex items-center justify-center h-full w-full'>
 						<div className='bg-white rounded-md shadow fixed overflow-y-auto sm:h-auto w-10/12 md:w-8/12 lg:w-1/2 2xl:w-2/5'>
@@ -63,55 +60,55 @@ const UpdateProfile = (props: any) => {
 									</div>
 								</div>
 								<form className='mt-11'>
-									<div className='flex items-center space-x-9'>
+									<div className='flex flex-col sm:flex-row items-center gap-4'>
 										<input
 											placeholder='First Name'
-											className='w-1/2 focus:outline-none py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
+											className='sm:w-1/2 w-full focus:outline-none py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
 										/>
 										<input
 											placeholder='Last Name'
-											className='w-1/2 focus:outline-none py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
+											className='sm:w-1/2 w-full  focus:outline-none py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
 										/>
 										<input
 											placeholder='Age'
 											type='number'
 											min={0}
-											className='w-1/4 focus:outline-none py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
+											className='sm:w-1/4 w-full focus:outline-none py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
 										/>
 									</div>
-									<div className='flex items-center space-x-9 mt-8'>
+									<div className='flex flex-col sm:flex-row items-center gap-4 sm:mt-8 mt-4'>
 										<input
 											placeholder='Email'
 											type='email'
-											className='w-1/2 focus:outline-none  py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
+											className='sm:w-1/2 w-full focus:outline-none  py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
 										/>
 										<input
 											placeholder='Number'
 											type='number'
-											className='w-1/2 focus:outline-none  py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
+											className='sm:w-1/2 w-full focus:outline-none  py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
 										/>
 									</div>
-									<div className='flex items-center space-x-9 mt-8'>
+									<div className='flex flex-col sm:flex-row items-center gap-4 sm:mt-8 mt-4'>
 										<input
 											placeholder='Profession'
 											type='text'
-											className='w-1/2 focus:outline-none  py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
+											className='sm:w-1/2 w-full focus:outline-none  py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
 										/>
 										<input
 											placeholder='Language'
 											type='text'
-											className='w-1/2 focus:outline-none  py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
+											className='sm:w-1/2 w-full focus:outline-none  py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
 										/>
 									</div>
-									<div className='mt-8'>
+									<div className='mt-4 sm:mt-8'>
 										<textarea
-											placeholder='About Me'
+											placeholder='Tell us about yourself...'
 											className='py-3 pl-3 overflow-y-auto h-24 border rounded border-dark500 w-full resize-none text-dark700 focus:outline-none'
 											defaultValue={""}
 										/>
 									</div>
 								</form>
-								<div className='flex items-center justify-between mt-9'>
+								<div className='flex items-center justify-between mt-9 mb-4'>
 									<button
 										onClick={() => props.setTrigger(false)}
 										className='px-6 py-3 bg-dark300 hover:bg-dark500 shadow rounded text-sm text-dark800'>

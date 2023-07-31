@@ -87,7 +87,7 @@ const UserSchema = new mongoose_1.Schema({
         type: String,
         maxlength: 20,
         trim: true,
-        default: "Philippines",
+        default: "Unknown",
     },
     city: {
         type: String,
@@ -115,19 +115,19 @@ const UserSchema = new mongoose_1.Schema({
         type: String,
         maxlength: 20,
         trim: true,
-        default: "Profession",
+        default: "Unknown",
     },
     language: {
         type: String,
         maxlength: 20,
         trim: true,
-        default: "Language",
+        default: "Unknown",
     },
     aboutMe: {
         type: String,
         maxlength: 300,
         trim: true,
-        default: "About Me",
+        default: "Please tell us about yourself...",
     },
     isVerified: {
         type: Boolean,

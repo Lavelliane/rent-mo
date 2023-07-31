@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import UpdateProfile from "../components/UpdateProfile";
 import { useUser } from "../../hooks/zustand/useUser.ts";
+import TextareaAutosize from "react-textarea-autosize";
 
 const ProfileCard = () => {
 	const [buttonPopup, setButtonPopup] = useState(false);
@@ -10,12 +11,27 @@ const ProfileCard = () => {
 	const reviews = "0 reviews";
 	const userName = `${user.firstName + " " + user.lastName}`;
 	const yearJoined = "2023";
-	const profession = "Freelance Driver"; //
-	const isVerified = "Verified User";
-	const location = `${user.city + ", " + user.country}`;
-	const language = "Filipino, English"; //
-	const number = `${user.phoneNumber}`;
-	const isLicensed = "Licensed to Drive";
+	const profession = `${user.profession}`; //
+
+	const email = `${user.email}`;
+	const location = `${user.unitAddress + ", " + user.city + ", " + user.state + ", " + user.country}`;
+	const language = `${user.language}`; //
+	const phoneNumber = `${user.phoneNumber}`;
+	let isLicensed = "";
+	let isVerified = "";
+
+	if (user.isLicensed) {
+		isLicensed = "Licensed to Drive";
+	} else {
+		isLicensed = "Not Licensed to Drive";
+	}
+
+	if (user.isVerified) {
+		isVerified = "Verified";
+	} else {
+		isVerified = "Not Verified";
+	}
+
 	const badges = "No Badge to Display";
 
 	return (
@@ -37,6 +53,32 @@ const ProfileCard = () => {
 				</button>
 				<div className='flex flex-col w-full lg:w-96 h-fit sm:px-10 px-2 py-5 gap-2 text-sm overflow-hidden'>
 					<div className='flex items-center w-full gap-1'>
+						<img className='h-8' src='../src/assets/logo/icons8-phone.png' alt='logo' />
+						<input
+							className='block p-2 w-3/4 no-select'
+							type='text'
+							name='number'
+							// onChange={handleInputChange}
+							value={phoneNumber}></input>
+					</div>
+					<div className='flex items-center w-full gap-1'>
+						<img className='h-8' src='../src/assets/logo/icons8-email.png' alt='logo' />
+						<input
+							className='block p-2 w-3/4 no-select'
+							type='text'
+							name='number'
+							// onChange={handleInputChange}
+							value={email}></input>
+					</div>
+					<div className='flex items-center w-full h-fit gap-1'>
+						<img className='h-8' src='../src/assets/logo/icons8-house.png' alt='logo' />
+						<TextareaAutosize
+							className='p-2 w-3/4 no-select resize-none h-full break-words'
+							name='location'
+							// onChange={handleInputChange}
+							value={location}></TextareaAutosize>
+					</div>
+					<div className='flex items-center w-full gap-1'>
 						<img className='h-8' src='../src/assets/logo/icons8-star.png' alt='logo' />
 						<input
 							className='block p-2 w-3/4 no-select'
@@ -53,24 +95,7 @@ const ProfileCard = () => {
 							// onChange={handleInputChange}
 							value={profession}></input>
 					</div>
-					<div className='flex items-center w-full gap-1'>
-						<img className='h-8' src='../src/assets/logo/icons8-verified.png' alt='logo' />
-						<input
-							className='block p-2 w-3/4 no-select'
-							type='text'
-							name='isVerified'
-							// onChange={handleInputChange}
-							value={isVerified}></input>
-					</div>
-					<div className='flex items-center w-full gap-1'>
-						<img className='h-8' src='../src/assets/logo/icons8-house.png' alt='logo' />
-						<input
-							className='block p-2 w-3/4 no-select'
-							type='text'
-							name='location'
-							// onChange={handleInputChange}
-							value={location}></input>
-					</div>
+
 					<div className='flex items-center w-full gap-1'>
 						<img className='h-8' src='../src/assets/logo/icons8-language.png' alt='logo' />
 						<input
@@ -81,15 +106,6 @@ const ProfileCard = () => {
 							value={language}></input>
 					</div>
 					<div className='flex items-center w-full gap-1'>
-						<img className='h-8' src='../src/assets/logo/icons8-phone.png' alt='logo' />
-						<input
-							className='block p-2 w-3/4 no-select'
-							type='text'
-							name='number'
-							// onChange={handleInputChange}
-							value={number}></input>
-					</div>
-					<div className='flex items-center w-full gap-1'>
 						<img className='h-8' src='../src/assets/logo/icons8-driver-license.png' alt='logo' />
 						<input
 							className='block p-2 w-3/4 no-select gap-1'
@@ -97,6 +113,15 @@ const ProfileCard = () => {
 							name='isLicensed'
 							// onChange={handleInputChange}
 							value={isLicensed}></input>
+					</div>
+					<div className='flex items-center w-full gap-1'>
+						<img className='h-8' src='../src/assets/logo/icons8-verified.png' alt='logo' />
+						<input
+							className='block p-2 w-3/4 no-select'
+							type='text'
+							name='isVerified'
+							// onChange={handleInputChange}
+							value={isVerified}></input>
 					</div>
 					<span className='self-center my-5 w-full h-[2px] bg-dark500'></span>
 					<div className='flex items-center justify-center w-full  gap-1'>

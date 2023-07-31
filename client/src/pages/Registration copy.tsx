@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import BgHomepage from "../assets/images/Rent-mo-hero-bg.png";
 import axios from "axios";
 import Footer from "../components/Footer";
-import { useNavigate } from "react-router-dom";
-import { useUser } from "../../hooks/zustand/useUser";
 
 interface UserSignUp {
 	firstName: string;
@@ -18,21 +16,14 @@ const initialUserState: UserSignUp = {
 	password: "",
 };
 
-function Login2() {
+function Registration() {
 	const [user, setUser] = useState(initialUserState);
-	const [isFailure, setIsFailure] = useState(false);
-	const navigate = useNavigate();
-	const store = useUser();
+
 	const handleSubmit = async (e: React.FormEvent): Promise<void> => {
 		e.preventDefault();
 		try {
-			const res = await axios.post("/api/v1/auth/login", user);
-			if (res.data.message === "Invalid Credentials") {
-				setIsFailure(true);
-				return;
-			}
-			store.setUser(res.data);
-			navigate("/profile");
+			const req = await axios.post("/api/v1/auth/register", user);
+			console.log(req.data);
 		} catch (error) {
 			console.log(error);
 		}
@@ -44,6 +35,7 @@ function Login2() {
 	};
 
 	console.log(user);
+
 	return (
 		<>
 			<div
@@ -57,20 +49,9 @@ function Login2() {
 							role='heading'
 							aria-label='Login to your account'
 							className='text-2xl font-extrabold leading-6 text-gray-800'>
-							Login to your account
+							Start your journey here
 						</p>
-						<p className='text-sm mt-4 font-medium leading-none text-gray-500'>
-							Dont have account?{" "}
-							<a
-								tabIndex={0}
-								role='link'
-								href='/register'
-								aria-label='Sign up here'
-								className='text-sm font-medium leading-none underline text-gray-800 cursor-pointer'>
-								{" "}
-								Sign up here
-							</a>
-						</p>
+
 						<a
 							href='/api/v1/auth/google'
 							aria-label='Continue with google'
@@ -102,8 +83,41 @@ function Login2() {
 							<p className='text-base font-medium leading-4 px-2.5 text-dark600'>OR</p>
 							<hr className='w-full bg-dark600' />
 						</div>
-						<div>
-							<label htmlFor='email' className='text-sm font-medium leading-none text-dark800'>
+						<div className='flex flex-col gap-5 sm:flex-row'>
+							<div className='flex flex-col w-full'>
+								<label htmlFor='firstName' className='text-sm font-medium leading-none text-gray-800'>
+									{" "}
+									First Name{" "}
+								</label>
+								<input
+									onChange={handleChange}
+									value={user.firstName}
+									name='firstName'
+									id='firstName'
+									aria-labelledby='text'
+									type='text'
+									className='bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-800 text-gray-800 py-3 w-full pl-3 mt-2'
+									placeholder='e.g: Juan '
+								/>
+							</div>
+							<div className='flex flex-col w-full'>
+								<label htmlFor='lastName' className='text-sm font-medium leading-none text-gray-800'>
+									{" "}
+									Last Name{" "}
+								</label>
+								<input
+									onChange={handleChange}
+									value={user.lastName}
+									name='lastName'
+									aria-labelledby='text'
+									type='text'
+									className='bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-800 text-gray-800 py-3 w-full pl-3 mt-2'
+									placeholder='e.g: Cruz '
+								/>
+							</div>
+						</div>
+						<div className='mt-6  w-full'>
+							<label htmlFor='email' className='text-base font-medium leading-none text-dark800'>
 								{" "}
 								Email{" "}
 							</label>
@@ -113,12 +127,12 @@ function Login2() {
 								name='email'
 								aria-labelledby='email'
 								type='email'
-								className='bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-400 text-gray-800 py-3 w-full pl-3 mt-2'
+								className='bg-gray-200 border rounded text-sm font-medium leading-none placeholder-gray-400 text-gray-800 py-3 w-full pl-3 mt-2'
 								placeholder='e.g: john@gmail.com '
 							/>
 						</div>
 						<div className='mt-6  w-full'>
-							<label htmlFor='myInput' className='text-sm font-medium leading-none text-dark800'>
+							<label htmlFor='myInput' className='text-base font-medium leading-none text-dark800'>
 								{" "}
 								Password{" "}
 							</label>
@@ -128,29 +142,24 @@ function Login2() {
 									value={user.password}
 									name='password'
 									type='password'
-									className='bg-gray-200 border rounded text-xs font-medium leading-none text-gray-800 py-3 w-full px-3 mt-2'
+									className='bg-gray-200 border rounded text-sm font-medium leading-none text-gray-800 py-3 w-full px-3 mt-2'
 								/>
 							</div>
-							<small className={`text-red-500 ${isFailure ? "visible" : "hidden"}`}>Invalid credentials</small>
 						</div>
 						<div className='mt-8'>
-							<div className='flex gap-2'>
-								<div className='mt-8 w-full flex'>
-									<button
-										type='submit'
-										role='button'
-										className='focus:ring-2 focus:ring-offset-2 focus:ring-yellow text-sm font-semibold leading-none text-black focus:outline-none bg-yellow rounded hover:opacity-70 py-4 w-full'>
-										Login
-									</button>
-								</div>
-								<div className='mt-8 w-full flex'>
-									<a
-										href='/landing'
-										className=' text-center focus:ring-2 focus:ring-offset-2 focus:ring-yellow text-sm font-semibold leading-none text-white focus:outline-none bg-dark600 rounded hover:opacity-70 py-4 w-full transition'>
-										Return
-									</a>
-								</div>
-							</div>
+							<button
+								type='submit'
+								role='button'
+								className='focus:ring-2 focus:ring-offset-2 focus:ring-yellow text-sm font-semibold leading-none text-black focus:outline-none bg-yellow rounded hover:opacity-70 py-4 w-full'>
+								Create my account
+							</button>
+						</div>
+						<div className='mt-8 w-full flex'>
+							<a
+								href='/landing'
+								className=' text-center focus:ring-2 focus:ring-offset-2 focus:ring-yellow text-sm font-semibold leading-none text-white focus:outline-none bg-dark600 rounded hover:opacity-70 py-4 w-full transition'>
+								Return
+							</a>
 						</div>
 					</form>
 				</div>
@@ -160,4 +169,4 @@ function Login2() {
 	);
 }
 
-export default Login2;
+export default Registration;

@@ -103,7 +103,7 @@ function Login() {
 							<hr className='w-full bg-dark600' />
 						</div>
 						<div>
-							<label htmlFor='email' className='text-sm font-medium leading-none text-dark800'>
+							<label htmlFor='email' className='text-base font-medium leading-none text-dark800'>
 								{" "}
 								Email{" "}
 							</label>
@@ -113,12 +113,12 @@ function Login() {
 								name='email'
 								aria-labelledby='email'
 								type='email'
-								className='bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-400 text-gray-800 py-3 w-full pl-3 mt-2'
+								className='bg-gray-200 border rounded text-sm font-medium leading-none placeholder-gray-400 text-gray-800 py-3 w-full pl-3 mt-2'
 								placeholder='e.g: john@gmail.com '
 							/>
 						</div>
 						<div className='mt-6  w-full'>
-							<label htmlFor='myInput' className='text-sm font-medium leading-none text-dark800'>
+							<label htmlFor='myInput' className='text-base font-medium leading-none text-dark800'>
 								{" "}
 								Password{" "}
 							</label>
@@ -128,7 +128,7 @@ function Login() {
 									value={user.password}
 									name='password'
 									type='password'
-									className='bg-gray-200 border rounded text-xs font-medium leading-none text-gray-800 py-3 w-full px-3 mt-2'
+									className='bg-gray-200 border rounded text-sm font-medium leading-none text-gray-800 py-3 w-full px-3 mt-2'
 								/>
 							</div>
 							<small className={`text-red-500 ${isFailure ? "visible" : "hidden"}`}>Invalid credentials</small>
