@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+
 import Navbar from "../components/Navbar.tsx";
 import Reviews from "../components/Reviews.tsx";
 import ProfileCard from "../components/ProfileCard.tsx";
@@ -13,7 +13,8 @@ const Profile = () => {
 	//   };
 
     const store = useUser();
-	const userName = "Vincent Abella";
+	const { user }: any = store?.user
+	const userName = `${user.firstName + user.lastName}`;
 	const yearJoined = "2023";
 	const aboutMe =
 		"Lorem ipsum dolor sit amet, consectetur  consectetur  consectetur  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea";
@@ -29,7 +30,7 @@ const Profile = () => {
 					<ProfileCard />
 					<div className='self-start flex flex-col lg:mt-20 w-full h-full'>
 						<div className='hidden lg:flex flex-col h-20 w-full overflow-hidden'>
-							<h1 className='text-5xl font-bold whitespace-nowrap text-ellipsis'>{store?.user?.user?.firstName}</h1>
+							<h1 className='text-5xl font-bold whitespace-nowrap text-ellipsis'>{userName}</h1>
 							<p className='ml-4 text-xl'>Joined {yearJoined}</p>
 						</div>
 						<div className='mt-8 text-dark900 lg:text-lg text-base'>

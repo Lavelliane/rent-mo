@@ -1,11 +1,11 @@
 // useUser.ts
 
 import { create } from 'zustand';
-import { persist, createJSONStorage } from "zustand/middleware";
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 interface IUser {
-    user: User;
-    location: string
+  user: User;
+  location: string;
 }
 
 type User = {
@@ -13,7 +13,7 @@ type User = {
   firstName: string;
   lastName: string;
   email: string;
-  password: string | ''; 
+  password: string | '';
   phoneNumber: string;
   city: string;
   state: string;
@@ -27,28 +27,18 @@ type UserState = {
 };
 
 export const useUser = create(
-  persist(
-    (set, _get) => ({
+  persist<UserState>(
+    (set) => ({
       user: null,
-      setUser: (user: any) => set({user})
+      setUser: (user: IUser | null) => set({ user }),
     }),
     {
-    
+      name: 'user-storage',
       storage: createJSONStorage(() => sessionStorage),
-      name: 'user-storage'
     }
   )
-)
+);
 
-// export const useUser = create<UserState>(persist((set) => ({
-//   user: null,
-//   setUser: (user) => set((state) => ({
-//     user
-//   })),
-// }), {
-//   name:'user-storage',
-//   storage: createJSONStorage(() => sessionStorage)
-// }));
 
 
   
