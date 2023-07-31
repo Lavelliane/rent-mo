@@ -97,7 +97,6 @@ const UserSchema: Schema<IUser> = new Schema({
   },
   phoneNumber: {
     type: String,
-    required: true,
     trim: true,
     validate: {
       validator: (value: string) => validator.isMobilePhone(value, 'any', { strictMode: false }),

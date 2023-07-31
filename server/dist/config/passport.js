@@ -49,10 +49,11 @@ passport_1.default.use(new GoogleStrategy({
             country: "",
             state: "",
             city: "",
-            phoneNumber: "",
+            phoneNumber: "09123456789",
             unitAddress: "",
             profession: "",
             language: "Filipino",
+            aboutMe: "No biography written."
         });
         return done(null, user);
     }

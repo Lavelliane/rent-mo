@@ -31,10 +31,10 @@ router.route("/google/redirect").get(passport_1.default.authenticate("google"), 
     const token = user === null || user === void 0 ? void 0 : user.createJWT();
     (0, attachCookies_js_1.default)({ res, token });
     if (user) {
-        user.password = '';
+        user.password = ''; //don't return password to client
         location = `${user.city}, ${user.state}, ${user.country}`;
     }
-    res.status(200).json({ user, location }).redirect('/');
+    res.status(200).json({ user, location, redirectTo: '/' });
 }));
 router.route('/google/logout').get((req, res) => {
     req.logout(() => {
