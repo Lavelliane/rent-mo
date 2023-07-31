@@ -7,7 +7,8 @@ import { useUser } from "../../hooks/zustand/useUser.ts";
 const Profile = () => {
   const store = useUser();
   const { user }: any = store?.user;
-  const userName = `${user.firstName + user.lastName}`;
+  console.log(user)
+  const userName = `${user.firstName + " " + user.lastName}`;
   const yearJoined = "2023";
   const aboutMe =
     "Lorem ipsum dolor sit amet, consectetur  consectetur  consectetur  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea";

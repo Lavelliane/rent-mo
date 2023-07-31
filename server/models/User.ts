@@ -23,6 +23,13 @@ export interface IUser extends Document {
   city?: string;
   phoneNumber?: string;
   unitAddress?: string;
+  createdAt: Date;
+  isHost: boolean;
+  profession?: string;
+  language?: string;
+  isVerified: boolean;
+  isLicensed: boolean;
+  aboutMe?: string
   createJWT: () => string;
   comparePassword: (password: string) => boolean;
 }
@@ -84,7 +91,10 @@ const UserSchema: Schema<IUser> = new Schema({
     trim: true,
     default: 'Cebu City',
   },
-  
+  isHost: {
+    type: Boolean,
+    default: false,
+  },
   phoneNumber: {
     type: String,
     required: true,
@@ -94,6 +104,34 @@ const UserSchema: Schema<IUser> = new Schema({
       message: (props) => `${props.value} is not a valid phone number!`,
     },
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  profession: {
+    type: String,
+    maxlength: 20,
+    trim: true,
+  },
+  language: {
+    type: String,
+    maxlength: 20,
+    trim: true,
+  },
+  aboutMe: {
+    type: String,
+    maxlength: 300,
+    trim: true,
+  },
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
+  isLicensed: {
+    type: Boolean,
+    default: false,
+  },
+  
 });
 
 //User.js

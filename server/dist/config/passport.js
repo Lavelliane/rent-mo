@@ -46,15 +46,18 @@ passport_1.default.use(new GoogleStrategy({
             firstName: profile.displayName,
             email: (_b = profile.emails) === null || _b === void 0 ? void 0 : _b[0].value,
             password: crypto_1.default.randomBytes(64).toString("hex"),
-            country: "Philippines",
-            state: "NCR",
-            city: "Metro Manila",
-            phoneNumber: "09123456789",
+            country: "",
+            state: "",
+            city: "",
+            phoneNumber: "",
+            unitAddress: "",
+            profession: "",
+            language: "Filipino",
         });
-        done(null, user);
+        return done(null, user);
     }
     catch (error) {
-        done(error);
+        return done(error);
     }
 })));
 //# sourceMappingURL=passport.js.map

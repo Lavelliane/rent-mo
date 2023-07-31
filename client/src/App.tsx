@@ -15,7 +15,14 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<MainPage />} />
+          <Route
+            path="/"
+            element={
+              <Protected>
+                <MainPage />
+              </Protected>
+            }
+          />
           <Route path="/landing" element={<MainPage />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/login" element={<Login />} />
