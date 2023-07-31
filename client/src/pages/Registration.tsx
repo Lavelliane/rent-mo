@@ -40,7 +40,7 @@ const Registration = () => {
 	return (
 		<>
 			<div
-				className='h-fit w-full bg-cover bg-center flex flex-col font-Messina-Sans justify-evenly pb-10'
+				className='h-screen w-full bg-cover bg-center flex flex-col font-Messina-Sans justify-center pb-10'
 				style={{ backgroundImage: `url(${BgHomepage})` }}>
 				<div className='flex w-full justify-center items-center'>
 					<img

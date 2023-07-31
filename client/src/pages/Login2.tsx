@@ -18,7 +18,7 @@ const initialUserState: UserSignUp = {
 	password: "",
 };
 
-function Login() {
+function Login2() {
 	const [user, setUser] = useState(initialUserState);
 	const [isFailure, setIsFailure] = useState(false);
 	const navigate = useNavigate();
@@ -160,4 +160,4 @@ function Login() {
 	);
 }
 
-export default Login;
+export default Login2;
