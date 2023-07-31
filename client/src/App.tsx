@@ -9,11 +9,20 @@ import Listing from "./pages/Listing.tsx";
 import Protected from "./components/Protected.tsx";
 
 function App() {
+	const [count, setCount] = useState(0);
+
 	return (
 		<>
 			<BrowserRouter>
 				<Routes>
-					<Route path='/' element={<MainPage />} />
+					<Route
+						path='/'
+						element={
+							<Protected>
+								<MainPage />
+							</Protected>
+						}
+					/>
 					<Route path='/landing' element={<MainPage />} />
 					<Route path='/register' element={<Registration />} />
 					<Route path='/login' element={<Login />} />
