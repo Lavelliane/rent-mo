@@ -29,14 +29,13 @@ const auth_1 = __importDefault(require("./middleware/auth"));
 const passport_1 = __importDefault(require("passport"));
 require("./config/passport");
 const cors_1 = __importDefault(require("cors"));
-const body_parser_1 = __importDefault(require("body-parser"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 if (process.env.NODE_ENV !== 'production') {
     app.use((0, morgan_1.default)('dev'));
 }
-//app.use(express.json())
-app.use(body_parser_1.default.json());
+app.use(express_1.default.json());
+//app.use(bodyParser.json());
 app.use((0, cookie_parser_1.default)());
 app.use((0, helmet_1.default)());
 app.use((0, xss_clean_1.default)());

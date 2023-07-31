@@ -64,7 +64,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     //find user and get password
     const user = yield User_1.default.findOne({ email }).select("+password");
     if (!user) {
-        throw new errors_1.UnAuthenticatedError("Invalid credentials");
+        throw new errors_1.UnAuthenticatedError(`Invalid credentials for ${email}`);
     }
     const isPasswordCorrect = yield user.comparePassword(password);
     if (!isPasswordCorrect) {
