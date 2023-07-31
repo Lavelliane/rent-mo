@@ -38,6 +38,7 @@ module.exports = withMT({
         dark300: "var(--dark-300)",
         dark200: "var(--dark-200)",
         dark100: "var(--dark-100)",
+
       }
     },
   },
