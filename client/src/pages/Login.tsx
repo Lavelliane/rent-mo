@@ -28,7 +28,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post("/api/v1/auth/login", user);
-      if(res.data.message === "Invalid Credentials"){
+      if(res.data.message === "Invalid Credentials" || !res.data){
         setIsFailure(true)
         return
       }
