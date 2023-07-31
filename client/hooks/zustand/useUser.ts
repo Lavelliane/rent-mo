@@ -19,6 +19,12 @@ type User = {
   state: string;
   country: string;
   __v: number;
+  createdAt: Date;
+  isHost: boolean;
+  profession?: string;
+  language?: string;
+  isVerified: boolean;
+  isLicensed: boolean;
 };
 
 type UserState = {

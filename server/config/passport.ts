@@ -48,15 +48,18 @@ passport.use(
           firstName: profile.displayName,
           email: profile.emails?.[0].value,
           password: crypto.randomBytes(64).toString("hex"),
-          country: "Philippines",
-          state: "NCR",
-          city: "Metro Manila",
-          phoneNumber: "09123456789",
+          country: "",
+          state: "",
+          city: "",
+          phoneNumber: "",
+          unitAddress: "",
+          profession: "",
+          language: "Filipino",
         });
 
-        done(null, user);
+        return done(null, user);
       } catch (error) {
-        done(error);
+        return done(error);
       }
     }
   )
