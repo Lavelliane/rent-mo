@@ -18,14 +18,20 @@ const initialUserState: UserSignUp = {
   password: "",
 };
 
+
 const Login = () => {
   const [user, setUser] = useState(initialUserState);
+  const [isFailure, setIsFailure] = useState(false)
   const navigate = useNavigate();
   const store = useUser();
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     try {
       const res = await axios.post("/api/v1/auth/login", user);
+      if(res.data.message === "Invalid Credentials"){
+        setIsFailure(true)
+        return
+      }
       store.setUser(res.data);
       navigate("/profile");
     } catch (error) {
@@ -141,7 +147,9 @@ const Login = () => {
                   type="password"
                   className="bg-gray-200 border rounded text-xs font-medium leading-none text-gray-800 py-3 w-full px-3 mt-2"
                 />
+  
               </div>
+              <small className={`text-red-500 ${isFailure ? 'visible' : 'hidden'}`}>Invalid credentials</small>
             </div>
             <div className="flex gap-2">
               <div className="mt-8 w-full flex">

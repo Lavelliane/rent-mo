@@ -6,25 +6,33 @@ import Login from "./pages/Login.tsx";
 import Profile from "./pages/Profile.tsx";
 import Host from "./pages/Host.tsx";
 import Listing from "./pages/Listing.tsx";
+import Protected from "./components/Protected.tsx";
 
 function App() {
-	const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0);
 
-	return (
-		<>
-			<BrowserRouter>
-				<Routes>
-					<Route path='/' element={<MainPage />}></Route>
-					<Route path='/landing' element={<MainPage />}></Route>
-					<Route path='/register' element={<Registration />}></Route>
-					<Route path='/login' element={<Login />}></Route>
-					<Route path='/profile' element={<Profile />}></Route>
-					<Route path='/host' element={<Host />}></Route>
-					<Route path='/listing' element={<Listing />}></Route>
-				</Routes>
-			</BrowserRouter>
-		</>
-	);
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/landing" element={<MainPage />} />
+          <Route path="/register" element={<Registration />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/profile"
+            element={
+              <Protected>
+                <Profile />
+              </Protected>
+            }
+          />
+          <Route path="/host" element={<Host />} />
+          <Route path="/listing" element={<Listing />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
 }
 
 export default App;
