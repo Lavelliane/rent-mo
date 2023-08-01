@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import BgHomepage from "../assets/images/Rent-mo-hero-bg.png";
 import axios from "axios";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
 
 interface UserSignUp {
 	firstName: string;
@@ -17,7 +16,7 @@ const initialUserState: UserSignUp = {
 	password: "",
 };
 
-const Registration = () => {
+function Registration() {
 	const [user, setUser] = useState(initialUserState);
 
 	const handleSubmit = async (e: React.FormEvent): Promise<void> => {
@@ -40,18 +39,16 @@ const Registration = () => {
 	return (
 		<>
 			<div
-				className='h-fit w-full bg-cover bg-center flex flex-col font-Messina-Sans justify-evenly pb-10'
+				className='h-screen bg-gradient-to-tl bg-cover bg-center w-full py-16 px-4 font-Messina-Sans'
 				style={{ backgroundImage: `url(${BgHomepage})` }}>
-				<div className='flex w-full justify-center items-center'>
-					<img
-						className=' w-56 inline self-center no-select md:py-9 py-9'
-						src='../src/assets/logo/RentMo-logo.svg'></img>
-				</div>
-				<div className='xl:px-20 md:px-10 sm:px-6 px-4 2xl:mx-auto 2xl:container md:flex items-center justify-center'>
-					<form
-						onSubmit={handleSubmit}
-						className='bg-white shadow-searchbox rounded xl:w-1/3 lg:w-5/12 md:w-1/2 w-full lg:px-10 sm:px-6 sm:py-10 px-2 py-6'>
-						<p tabIndex={0} className=' focus:outline-none text-2xl font-extrabold leading-6 text-gray-800 text-center'>
+				<div className='flex flex-col items-center justify-center'>
+					<img className=' h-20 inline self-center no-select' src='../src/assets/logo/RentMo-logo.svg'></img>
+					<form onSubmit={handleSubmit} className='bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-16'>
+						<p
+							tabIndex={0}
+							role='heading'
+							aria-label='Login to your account'
+							className='text-2xl font-extrabold leading-6 text-gray-800'>
 							Start your journey here
 						</p>
 
@@ -59,7 +56,7 @@ const Registration = () => {
 							href='/api/v1/auth/google'
 							aria-label='Continue with google'
 							role='button'
-							className='focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 p-3 border rounded-lg border-gray-700 flex items-center w-full mt-10 hover:bg-gray-100'>
+							className='focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10'>
 							<svg width={19} height={20} viewBox='0 0 19 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
 								<path
 									d='M18.9892 10.1871C18.9892 9.36767 18.9246 8.76973 18.7847 8.14966H9.68848V11.848H15.0277C14.9201 12.767 14.3388 14.1512 13.047 15.0812L13.0289 15.205L15.905 17.4969L16.1042 17.5173C17.9342 15.7789 18.9892 13.221 18.9892 10.1871Z'
@@ -82,11 +79,11 @@ const Registration = () => {
 						</a>
 
 						<div className='w-full flex items-center justify-between py-5'>
-							<hr className='w-full bg-gray-400' />
-							<p className='text-base font-medium leading-4 px-2.5 text-gray-500'>OR</p>
-							<hr className='w-full bg-gray-400' />
+							<hr className='w-full bg-dark600' />
+							<p className='text-base font-medium leading-4 px-2.5 text-dark600'>OR</p>
+							<hr className='w-full bg-dark600' />
 						</div>
-						<div className='flex flex-row gap-5'>
+						<div className='flex flex-col gap-5 sm:flex-row'>
 							<div className='flex flex-col w-full'>
 								<label htmlFor='firstName' className='text-sm font-medium leading-none text-gray-800'>
 									{" "}
@@ -119,8 +116,8 @@ const Registration = () => {
 								/>
 							</div>
 						</div>
-						<div className='mt-4 w-full'>
-							<label htmlFor='email' className='text-sm font-medium leading-none text-gray-800'>
+						<div className='mt-6  w-full'>
+							<label htmlFor='email' className='text-base font-medium leading-none text-dark800'>
 								{" "}
 								Email{" "}
 							</label>
@@ -130,12 +127,12 @@ const Registration = () => {
 								name='email'
 								aria-labelledby='email'
 								type='email'
-								className='bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-400 text-gray-800 py-3 w-full pl-3 mt-2'
-								placeholder='e.g: john@gmail.com'
+								className='bg-gray-200 border rounded text-sm font-medium leading-none placeholder-gray-400 text-gray-800 py-3 w-full pl-3 mt-2'
+								placeholder='e.g: john@gmail.com '
 							/>
 						</div>
-						<div className='mt-4 w-full'>
-							<label htmlFor='myInput' className='text-sm font-medium leading-none text-gray-800'>
+						<div className='mt-6  w-full'>
+							<label htmlFor='myInput' className='text-base font-medium leading-none text-dark800'>
 								{" "}
 								Password{" "}
 							</label>
@@ -145,7 +142,7 @@ const Registration = () => {
 									value={user.password}
 									name='password'
 									type='password'
-									className='bg-gray-200 border rounded text-xs font-medium leading-none text-gray-800 py-3 w-full px-3 mt-2'
+									className='bg-gray-200 border rounded text-sm font-medium leading-none text-gray-800 py-3 w-full px-3 mt-2'
 								/>
 							</div>
 						</div>
@@ -170,6 +167,6 @@ const Registration = () => {
 			<Footer />
 		</>
 	);
-};
+}
 
 export default Registration;

@@ -25,12 +25,12 @@ const register = async (req: Request, res: Response) => {
         lastName, 
         email, 
         password,
-        country: '', 
-        state: '', 
-        city: '', 
+        country: 'Philippines', 
+        state: 'Cebu', 
+        city: 'Cebu City', 
         phoneNumber: '09123456789',
-        unitAddress: "",
-        profession: "",
+        unitAddress: "Unit X",
+        profession: "Profession",
         language: "Filipino",
         aboutMe: "No biography written."
     })
