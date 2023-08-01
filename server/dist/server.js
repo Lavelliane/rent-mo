@@ -25,10 +25,10 @@ const xss_clean_1 = __importDefault(require("xss-clean"));
 const cookie_session_1 = __importDefault(require("cookie-session"));
 const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
 const bookingRouter_1 = __importDefault(require("./routes/bookingRouter"));
+const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const auth_1 = __importDefault(require("./middleware/auth"));
 const passport_1 = __importDefault(require("passport"));
 require("./config/passport");
-const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 if (process.env.NODE_ENV !== 'production') {
@@ -46,8 +46,9 @@ app.use((0, cookie_session_1.default)({
 // initialize passport
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
-app.use('/api/v1/auth', (0, cors_1.default)(), authRoutes_1.default);
+app.use('/api/v1/auth', authRoutes_1.default);
 app.use('/api/v1/booking', auth_1.default, bookingRouter_1.default);
+app.use('/api/v1/user', auth_1.default, userRoutes_1.default);
 app.use(not_found_1.default);
 app.use(error_handler_1.default);
 const port = 5000;

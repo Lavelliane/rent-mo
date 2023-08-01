@@ -17,6 +17,7 @@ const authController_js_1 = require("../controllers/authController.js");
 const passport_1 = __importDefault(require("passport"));
 const User_js_1 = __importDefault(require("../models/User.js"));
 const attachCookies_js_1 = __importDefault(require("../utils/attachCookies.js"));
+const http_status_codes_1 = require("http-status-codes");
 const router = express_1.default.Router();
 router.route('/register').post(authController_js_1.register);
 router.route('/login').post(authController_js_1.login);
@@ -34,12 +35,11 @@ router.route("/google/redirect").get(passport_1.default.authenticate("google"), 
         user.password = ''; //don't return password to client
         location = `${user.city}, ${user.state}, ${user.country}`;
     }
-    res.status(200).json({ user, location, redirectTo: '/' });
+    res.status(http_status_codes_1.StatusCodes.OK).redirect('/profile');
 }));
-router.route('/google/logout').get((req, res) => {
-    req.logout(() => {
-        res.redirect('/landing');
-    });
+router.route('/logout').get((req, res, next) => {
+    res.clearCookie("token");
+    res.end();
 });
 router.route('/current_user').get((req, res) => {
     const { user } = req;

@@ -44,6 +44,7 @@ passport_1.default.use(new GoogleStrategy({
         const user = yield User_1.default.create({
             googleId: profile.id,
             firstName: profile.displayName,
+            lastName: '',
             email: (_b = profile.emails) === null || _b === void 0 ? void 0 : _b[0].value,
             password: crypto_1.default.randomBytes(64).toString("hex"),
             country: "",
