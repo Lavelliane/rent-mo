@@ -65,7 +65,7 @@ const login = async (req: Request, res: Response) => {
     const user = await User.findOne({email}).select("+password")
 
     if(!user){
-      throw new UnAuthenticatedError(`Invalid credentials for ${email}`)
+      throw new UnAuthenticatedError(`user does not exist`)
     }
     const isPasswordCorrect = await user.comparePassword(password)
     if(!isPasswordCorrect){

@@ -8,4 +8,5 @@ const router = express.Router();
 router.route('/my-info').get(getUserData)
 
 
+
 export default router;

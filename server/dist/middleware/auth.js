@@ -17,7 +17,9 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const authenticateUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const token = req.cookies.token;
     if (!token) {
-        throw new index_js_1.UnAuthenticatedError("Authentication Invalid");
+        const err = new index_js_1.UnAuthenticatedError("Authentication Invalid");
+        err.statusCode = 400;
+        next(err);
     }
     try {
         const payload = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET);
@@ -25,7 +27,9 @@ const authenticateUser = (req, res, next) => __awaiter(void 0, void 0, void 0, f
         next();
     }
     catch (error) {
-        throw new index_js_1.UnAuthenticatedError("Authentication Invalid");
+        const err = new index_js_1.UnAuthenticatedError("Authentication Invalid");
+        err.statusCode = 400;
+        next(err);
     }
 });
 exports.default = authenticateUser;

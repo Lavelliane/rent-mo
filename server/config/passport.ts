@@ -46,6 +46,7 @@ passport.use(
         const user = await User.create({
           googleId: profile.id,
           firstName: profile.displayName,
+          lastName: '',
           email: profile.emails?.[0].value,
           password: crypto.randomBytes(64).toString("hex"),
           country: "",
