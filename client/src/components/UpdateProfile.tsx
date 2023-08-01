@@ -1,4 +1,5 @@
 import React from "react";
+import InputBox from "../components/InputBox.tsx";
 
 const UpdateProfile = (props: any) => {
 	return props.trigger ? (
@@ -61,14 +62,9 @@ const UpdateProfile = (props: any) => {
 								</div>
 								<form className='mt-11'>
 									<div className='flex flex-col sm:flex-row items-center gap-4'>
-										<input
-											placeholder='First Name'
-											className='sm:w-1/2 w-full focus:outline-none py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
-										/>
-										<input
-											placeholder='Last Name'
-											className='sm:w-1/2 w-full  focus:outline-none py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
-										/>
+										<InputBox placeholder='First Name' type='text' />
+										<InputBox placeholder='Last Name' type='text' />
+
 										<input
 											placeholder='Age'
 											type='number'
@@ -77,28 +73,12 @@ const UpdateProfile = (props: any) => {
 										/>
 									</div>
 									<div className='flex flex-col sm:flex-row items-center gap-4 sm:mt-8 mt-4'>
-										<input
-											placeholder='Email'
-											type='email'
-											className='sm:w-1/2 w-full focus:outline-none  py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
-										/>
-										<input
-											placeholder='Number'
-											type='number'
-											className='sm:w-1/2 w-full focus:outline-none  py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
-										/>
+										<InputBox placeholder='Email' type='email' />
+										<InputBox placeholder='Number' type='number' />
 									</div>
 									<div className='flex flex-col sm:flex-row items-center gap-4 sm:mt-8 mt-4'>
-										<input
-											placeholder='Profession'
-											type='text'
-											className='sm:w-1/2 w-full focus:outline-none  py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
-										/>
-										<input
-											placeholder='Language'
-											type='text'
-											className='sm:w-1/2 w-full focus:outline-none  py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
-										/>
+										<InputBox placeholder='Profession' type='text' />
+										<InputBox placeholder='Language' type='text' />
 									</div>
 									<div className='mt-4 sm:mt-8'>
 										<textarea
