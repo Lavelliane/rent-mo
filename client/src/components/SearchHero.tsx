@@ -17,7 +17,7 @@ const SearchHero = () => {
 								id='input-location'
 								type='search'
 								placeholder='Drop Location'
-								className='text-black bg-transparent text-lg focus:outline-none w-full fill-none in'
+								className='text-text-dark800 bg-transparent text-lg focus:outline-none w-full fill-none in'
 							/>
 						</div>
 					</div>
@@ -32,12 +32,12 @@ const SearchHero = () => {
 						<input
 							id='input-start-trip'
 							type='date'
-							className='placeholder-white bg-transparent text-lg focus:outline-none w-[136px]'
+							className='text-dark800 bg-transparent text-lg focus:outline-none w-[136px]'
 						/>
 						<input
 							id='input-start-trip-time'
 							type='time'
-							className='text-black bg-transparent text-lg focus:outline-none w-[118px]'
+							className='text-dark800 bg-transparent text-lg focus:outline-none w-[118px]'
 						/>
 					</div>
 				</div>
@@ -51,12 +51,12 @@ const SearchHero = () => {
 						<input
 							id='input-end-trip'
 							type='date'
-							className='text-black bg-transparent text-lg focus:outline-none w-[136px] placeholder-blue-gray-700'
+							className='text-dark800 bg-transparent text-lg focus:outline-none w-[136px] placeholder-blue-gray-700'
 						/>
 						<input
 							id='input-end-trip-time'
 							type='time'
-							className='text-black bg-transparent text-lg focus:outline-none w-[118px]'
+							className='text-dark800 bg-transparent text-lg focus:outline-none w-[118px]'
 						/>
 					</div>
 				</div>

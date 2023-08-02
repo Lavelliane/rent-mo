@@ -17,7 +17,7 @@ const ProfileCard = () => {
 		user.unitAddress || user.city || user.state || user.country
 			? `${user.unitAddress + ", " + user.city + ", " + user.state + ", " + user.country}`
 			: "No address provided";
-	const language = `${user.language}`; //
+	const language = user.language ? `${user.language}` : "Unknown"; //
 	const phoneNumber = `${user.phoneNumber}`;
 	const isLicensed = user.isLicensed ? "Licensed to Drive" : "Not Licensed to Drive";
 	const isVerified = user.isVerified ? "Verified" : "Not Verified";

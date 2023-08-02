@@ -2,8 +2,8 @@ import React from "react";
 
 const Footer = () => {
 	return (
-		<div className='mx-auto w-full py-10 text-dark900 bg-white shadow-buttonbox font-Messina-Sans'>
-			<div className='flex flex-col items-center justify-center w-full'>
+		<div className='mx-auto h-full w-full py-10 text-dark900 bg-white shadow-buttonbox font-Messina-Sans'>
+			<div className='flex flex-col items-center justify-center w-full h-full'>
 				<div className='flex flex-wrap sm:gap-10 gap-8 items-center justify-center '>
 					<a
 						href='#about'
@@ -43,7 +43,7 @@ const Footer = () => {
 					</div>
 					<div className='cursor-pointer'>
 						<a href='https://twitter.com' target='_blank'>
-							<img src='../src/assets/logo/icons8-twitter.png' className='w-10 hover:scale-[110%] transition-all'></img>
+							<img src='../src/assets/logo/twitter-x-logo.png' className='w-8 hover:scale-[110%] transition-all'></img>
 						</a>
 					</div>
 				</div>

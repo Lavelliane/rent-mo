@@ -40,7 +40,7 @@ function Registration() {
 	return (
 		<>
 			<div
-				className='h-screen bg-gradient-to-tl bg-cover bg-center w-full py-16 px-4 font-Messina-Sans'
+				className='bg-gradient-to-tl bg-cover bg-center w-full h-full py-16 px-0 font-Messina-Sans overflow-x-hidden'
 				style={{ backgroundImage: `url(${BgHomepage})` }}>
 				<div className='flex flex-col items-center justify-center'>
 					<img className=' h-20 inline self-center no-select' src='../src/assets/logo/RentMo-logo.svg'></img>

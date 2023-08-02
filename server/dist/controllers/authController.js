@@ -19,7 +19,7 @@ const http_status_codes_1 = require("http-status-codes");
 const attachCookies_1 = __importDefault(require("../utils/attachCookies"));
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { firstName, lastName, email, password, } = req.body;
+        const { firstName, lastName, email, password } = req.body;
         if (!firstName || !lastName || !email || !password) {
             throw new errors_1.BadRequestError("Please provide all values");
         }
@@ -32,25 +32,23 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             lastName,
             email,
             password,
-            country: 'Philippines',
-            state: 'Cebu',
-            city: 'Cebu City',
-            phoneNumber: '09123456789',
-            unitAddress: "Unit X",
-            profession: "Profession",
-            language: "Filipino",
-            aboutMe: "No biography written."
+            country: "",
+            state: "",
+            city: "",
+            phoneNumber: "09123456789",
+            unitAddress: "",
+            profession: "",
+            language: "",
+            aboutMe: "No biography written.",
         });
         const token = user.createJWT();
         (0, attachCookies_1.default)({ res, token });
         //---- return response
-        res
-            .status(http_status_codes_1.StatusCodes.CREATED)
-            .json({
+        res.status(http_status_codes_1.StatusCodes.CREATED).json({
             user: {
                 email: user.email,
                 name: user.name,
-                location: `${user.city}, ${user.state}, ${user.country}`
+                location: `${user.city}, ${user.state}, ${user.country}`,
             },
         });
     }
@@ -72,10 +70,10 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     const isPasswordCorrect = yield user.comparePassword(password);
     if (!isPasswordCorrect) {
-        throw new errors_1.UnAuthenticatedError('Invalid Credentials');
+        throw new errors_1.UnAuthenticatedError("Invalid Credentials");
     }
     const token = user.createJWT();
-    user.password = '';
+    user.password = "";
     (0, attachCookies_1.default)({ res, token });
     res.status(http_status_codes_1.StatusCodes.OK).json({ user, location: `${user.city}, ${user.state}, ${user.country}` });
 });

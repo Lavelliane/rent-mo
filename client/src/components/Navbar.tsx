@@ -5,13 +5,24 @@ import { FaBars, FaXmark } from "react-icons/fa6";
 import { BiUser, BiHelpCircle, BiLogOut } from "react-icons/bi";
 import "../index.css";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+	const navigate = useNavigate();
 	const [profile, setProfile] = useState(false);
 	const [show, setShow] = useState(false);
 	const store = useUser();
+	const { user = {} }: any = store?.user || {};
 
-	const { user = {} }: any = store?.user ?? {};
+	async function handleLogout() {
+		try {
+			const response = await axios.get("/api/v1/auth/logout");
+			store?.setUser(null);
+			navigate("/landing");
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
 	return (
 		<>
@@ -81,9 +92,9 @@ const Navbar = () => {
 											</li>
 											<li className='cursor-pointer text-dark800 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-yellow flex items-center focus:text-yellow focus:outline-none transition-colors'>
 												<BiLogOut size='20px' color='#131313' />
-												<a href='' className='ml-2'>
+												<button onClick={handleLogout} className=' hover:text-yellow transition ml-2'>
 													Logout
-												</a>
+												</button>
 											</li>
 										</ul>
 									)}
@@ -112,7 +123,9 @@ const Navbar = () => {
 											? "lg:hidden text-white  cursor-pointer text-xl pt-10 lg:pt-0 lg:ml-5 xl:ml-10 transition"
 											: "hidden"
 									}>
-									<ButtonLink text='Logout' to='' />
+									<button onClick={handleLogout} className=' hover:text-yellow transition'>
+										Logout
+									</button>
 								</li>
 							</ul>
 						</div>

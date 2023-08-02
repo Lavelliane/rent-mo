@@ -44,7 +44,7 @@ passport_1.default.use(new GoogleStrategy({
         const user = yield User_1.default.create({
             googleId: profile.id,
             firstName: profile.displayName,
-            lastName: '',
+            lastName: "",
             email: (_b = profile.emails) === null || _b === void 0 ? void 0 : _b[0].value,
             password: crypto_1.default.randomBytes(64).toString("hex"),
             country: "",
@@ -53,8 +53,8 @@ passport_1.default.use(new GoogleStrategy({
             phoneNumber: "09123456789",
             unitAddress: "",
             profession: "",
-            language: "Filipino",
-            aboutMe: "No biography written."
+            language: "",
+            aboutMe: "No biography written.",
         });
         return done(null, user);
     }
