@@ -12,25 +12,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_js_1 = require("../errors/index.js");
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const authenticateUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const token = req.cookies.token;
-    if (!token) {
-        const err = new index_js_1.UnAuthenticatedError("Authentication Invalid");
-        err.statusCode = 400;
-        next(err);
-    }
+exports.getUserData = void 0;
+const User_1 = __importDefault(require("../models/User"));
+const errors_1 = require("../errors");
+const http_status_codes_1 = require("http-status-codes");
+const getUserData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a, _b;
     try {
-        const payload = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET);
-        req.user = { userId: payload === null || payload === void 0 ? void 0 : payload.userId };
-        next();
+        const user = yield User_1.default.findById((_a = req.user) === null || _a === void 0 ? void 0 : _a.userId);
+        if (!user) {
+            throw new errors_1.NotFoundError(`User with id ${(_b = req.user) === null || _b === void 0 ? void 0 : _b.userId} not found`);
+        }
+        res.status(http_status_codes_1.StatusCodes.OK).json({ user });
     }
     catch (error) {
-        const err = new index_js_1.UnAuthenticatedError("Authentication Invalid");
-        err.statusCode = 400;
-        next(err);
+        throw new errors_1.BadRequestError("Invalid request");
     }
 });
-exports.default = authenticateUser;
-//# sourceMappingURL=auth.js.map
+exports.getUserData = getUserData;
+//# sourceMappingURL=userController.js.map

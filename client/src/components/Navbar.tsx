@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useUser } from "../../hooks/zustand/useUser";
 import { ButtonLink, ButtonLinkNoFillRounded } from "./Buttons";
 import { FaBars, FaXmark } from "react-icons/fa6";
 import { BiUser, BiHelpCircle, BiLogOut } from "react-icons/bi";
 import "../index.css";
+import axios from "axios";
 
 const Navbar = () => {
 	const [profile, setProfile] = useState(false);
@@ -79,8 +80,7 @@ const Navbar = () => {
 												</a>
 											</li>
 											<li className='cursor-pointer text-dark800 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-yellow flex items-center focus:text-yellow focus:outline-none transition-colors'>
-												<BiLogOut size='20px' />
-												{/* <img className='h-5' src='../src/assets/logo/icons8-logout.png' alt='logo' /> */}
+												<BiLogOut size='20px' color='#131313' />
 												<a href='#logout' className='ml-2'>
 													Logout
 												</a>

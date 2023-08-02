@@ -12,6 +12,7 @@ import cookieSession from 'cookie-session'
 
 import authRouter from './routes/authRoutes'
 import bookingRouter from './routes/bookingRouter'
+import userRouter from './routes/userRoutes'
 
 import authenticateUser from './middleware/auth'
 import passport from 'passport'
@@ -52,9 +53,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.use('/api/v1/auth', cors(), authRouter)
+app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/booking', authenticateUser, bookingRouter)
-
+app.use('/api/v1/user', authenticateUser, userRouter)
 
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleware)

@@ -3,6 +3,7 @@ import { register, login, updateUser } from "../controllers/authController.js";
 import passport from 'passport'
 import User from '../models/User.js';
 import attachCookies from '../utils/attachCookies.js';
+import { StatusCodes } from 'http-status-codes';
 
 
 
@@ -27,19 +28,20 @@ router.route("/google/redirect").get(passport.authenticate("google"), async (req
     location = `${user.city}, ${user.state}, ${user.country}` 
   }
 
-  res.status(200).json({user, location, redirectTo: '/' })
+  res.status(StatusCodes.OK).redirect('/profile')
 });
 
-router.route('/google/logout').get((req, res) => {
-  req.logout(() => {
-    res.redirect('/landing')
-  });
-  
+router.route('/logout').get((req, res, next) => {
+   res.clearCookie("token")
+   res.end()
 })
+
 
 router.route('/current_user').get((req, res) => {
   const { user } = req
   console.log(user)
 })
+
+
 
 export default router;

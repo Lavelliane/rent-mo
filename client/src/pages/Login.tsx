@@ -24,15 +24,19 @@ function Login() {
 	const [isFailure, setIsFailure] = useState(false);
 	const navigate = useNavigate();
 	const store = useUser();
+
 	const handleSubmit = async (e: React.FormEvent): Promise<void> => {
 		e.preventDefault();
 		try {
 			const res = await axios.post("/api/v1/auth/login", user);
-			if (res.data.message === "Invalid Credentials") {
+			if (res.data.message === "Invalid Credentials" || res.data.message === "user does not exist" || !res.data) {
 				setIsFailure(true);
 				return;
 			}
-			store.setUser(res.data);
+			console.log(res.data);
+			const response = await axios.get("/api/v1/user/my-info");
+			const userData = response?.data || null;
+			store.setUser(userData);
 			navigate("/profile");
 		} catch (error) {
 			console.log(error);
@@ -43,7 +47,6 @@ function Login() {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
 		setUser({ ...user, [e.target.name]: e.target.value });
 	};
-
 	console.log(user);
 	return (
 		<>
@@ -79,9 +82,8 @@ function Login() {
 							<hr className='w-full bg-dark600' />
 						</div>
 						<div>
-							<label htmlFor='email' className='text-base font-medium leading-none text-dark800'>
-								{" "}
-								Email{" "}
+							<label htmlFor='email' className='text-base font-medium leading-none text-dark800 ml-1'>
+								Email
 							</label>
 							<input
 								onChange={handleChange}
@@ -94,9 +96,8 @@ function Login() {
 							/>
 						</div>
 						<div className='mt-6  w-full'>
-							<label htmlFor='myInput' className='text-base font-medium leading-none text-dark800'>
-								{" "}
-								Password{" "}
+							<label htmlFor='myInput' className='text-base font-medium leading-none text-dark800 ml-1'>
+								Password
 							</label>
 							<div className='relative flex items-center justify-center'>
 								<input

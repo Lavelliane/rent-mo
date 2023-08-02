@@ -60,9 +60,8 @@ function Registration() {
 						</div>
 						<div className='flex flex-col gap-5 sm:flex-row'>
 							<div className='flex flex-col w-full'>
-								<label htmlFor='firstName' className='text-sm font-medium leading-none text-gray-800'>
-									{" "}
-									First Name{" "}
+								<label htmlFor='firstName' className='text-sm font-medium leading-none text-gray-800 ml-1'>
+									First Name
 								</label>
 								<input
 									onChange={handleChange}
@@ -76,9 +75,8 @@ function Registration() {
 								/>
 							</div>
 							<div className='flex flex-col w-full'>
-								<label htmlFor='lastName' className='text-sm font-medium leading-none text-gray-800'>
-									{" "}
-									Last Name{" "}
+								<label htmlFor='lastName' className='text-sm font-medium leading-none text-gray-800 ml-1'>
+									Last Name
 								</label>
 								<input
 									onChange={handleChange}

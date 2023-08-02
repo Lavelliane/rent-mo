@@ -16,14 +16,18 @@ const authenticateUser = async (req: Request, res: Response<any>, next: NextFunc
     const token = req.cookies.token
     
     if(!token){
-        throw new UnAuthenticatedError("Authentication Invalid")
+        const err = new UnAuthenticatedError("Authentication Invalid")
+        err.statusCode = 400
+        next(err)
     }
     try {
         const payload = jwt.verify(token, process.env.JWT_SECRET) as Payload;
         req.user = { userId: payload?.userId }
         next();
     } catch (error) {
-        throw new UnAuthenticatedError("Authentication Invalid");
+        const err = new UnAuthenticatedError("Authentication Invalid");
+        err.statusCode = 400
+        next(err)
     }
 }
 export default authenticateUser

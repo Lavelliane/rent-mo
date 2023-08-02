@@ -32,12 +32,12 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             lastName,
             email,
             password,
-            country: '',
-            state: '',
-            city: '',
+            country: 'Philippines',
+            state: 'Cebu',
+            city: 'Cebu City',
             phoneNumber: '09123456789',
-            unitAddress: "",
-            profession: "",
+            unitAddress: "Unit X",
+            profession: "Profession",
             language: "Filipino",
             aboutMe: "No biography written."
         });
@@ -68,7 +68,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     //find user and get password
     const user = yield User_1.default.findOne({ email }).select("+password");
     if (!user) {
-        throw new errors_1.UnAuthenticatedError(`Invalid credentials for ${email}`);
+        throw new errors_1.UnAuthenticatedError(`user does not exist`);
     }
     const isPasswordCorrect = yield user.comparePassword(password);
     if (!isPasswordCorrect) {
