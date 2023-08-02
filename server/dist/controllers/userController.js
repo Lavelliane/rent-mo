@@ -26,7 +26,7 @@ const getUserData = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         res.status(http_status_codes_1.StatusCodes.OK).json({ user });
     }
     catch (error) {
-        throw new errors_1.BadRequestError("Invalid request");
+        throw new errors_1.BadRequestError('Invalid request');
     }
 });
 exports.getUserData = getUserData;

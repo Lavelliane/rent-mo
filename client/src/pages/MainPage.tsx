@@ -1,6 +1,6 @@
-import React from "react";
-import HeroPage from "./HeroPage.tsx";
-import Footer from "../components/Footer.tsx";
+import React from 'react';
+import HeroPage from './HeroPage.tsx';
+import Footer from '../components/Footer.tsx';
 
 const MainPage = () => {
 	return (

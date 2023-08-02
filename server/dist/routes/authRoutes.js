@@ -22,10 +22,10 @@ const router = express_1.default.Router();
 router.route('/register').post(authController_js_1.register);
 router.route('/login').post(authController_js_1.login);
 router.route('/updateUser').post(authController_js_1.updateUser);
-router.route('/google').get(passport_1.default.authenticate("google", {
-    scope: ["email", "profile"],
+router.route('/google').get(passport_1.default.authenticate('google', {
+    scope: ['email', 'profile'],
 }));
-router.route("/google/redirect").get(passport_1.default.authenticate("google"), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.route('/google/redirect').get(passport_1.default.authenticate('google'), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const user = yield User_js_1.default.findOne({ email: (_a = req === null || req === void 0 ? void 0 : req.user) === null || _a === void 0 ? void 0 : _a.email });
     let location = '';
@@ -38,7 +38,7 @@ router.route("/google/redirect").get(passport_1.default.authenticate("google"), 
     res.status(http_status_codes_1.StatusCodes.OK).redirect('/profile');
 }));
 router.route('/logout').get((req, res, next) => {
-    res.clearCookie("token");
+    res.clearCookie('token');
     res.end();
 });
 router.route('/current_user').get((req, res) => {

@@ -19,38 +19,36 @@ const http_status_codes_1 = require("http-status-codes");
 const attachCookies_1 = __importDefault(require("../utils/attachCookies"));
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { firstName, lastName, email, password, } = req.body;
+        const { firstName, lastName, email, password } = req.body;
         if (!firstName || !lastName || !email || !password) {
-            throw new errors_1.BadRequestError("Please provide all values");
+            throw new errors_1.BadRequestError('Please provide all values');
         }
         const userAlreadyExists = yield User_1.default.findOne({ email });
         if (userAlreadyExists) {
-            throw new errors_1.BadRequestError("User already exists");
+            throw new errors_1.BadRequestError('User already exists');
         }
         const user = yield User_1.default.create({
             firstName,
             lastName,
             email,
             password,
-            country: 'Philippines',
-            state: 'Cebu',
-            city: 'Cebu City',
+            country: '',
+            state: '',
+            city: '',
             phoneNumber: '09123456789',
-            unitAddress: "Unit X",
-            profession: "Profession",
-            language: "Filipino",
-            aboutMe: "No biography written."
+            unitAddress: '',
+            profession: '',
+            language: '',
+            aboutMe: 'No biography written.',
         });
         const token = user.createJWT();
         (0, attachCookies_1.default)({ res, token });
         //---- return response
-        res
-            .status(http_status_codes_1.StatusCodes.CREATED)
-            .json({
+        res.status(http_status_codes_1.StatusCodes.CREATED).json({
             user: {
                 email: user.email,
                 name: user.name,
-                location: `${user.city}, ${user.state}, ${user.country}`
+                location: `${user.city}, ${user.state}, ${user.country}`,
             },
         });
     }
@@ -63,10 +61,10 @@ exports.register = register;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = req.body;
     if (!email || !password) {
-        throw new errors_1.BadRequestError("Please provide all values");
+        throw new errors_1.BadRequestError('Please provide all values');
     }
     //find user and get password
-    const user = yield User_1.default.findOne({ email }).select("+password");
+    const user = yield User_1.default.findOne({ email }).select('+password');
     if (!user) {
         throw new errors_1.UnAuthenticatedError(`user does not exist`);
     }
@@ -82,7 +80,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.login = login;
 //////////////////////////////////////////////////////////////////////////////////////////
 const updateUser = (req, res) => {
-    res.send("updateUser");
+    res.send('updateUser');
 };
 exports.updateUser = updateUser;
 //# sourceMappingURL=authController.js.map

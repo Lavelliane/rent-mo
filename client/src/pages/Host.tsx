@@ -1,6 +1,6 @@
-import React from "react";
-import Navbar from "../components/Navbar";
-import HostBG from "../assets/images/Rent-mo-hero-bg.png";
+import React from 'react';
+import Navbar from '../components/Navbar';
+import HostBG from '../assets/images/Rent-mo-hero-bg.png';
 
 const Host = () => {
 	return (

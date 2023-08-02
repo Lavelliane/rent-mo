@@ -1,18 +1,19 @@
-import Navbar from "../components/Navbar.tsx";
-import Reviews from "../components/Reviews.tsx";
-import ProfileCard from "../components/ProfileCard.tsx";
-import Footer from "../components/Footer.tsx";
-import { useUser } from "../../hooks/zustand/useUser.ts";
+import Navbar from '../components/Navbar.tsx';
+import Reviews from '../components/Reviews.tsx';
+import ProfileCard from '../components/ProfileCard.tsx';
+import { ButtonNoFillRounded } from '../components/Buttons.tsx';
+import Footer from '../components/Footer.tsx';
+import { useUser } from '../../hooks/zustand/useUser.ts';
 
 const Profile = () => {
 	const store = useUser();
 	const { user }: any = store?.user;
 	console.log(user);
-	const userName = `${user.firstName + " " + user.lastName}`;
-	const yearJoined = `${user.createdAt.split("-")[0]}`;
+	const userName = `${user.firstName + ' ' + user.lastName}`;
+	const yearJoined = `${user.createdAt.split('-')[0]}`;
 	const aboutMe = `${user.aboutMe}`;
 
-	const listing = "5";
+	const listing = '5';
 
 	return (
 		<>
@@ -36,29 +37,26 @@ const Profile = () => {
 							</div>
 							<div className='flex w-full h-fit text-base mt-5'>
 								<div className='flex w-full items-center'>
-									<img className='h-8' src='../src/assets/logo/icons8-car.png' alt='logo' />
+									<img
+										className='h-8'
+										src='../src/assets/logo/icons8-car.png'
+										alt='logo'
+									/>
 									<input
 										className='block p-2 no-select w-24'
 										name='listing'
-										// onChange={handleInputChange}
-										value={listing + " Listing/s"}></input>
-									<a href='#view-listings' className='text-xs text-dark600 underline underline-offset-2'>
+										value={listing + ' Listing/s'}></input>
+									<a
+										href='#view-listings'
+										className='text-xs text-dark600 underline underline-offset-2'>
 										View Listings
 									</a>
 								</div>
 							</div>
 						</div>
 						<div className='flex flex-col sm:flex-row items-center mt-10 justify-center lg:gap-10 gap-5'>
-							<a
-								href='#report-listings'
-								className='rounded-full px-4 py-2 ring-1 ring-yellow300 text-yellow300 hover:text-yellow hover:ring-yellow font-bold drop-shadow-sm transition-colors'>
-								Report Listing
-							</a>
-							<a
-								href='#terms-and-regulations'
-								className='rounded-full px-4 py-2 ring-1 ring-yellow300 text-yellow300 hover:text-yellow hover:ring-yellow font-bold drop-shadow-sm transition-colors'>
-								Terms and Regulations
-							</a>
+							<ButtonNoFillRounded text='Report Listing' />
+							<ButtonNoFillRounded text='Terms and Regulations' />
 						</div>
 						<span className='mt-7 mb-5 w-full h-[2px] bg-dark500'></span>
 						<Reviews />
