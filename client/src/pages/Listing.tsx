@@ -190,8 +190,7 @@ const Listing = () => {
 					</div>
 					<style
 						dangerouslySetInnerHTML={{
-							__html:
-								"\n          .checkbox:checked + .check-icon {\n              display: flex;\n          }\n      ",
+							__html: "\n          .checkbox:checked + .check-icon {\n              display: flex\n          }\n      ",
 						}}
 					/>
 				</div>
