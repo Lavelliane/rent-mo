@@ -81,7 +81,7 @@ const Navbar = () => {
 											</li>
 											<li className='cursor-pointer text-dark800 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-yellow flex items-center focus:text-yellow focus:outline-none transition-colors'>
 												<BiLogOut size='20px' color='#131313' />
-												<a href='#logout' className='ml-2'>
+												<a href='' className='ml-2'>
 													Logout
 												</a>
 											</li>
@@ -112,7 +112,7 @@ const Navbar = () => {
 											? "lg:hidden text-white  cursor-pointer text-xl pt-10 lg:pt-0 lg:ml-5 xl:ml-10 transition"
 											: "hidden"
 									}>
-									<ButtonLink text='Logout' to='#logout' />
+									<ButtonLink text='Logout' to='' />
 								</li>
 							</ul>
 						</div>
