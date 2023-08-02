@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Navbar from "../components/Navbar.tsx";
-import Footer from "../components/Footer.tsx";
+import React, { useState } from 'react';
+import Navbar from '../components/Navbar.tsx';
+import Footer from '../components/Footer.tsx';
 
 const Listing = () => {
 	return (
@@ -36,7 +36,9 @@ const Listing = () => {
 							className='focus:outline-none text-3xl font-bold text-dark900 mt-5'>
 							Personal Information
 						</h1>
-						<p role='contentinfo' className=' focus:outline-nonetext-sm font-light leading-tight text-gray-600 mt-4'>
+						<p
+							role='contentinfo'
+							className=' focus:outline-nonetext-sm font-light leading-tight text-gray-600 mt-4'>
 							Fill in the data for profile. It will take a couple of minutes. <br />
 						</p>
 						<div className='mt-8 lg:flex items-center'>
@@ -133,7 +135,11 @@ const Listing = () => {
 										</p>
 										<p className='text-xs text-dark600 dark:text-dark200'>SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
 									</div>
-									<input id='dropzone-file' type='file' className='hidden' />
+									<input
+										id='dropzone-file'
+										type='file'
+										className='hidden'
+									/>
 								</label>
 							</div>
 						</div>
@@ -159,14 +165,19 @@ const Listing = () => {
 											fill='none'
 											strokeLinecap='round'
 											strokeLinejoin='round'>
-											<path stroke='none' d='M0 0h24v24H0z' />
+											<path
+												stroke='none'
+												d='M0 0h24v24H0z'
+											/>
 											<path d='M5 12l5 5l10 -10' />
 										</svg>
 									</div>
 								</div>
 								<p className='text-sm leading-none ml-2'>
-									I agree with the{" "}
-									<a className='text-indigo-700' href='#term-of-services'>
+									I agree with the{' '}
+									<a
+										className='text-indigo-700'
+										href='#term-of-services'>
 										terms of service
 									</a>
 								</p>
@@ -184,13 +195,16 @@ const Listing = () => {
 								viewBox='0 0 12 8'
 								fill='none'
 								xmlns='http://www.w3.org/2000/svg'>
-								<path d='M8.01 3H0V5H8.01V8L12 4L8.01 0V3Z' fill='#242731' />
+								<path
+									d='M8.01 3H0V5H8.01V8L12 4L8.01 0V3Z'
+									fill='#242731'
+								/>
 							</svg>
 						</button>
 					</div>
 					<style
 						dangerouslySetInnerHTML={{
-							__html: "\n          .checkbox:checked + .check-icon {\n              display: flex\n          }\n      ",
+							__html: '\n          .checkbox:checked + .check-icon {\n              display: flex\n          }\n      ',
 						}}
 					/>
 				</div>

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import BgHomepage from "../assets/images/Rent-mo-hero-bg.png";
-import axios from "axios";
-import { ButtonLinkFill, ButtonFill, GoogleButton } from "../components/Buttons.tsx";
-import Footer from "../components/Footer";
-import { useNavigate } from "react-router-dom";
-import { useUser } from "../../hooks/zustand/useUser";
+import React, { useState } from 'react';
+import BgHomepage from '../assets/images/Rent-mo-hero-bg.png';
+import axios from 'axios';
+import { ButtonLinkFill, ButtonFill, GoogleButton } from '../components/Buttons.tsx';
+import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../hooks/zustand/useUser';
 
 interface UserSignUp {
 	firstName: string;
@@ -13,10 +13,10 @@ interface UserSignUp {
 	password: string;
 }
 const initialUserState: UserSignUp = {
-	firstName: "",
-	lastName: "",
-	email: "",
-	password: "",
+	firstName: '',
+	lastName: '',
+	email: '',
+	password: '',
 };
 
 function Login() {
@@ -28,16 +28,16 @@ function Login() {
 	const handleSubmit = async (e: React.FormEvent): Promise<void> => {
 		e.preventDefault();
 		try {
-			const res = await axios.post("/api/v1/auth/login", user);
-			if (res.data.message === "Invalid Credentials" || res.data.message === "user does not exist" || !res.data) {
+			const res = await axios.post('/api/v1/auth/login', user);
+			if (res.data.message === 'Invalid Credentials' || res.data.message === 'user does not exist' || !res.data) {
 				setIsFailure(true);
 				return;
 			}
 			console.log(res.data);
-			const response = await axios.get("/api/v1/user/my-info");
+			const response = await axios.get('/api/v1/user/my-info');
 			const userData = response?.data || null;
 			store.setUser(userData);
-			navigate("/profile");
+			navigate('/profile');
 		} catch (error) {
 			console.log(error);
 		}
@@ -54,8 +54,12 @@ function Login() {
 				className='h-full bg-gradient-to-tl bg-cover bg-center w-full py-16 px-4 font-Messina-Sans'
 				style={{ backgroundImage: `url(${BgHomepage})` }}>
 				<div className='flex flex-col items-center justify-center'>
-					<img className=' h-20 inline self-center no-select' src='../src/assets/logo/RentMo-logo.svg'></img>
-					<form onSubmit={handleSubmit} className='bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-16'>
+					<img
+						className=' h-20 inline self-center no-select'
+						src='../src/assets/logo/RentMo-logo.svg'></img>
+					<form
+						onSubmit={handleSubmit}
+						className='bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-16'>
 						<p
 							tabIndex={0}
 							role='heading'
@@ -64,14 +68,14 @@ function Login() {
 							Login to your account
 						</p>
 						<p className='text-sm mt-4 font-medium leading-none text-gray-500'>
-							Dont have account?{" "}
+							Dont have account?{' '}
 							<a
 								tabIndex={0}
 								role='link'
 								href='/register'
 								aria-label='Sign up here'
 								className='text-sm font-medium leading-none underline text-gray-800 cursor-pointer'>
-								{" "}
+								{' '}
 								Sign up here
 							</a>
 						</p>
@@ -82,7 +86,9 @@ function Login() {
 							<hr className='w-full bg-dark600' />
 						</div>
 						<div>
-							<label htmlFor='email' className='text-base font-medium leading-none text-dark800 ml-1'>
+							<label
+								htmlFor='email'
+								className='text-base font-medium leading-none text-dark800 ml-1'>
 								Email
 							</label>
 							<input
@@ -96,7 +102,9 @@ function Login() {
 							/>
 						</div>
 						<div className='mt-6  w-full'>
-							<label htmlFor='myInput' className='text-base font-medium leading-none text-dark800 ml-1'>
+							<label
+								htmlFor='myInput'
+								className='text-base font-medium leading-none text-dark800 ml-1'>
 								Password
 							</label>
 							<div className='relative flex items-center justify-center'>
@@ -108,13 +116,16 @@ function Login() {
 									className='bg-gray-200 border rounded text-sm font-medium leading-none text-gray-800 py-3 w-full px-3 mt-2'
 								/>
 							</div>
-							<small className={`text-red-500 ${isFailure ? "visible" : "hidden"}`}>Invalid credentials</small>
+							<small className={`text-red-500 ${isFailure ? 'visible' : 'hidden'}`}>Invalid credentials</small>
 						</div>
 						<div className='mt-8'>
 							<ButtonFill text='Login' />
 						</div>
 						<div className='mt-8 w-full flex'>
-							<ButtonLinkFill text='Return' to='/landing' />
+							<ButtonLinkFill
+								text='Return'
+								to='/landing'
+							/>
 						</div>
 					</form>
 				</div>

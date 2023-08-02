@@ -16,9 +16,9 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const authenticateUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const token = req.cookies.token;
     if (!token) {
-        console.log("No token found");
+        console.log('No token found');
         // Assuming you are using Express, you can send an error response to the client
-        res.status(401).json({ error: "Unauthorized" });
+        res.status(401).json({ error: 'Unauthorized' });
         return; // Return to stop further execution of the code
     }
     try {
@@ -27,9 +27,9 @@ const authenticateUser = (req, res, next) => __awaiter(void 0, void 0, void 0, f
         next();
     }
     catch (error) {
-        console.error("Error verifying token:", error);
+        console.error('Error verifying token:', error);
         // Assuming you are using Express, you can send an error response to the client
-        res.status(400).json({ error: "Authentication Invalid" });
+        res.status(400).json({ error: 'Authentication Invalid' });
     }
 });
 exports.default = authenticateUser;

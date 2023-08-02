@@ -1,19 +1,19 @@
-import Navbar from "../components/Navbar.tsx";
-import Reviews from "../components/Reviews.tsx";
-import ProfileCard from "../components/ProfileCard.tsx";
-import { ButtonNoFillRounded } from "../components/Buttons.tsx";
-import Footer from "../components/Footer.tsx";
-import { useUser } from "../../hooks/zustand/useUser.ts";
+import Navbar from '../components/Navbar.tsx';
+import Reviews from '../components/Reviews.tsx';
+import ProfileCard from '../components/ProfileCard.tsx';
+import { ButtonNoFillRounded } from '../components/Buttons.tsx';
+import Footer from '../components/Footer.tsx';
+import { useUser } from '../../hooks/zustand/useUser.ts';
 
 const Profile = () => {
 	const store = useUser();
 	const { user }: any = store?.user;
 	console.log(user);
-	const userName = `${user.firstName + " " + user.lastName}`;
-	const yearJoined = `${user.createdAt.split("-")[0]}`;
+	const userName = `${user.firstName + ' ' + user.lastName}`;
+	const yearJoined = `${user.createdAt.split('-')[0]}`;
 	const aboutMe = `${user.aboutMe}`;
 
-	const listing = "5";
+	const listing = '5';
 
 	return (
 		<>
@@ -37,9 +37,18 @@ const Profile = () => {
 							</div>
 							<div className='flex w-full h-fit text-base mt-5'>
 								<div className='flex w-full items-center'>
-									<img className='h-8' src='../src/assets/logo/icons8-car.png' alt='logo' />
-									<input className='block p-2 no-select w-24' name='listing' value={listing + " Listing/s"}></input>
-									<a href='#view-listings' className='text-xs text-dark600 underline underline-offset-2'>
+									<img
+										className='h-8'
+										src='../src/assets/logo/icons8-car.png'
+										alt='logo'
+									/>
+									<input
+										className='block p-2 no-select w-24'
+										name='listing'
+										value={listing + ' Listing/s'}></input>
+									<a
+										href='#view-listings'
+										className='text-xs text-dark600 underline underline-offset-2'>
 										View Listings
 									</a>
 								</div>

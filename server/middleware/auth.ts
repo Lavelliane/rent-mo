@@ -1,6 +1,6 @@
-import { NextFunction, Request, Response } from "express";
-import { UnAuthenticatedError } from "../errors/index.js";
-import jwt from "jsonwebtoken";
+import { NextFunction, Request, Response } from 'express';
+import { UnAuthenticatedError } from '../errors/index.js';
+import jwt from 'jsonwebtoken';
 
 declare const process: {
 	env: {
@@ -15,9 +15,9 @@ const authenticateUser = async (req: Request, res: Response<any>, next: NextFunc
 	const token = req.cookies.token;
 
 	if (!token) {
-		console.log("No token found");
+		console.log('No token found');
 		// Assuming you are using Express, you can send an error response to the client
-		res.status(401).json({ error: "Unauthorized" });
+		res.status(401).json({ error: 'Unauthorized' });
 		return; // Return to stop further execution of the code
 	}
 	try {
@@ -25,9 +25,9 @@ const authenticateUser = async (req: Request, res: Response<any>, next: NextFunc
 		req.user = { userId: payload?.userId };
 		next();
 	} catch (error) {
-		console.error("Error verifying token:", error);
+		console.error('Error verifying token:', error);
 		// Assuming you are using Express, you can send an error response to the client
-		res.status(400).json({ error: "Authentication Invalid" });
+		res.status(400).json({ error: 'Authentication Invalid' });
 	}
 };
 export default authenticateUser;

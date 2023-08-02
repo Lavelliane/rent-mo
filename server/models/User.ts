@@ -1,7 +1,7 @@
-import mongoose, { Schema, Document, ObjectId } from "mongoose";
-import validator from "validator";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import mongoose, { Schema, Document, ObjectId } from 'mongoose';
+import validator from 'validator';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 declare const process: {
 	env: {
@@ -41,7 +41,7 @@ const emailValidator = (email: string) => {
 const UserSchema: Schema<IUser> = new Schema({
 	firstName: {
 		type: String,
-		required: [true, "Please provide a name"],
+		required: [true, 'Please provide a name'],
 		minlength: 3,
 		maxlength: 20,
 		trim: true,
@@ -50,20 +50,20 @@ const UserSchema: Schema<IUser> = new Schema({
 		type: String,
 		maxlength: 20,
 		trim: true,
-		default: "Lastname",
+		default: 'Lastname',
 	},
 	email: {
 		type: String,
-		required: [true, "Please provide an email"],
+		required: [true, 'Please provide an email'],
 		validate: {
 			validator: emailValidator,
-			message: "Please provide a valid email",
+			message: 'Please provide a valid email',
 		},
 		unique: true,
 	},
 	password: {
 		type: String,
-		required: [true, "Please provide a password"],
+		required: [true, 'Please provide a password'],
 		minlength: 6,
 		select: false,
 	},
@@ -71,25 +71,25 @@ const UserSchema: Schema<IUser> = new Schema({
 		type: String,
 		maxlength: 20,
 		trim: true,
-		default: "Philippines",
+		default: 'Philippines',
 	},
 	state: {
 		type: String,
 		maxlength: 20,
 		trim: true,
-		default: "Cebu",
+		default: 'Cebu',
 	},
 	unitAddress: {
 		type: String,
 		maxlength: 20,
 		trim: true,
-		default: "Unknown",
+		default: 'Unknown',
 	},
 	city: {
 		type: String,
 		maxlength: 20,
 		trim: true,
-		default: "Cebu City",
+		default: 'Cebu City',
 	},
 	isHost: {
 		type: Boolean,
@@ -99,7 +99,7 @@ const UserSchema: Schema<IUser> = new Schema({
 		type: String,
 		trim: true,
 		validate: {
-			validator: (value: string) => validator.isMobilePhone(value, "any", { strictMode: false }),
+			validator: (value: string) => validator.isMobilePhone(value, 'any', { strictMode: false }),
 			message: (props) => `${props.value} is not a valid phone number!`,
 		},
 	},
@@ -111,19 +111,19 @@ const UserSchema: Schema<IUser> = new Schema({
 		type: String,
 		maxlength: 20,
 		trim: true,
-		default: "Unknown",
+		default: 'Unknown',
 	},
 	language: {
 		type: String,
 		maxlength: 20,
 		trim: true,
-		default: "Unknown",
+		default: 'Unknown',
 	},
 	aboutMe: {
 		type: String,
 		maxlength: 300,
 		trim: true,
-		default: "Please tell us about yourself...",
+		default: 'Please tell us about yourself...',
 	},
 	isVerified: {
 		type: Boolean,
@@ -136,7 +136,7 @@ const UserSchema: Schema<IUser> = new Schema({
 });
 
 //User.js
-UserSchema.pre("save", async function () {
+UserSchema.pre('save', async function () {
 	const salt = await bcrypt.genSalt(10);
 	this.password = await bcrypt.hash(this.password, salt);
 });
@@ -158,6 +158,6 @@ UserSchema.methods.comparePassword = async function (candidatePassword: string) 
 	return isMatch;
 };
 
-const User = mongoose.model<IUser>("User", UserSchema);
+const User = mongoose.model<IUser>('User', UserSchema);
 
 export default User;

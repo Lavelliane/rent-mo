@@ -1,5 +1,5 @@
-import React from "react";
-import { ButtonFillRounded } from "./Buttons";
+import React from 'react';
+import { ButtonFillRounded } from './Buttons';
 
 const SearchHero = () => {
 	return (
@@ -7,11 +7,15 @@ const SearchHero = () => {
 			<div className='bg-white shadow-searchbox w-fit h-20 rounded-full content-center items-center p-2 justify-evenly self-center xl:flex hidden '>
 				{/* Location */}
 				<div className='flex flex-col justify-start items-start w-72 ml-5'>
-					<label htmlFor='input-location' className='text-black font-bold text-sm'>
+					<label
+						htmlFor='input-location'
+						className='text-black font-bold text-sm'>
 						Location
 					</label>
 					<div className='flex'>
-						<img className='h-6' src='../src/assets/logo/pin-loc.png'></img>
+						<img
+							className='h-6'
+							src='../src/assets/logo/pin-loc.png'></img>
 						<div className='flex border-b-2 border-white hover:border-dark200 transition-colors w-full'>
 							<input
 								id='input-location'
@@ -25,7 +29,9 @@ const SearchHero = () => {
 				<span className=' w-[2px] h-14 bg-dark400 mx-2 rounded-full'></span>
 				{/* Start Trip */}
 				<div className='flex flex-col justify-start items-start w-72'>
-					<label htmlFor='input-start-trip' className='text-black font-bold text-sm'>
+					<label
+						htmlFor='input-start-trip'
+						className='text-black font-bold text-sm'>
 						Start Trip
 					</label>
 					<div className='flex gap-2'>
@@ -44,7 +50,9 @@ const SearchHero = () => {
 				<span className=' w-[2px] h-14 bg-dark400 mx-2 rounded-full'></span>
 				{/* End Trip */}
 				<div className='flex flex-col justify-start items-start w-72'>
-					<label htmlFor='input-start-trip' className='text-black font-bold text-sm'>
+					<label
+						htmlFor='input-start-trip'
+						className='text-black font-bold text-sm'>
 						End Trip
 					</label>
 					<div className='flex gap-4'>
@@ -67,11 +75,15 @@ const SearchHero = () => {
 			<div className='flex-col xl:hidden w-full min-w-fit max-w-sm h-fit bg-white mx-6 md:p-10 p-6 rounded-lg shadow-searchbox '>
 				{/* Location */}
 				<div className='flex flex-col w-full items-start gap-3'>
-					<label htmlFor='input-location' className='text-black font-bold text-sm'>
+					<label
+						htmlFor='input-location'
+						className='text-black font-bold text-sm'>
 						Location
 					</label>
 					<div className='flex w-full'>
-						<img className='h-6' src='../src/assets/logo/pin-loc.png'></img>
+						<img
+							className='h-6'
+							src='../src/assets/logo/pin-loc.png'></img>
 						<div className='flex border-b-2 border-white hover:border-dark200 transition-colors w-full'>
 							<input
 								id='input-location'
@@ -85,7 +97,9 @@ const SearchHero = () => {
 				<span className='flex w-full h-[2px] bg-dark400 rounded-full my-6'></span>
 				{/* Start Trip */}
 				<div className='flex flex-col justify-start items-start w-full gap-3'>
-					<label htmlFor='input-start-trip' className='text-black font-bold text-sm'>
+					<label
+						htmlFor='input-start-trip'
+						className='text-black font-bold text-sm'>
 						Start Trip
 					</label>
 					<div className='flex md:flex-row w-full md:gap-16 gap-2 flex-col'>
@@ -104,7 +118,9 @@ const SearchHero = () => {
 				<span className='flex w-full h-[2px] bg-dark400 rounded-full my-6'></span>
 				{/* End Trip */}
 				<div className='flex flex-col justify-start items-start w-full gap-3'>
-					<label htmlFor='input-start-trip' className='text-black font-bold text-sm'>
+					<label
+						htmlFor='input-start-trip'
+						className='text-black font-bold text-sm'>
 						End Trip
 					</label>
 					<div className='flex flex-col md:flex-row md:gap-16 gap-4 w-full'>

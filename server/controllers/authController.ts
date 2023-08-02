@@ -1,33 +1,33 @@
-import { Request, Response } from "express";
-import User from "../models/User";
-import { BadRequestError, UnAuthenticatedError } from "../errors";
-import { StatusCodes } from "http-status-codes";
-import attachCookies from "../utils/attachCookies";
+import { Request, Response } from 'express';
+import User from '../models/User';
+import { BadRequestError, UnAuthenticatedError } from '../errors';
+import { StatusCodes } from 'http-status-codes';
+import attachCookies from '../utils/attachCookies';
 
 const register = async (req: Request, res: Response) => {
 	try {
 		const { firstName, lastName, email, password } = req.body;
 		if (!firstName || !lastName || !email || !password) {
-			throw new BadRequestError("Please provide all values");
+			throw new BadRequestError('Please provide all values');
 		}
 		const userAlreadyExists = await User.findOne({ email });
 
 		if (userAlreadyExists) {
-			throw new BadRequestError("User already exists");
+			throw new BadRequestError('User already exists');
 		}
 		const user = await User.create({
 			firstName,
 			lastName,
 			email,
 			password,
-			country: "",
-			state: "",
-			city: "",
-			phoneNumber: "09123456789",
-			unitAddress: "",
-			profession: "",
-			language: "",
-			aboutMe: "No biography written.",
+			country: '',
+			state: '',
+			city: '',
+			phoneNumber: '09123456789',
+			unitAddress: '',
+			profession: '',
+			language: '',
+			aboutMe: 'No biography written.',
 		});
 		const token = user.createJWT();
 		attachCookies({ res, token });
@@ -49,20 +49,20 @@ const register = async (req: Request, res: Response) => {
 const login = async (req: Request, res: Response) => {
 	const { email, password } = req.body;
 	if (!email || !password) {
-		throw new BadRequestError("Please provide all values");
+		throw new BadRequestError('Please provide all values');
 	}
 	//find user and get password
-	const user = await User.findOne({ email }).select("+password");
+	const user = await User.findOne({ email }).select('+password');
 
 	if (!user) {
 		throw new UnAuthenticatedError(`user does not exist`);
 	}
 	const isPasswordCorrect = await user.comparePassword(password);
 	if (!isPasswordCorrect) {
-		throw new UnAuthenticatedError("Invalid Credentials");
+		throw new UnAuthenticatedError('Invalid Credentials');
 	}
 	const token = user.createJWT();
-	user.password = "";
+	user.password = '';
 	attachCookies({ res, token });
 
 	res.status(StatusCodes.OK).json({ user, location: `${user.city}, ${user.state}, ${user.country}` });
@@ -70,7 +70,7 @@ const login = async (req: Request, res: Response) => {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 const updateUser = (req: Request, res: Response) => {
-	res.send("updateUser");
+	res.send('updateUser');
 };
 
 export { register, login, updateUser };

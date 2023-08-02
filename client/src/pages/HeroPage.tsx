@@ -1,7 +1,7 @@
-import BgHomepage from "../assets/images/Rent-mo-hero-bg.png";
-import Navbar from "../components/Navbar.tsx";
-import SearchHero from "../components/SearchHero.tsx";
-import "../index.css";
+import BgHomepage from '../assets/images/Rent-mo-hero-bg.png';
+import Navbar from '../components/Navbar.tsx';
+import SearchHero from '../components/SearchHero.tsx';
+import '../index.css';
 
 const HeroPage = () => {
 	return (
@@ -19,7 +19,7 @@ const HeroPage = () => {
 								<span className='text-yellow'> Adventure</span>
 							</h1>
 							<p className='mt-5 sm:mt-5 lg:w-full text-white font-normal text-center md:text-base lg:text-2xl text-base'>
-								{" "}
+								{' '}
 								Need a ride for your trip? Get the wheels you need in a matter of minutes right here!
 							</p>
 						</div>

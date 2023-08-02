@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import BgHomepage from "../assets/images/Rent-mo-hero-bg.png";
-import axios from "axios";
-import { ButtonLinkFill, ButtonFill, GoogleButton } from "../components/Buttons.tsx";
-import Footer from "../components/Footer";
+import React, { useState } from 'react';
+import BgHomepage from '../assets/images/Rent-mo-hero-bg.png';
+import axios from 'axios';
+import { ButtonLinkFill, ButtonFill, GoogleButton } from '../components/Buttons.tsx';
+import Footer from '../components/Footer';
 
 interface UserSignUp {
 	firstName: string;
@@ -11,10 +11,10 @@ interface UserSignUp {
 	password: string;
 }
 const initialUserState: UserSignUp = {
-	firstName: "",
-	lastName: "",
-	email: "",
-	password: "",
+	firstName: '',
+	lastName: '',
+	email: '',
+	password: '',
 };
 
 function Registration() {
@@ -23,7 +23,7 @@ function Registration() {
 	const handleSubmit = async (e: React.FormEvent): Promise<void> => {
 		e.preventDefault();
 		try {
-			const req = await axios.post("/api/v1/auth/register", user);
+			const req = await axios.post('/api/v1/auth/register', user);
 			console.log(req.data);
 		} catch (error) {
 			console.log(error);
@@ -43,8 +43,12 @@ function Registration() {
 				className='bg-gradient-to-tl bg-cover bg-center w-full h-full py-16 px-0 font-Messina-Sans overflow-x-hidden'
 				style={{ backgroundImage: `url(${BgHomepage})` }}>
 				<div className='flex flex-col items-center justify-center'>
-					<img className=' h-20 inline self-center no-select' src='../src/assets/logo/RentMo-logo.svg'></img>
-					<form onSubmit={handleSubmit} className='bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-16'>
+					<img
+						className=' h-20 inline self-center no-select'
+						src='../src/assets/logo/RentMo-logo.svg'></img>
+					<form
+						onSubmit={handleSubmit}
+						className='bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-16'>
 						<p
 							tabIndex={0}
 							role='heading'
@@ -60,7 +64,9 @@ function Registration() {
 						</div>
 						<div className='flex flex-col gap-5 sm:flex-row'>
 							<div className='flex flex-col w-full'>
-								<label htmlFor='firstName' className='text-sm font-medium leading-none text-gray-800 ml-1'>
+								<label
+									htmlFor='firstName'
+									className='text-sm font-medium leading-none text-gray-800 ml-1'>
 									First Name
 								</label>
 								<input
@@ -75,7 +81,9 @@ function Registration() {
 								/>
 							</div>
 							<div className='flex flex-col w-full'>
-								<label htmlFor='lastName' className='text-sm font-medium leading-none text-gray-800 ml-1'>
+								<label
+									htmlFor='lastName'
+									className='text-sm font-medium leading-none text-gray-800 ml-1'>
 									Last Name
 								</label>
 								<input
@@ -90,9 +98,11 @@ function Registration() {
 							</div>
 						</div>
 						<div className='mt-6  w-full'>
-							<label htmlFor='email' className='text-base font-medium leading-none text-dark800'>
-								{" "}
-								Email{" "}
+							<label
+								htmlFor='email'
+								className='text-base font-medium leading-none text-dark800'>
+								{' '}
+								Email{' '}
 							</label>
 							<input
 								onChange={handleChange}
@@ -105,9 +115,11 @@ function Registration() {
 							/>
 						</div>
 						<div className='mt-6  w-full'>
-							<label htmlFor='myInput' className='text-base font-medium leading-none text-dark800'>
-								{" "}
-								Password{" "}
+							<label
+								htmlFor='myInput'
+								className='text-base font-medium leading-none text-dark800'>
+								{' '}
+								Password{' '}
 							</label>
 							<div className='relative flex items-center justify-center'>
 								<input
@@ -123,7 +135,10 @@ function Registration() {
 							<ButtonFill text='Create my account' />
 						</div>
 						<div className='mt-8 w-full flex'>
-							<ButtonLinkFill text='Return' to='/landing' />
+							<ButtonLinkFill
+								text='Return'
+								to='/landing'
+							/>
 						</div>
 					</form>
 				</div>

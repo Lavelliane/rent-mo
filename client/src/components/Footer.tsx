@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const Footer = () => {
 	return (
@@ -28,22 +28,30 @@ const Footer = () => {
 				</div>
 				<div className='flex items-center gap-x-8 mt-6'>
 					<div className='cursor-pointer'>
-						<a href='https://twitter.com' target='_blank'>
+						<a
+							href='https://twitter.com'
+							target='_blank'>
 							<img
 								src='../src/assets/logo/icons8-facebook.png'
 								className='w-10 hover:scale-[110%] transition-all'></img>
 						</a>
 					</div>
 					<div className='cursor-pointer'>
-						<a href='https://twitter.com' target='_blank'>
+						<a
+							href='https://twitter.com'
+							target='_blank'>
 							<img
 								src='../src/assets/logo/icons8-instagram.png'
 								className='w-10 hover:scale-[110%] transition-all'></img>
 						</a>
 					</div>
 					<div className='cursor-pointer'>
-						<a href='https://twitter.com' target='_blank'>
-							<img src='../src/assets/logo/twitter-x-logo.png' className='w-8 hover:scale-[110%] transition-all'></img>
+						<a
+							href='https://twitter.com'
+							target='_blank'>
+							<img
+								src='../src/assets/logo/twitter-x-logo.png'
+								className='w-8 hover:scale-[110%] transition-all'></img>
 						</a>
 					</div>
 				</div>
