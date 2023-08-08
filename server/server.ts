@@ -11,14 +11,13 @@ import xss from 'xss-clean';
 import cookieSession from 'cookie-session';
 
 import authRouter from './routes/authRoutes';
-import bookingRouter from './routes/bookingRouter';
+import listingRouter from './routes/listingRouter';
 import userRouter from './routes/userRoutes';
 
 import authenticateUser from './middleware/auth';
 import passport from 'passport';
 import './config/passport';
-import cors from 'cors';
-import bodyParser from 'body-parser';
+
 
 declare const process: {
 	env: {
@@ -51,7 +50,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/api/v1/auth', authRouter);
-app.use('/api/v1/booking', authenticateUser, bookingRouter);
+app.use('/api/v1/booking', authenticateUser, listingRouter);
 app.use('/api/v1/user', authenticateUser, userRouter);
 
 app.use(notFoundMiddleware);
