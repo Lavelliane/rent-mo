@@ -1,1 +1,0 @@
-{"version":3,"file":"bookingsController.js","sourceRoot":"","sources":["../../controllers/bookingsController.ts"],"names":[],"mappings":";;;AAEO,MAAM,aAAa,GAAG,CAAC,GAAY,EAAE,GAAa,EAAE,EAAE;IAC5D,OAAO,GAAG,CAAC,MAAM,CAAC,GAAG,CAAC,CAAC,IAAI,CAAC,EAAE,GAAG,EAAE,iBAAiB,EAAE,CAAC,CAAC;AACzD,CAAC,CAAC;AAFW,QAAA,aAAa,iBAExB"}

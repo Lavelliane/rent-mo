@@ -24,7 +24,7 @@ const helmet_1 = __importDefault(require("helmet"));
 const xss_clean_1 = __importDefault(require("xss-clean"));
 const cookie_session_1 = __importDefault(require("cookie-session"));
 const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
-const bookingRouter_1 = __importDefault(require("./routes/bookingRouter"));
+const listingRouter_1 = __importDefault(require("./routes/listingRouter"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const auth_1 = __importDefault(require("./middleware/auth"));
 const passport_1 = __importDefault(require("passport"));
@@ -47,7 +47,7 @@ app.use((0, cookie_session_1.default)({
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
 app.use('/api/v1/auth', authRoutes_1.default);
-app.use('/api/v1/booking', auth_1.default, bookingRouter_1.default);
+app.use('/api/v1/booking', auth_1.default, listingRouter_1.default);
 app.use('/api/v1/user', auth_1.default, userRoutes_1.default);
 app.use(not_found_1.default);
 app.use(error_handler_1.default);

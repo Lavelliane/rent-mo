@@ -7,7 +7,7 @@ import Profile from './pages/Profile.tsx';
 import Host from './pages/Host.tsx';
 import Listing from './pages/Listing.tsx';
 import Protected from './components/Protected.tsx';
-
+import ErrorPage  from './pages/ErrorPage.tsx';
 function App() {
 	const [count, setCount] = useState(0);
 
@@ -50,6 +50,10 @@ function App() {
 					<Route
 						path='/listing'
 						element={<Listing />}
+					/>
+					<Route
+						path='/error'
+						element={<ErrorPage />}
 					/>
 				</Routes>
 			</BrowserRouter>
