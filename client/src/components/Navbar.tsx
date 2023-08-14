@@ -76,7 +76,7 @@ const Navbar = () => {
 								<li className='text-yellow font-bold cursor-pointer text-xl pt-10 lg:pt-0 lg:ml-5 xl:ml-10 transition'>
 									<ButtonLinkNoFillRounded
 										text='Become a host'
-										to='/listing'
+										to={store.user ? '/listing' : '/login'}
 									/>
 								</li>
 								<span className=' xl:mx-10 lg:mt-0 lg:w-[2px] lg:h-10 bg-dark600 bg-white lg:mx-5 w-3/4 h-[1px] mt-14'></span>
@@ -113,7 +113,7 @@ const Navbar = () => {
 														color='#131313'
 													/>
 													<a
-														className='ml-2'
+														className='w-full hover:text-yellow ml-2'
 														href='/profile'>
 														My Profile
 													</a>
@@ -126,7 +126,7 @@ const Navbar = () => {
 												/>
 												<a
 													href='#help-center'
-													className='ml-2'>
+													className='w-full hover:text-yellow ml-2'>
 													Help Center
 												</a>
 											</li>
@@ -137,7 +137,7 @@ const Navbar = () => {
 												/>
 												<button
 													onClick={handleLogout}
-													className=' hover:text-yellow transition ml-2'>
+													className='text-left w-full hover:text-yellow ml-2'>
 													Logout
 												</button>
 											</li>

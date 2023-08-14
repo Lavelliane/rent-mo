@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import UpdateProfile from '../components/UpdateProfile';
+import UpdateProfile from '../forms/UpdateProfileForm.tsx';
 import { useUser } from '../../hooks/zustand/useUser.ts';
 import ProfileCardText from '../components/ProfileCardText.tsx';
 

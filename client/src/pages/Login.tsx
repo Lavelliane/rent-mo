@@ -51,7 +51,7 @@ function Login() {
 	return (
 		<>
 			<div
-				className='h-full bg-gradient-to-tl bg-cover bg-center w-full py-16 px-4 font-Messina-Sans'
+				className=' min-h-screen bg-gradient-to-tl bg-cover bg-center w-full py-16 px-4 font-Messina-Sans'
 				style={{ backgroundImage: `url(${BgHomepage})` }}>
 				<div className='flex flex-col items-center justify-center'>
 					<img
