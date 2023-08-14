@@ -1,6 +1,5 @@
 import React from 'react';
 import { InputBox2 } from '../components/InputBox';
-import { lgCloudUpload } from 'react-icons/lg';
 
 const PersonalInfoForm = () => {
 	return (
@@ -60,7 +59,7 @@ const PersonalInfoForm = () => {
 							defaultValue=''
 						/>
 					</div>
-					<div className='flex flex-col w-1/2 lg:mt-0 mt-5'>
+					<div className='flex flex-col lg:w-1/2 w-full lg:my-0 mt-5 mb-10'>
 						<label className='mb-3 text-sm leading-none text-dark900'>Zip Code</label>
 						<InputBox2
 							type='text'

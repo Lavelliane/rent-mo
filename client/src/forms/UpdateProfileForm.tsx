@@ -9,7 +9,7 @@ const UpdateProfile = (props: any) => {
 				id='popup'
 				className='z-50 fixed w-full flex justify-center inset-0 font-Messina-Sans'>
 				<div className='w-full h-full bg-black bg-opacity-40 z-0 absolute inset-0' />
-				<div className='mx-auto container'>
+				<div className='mx-auto flex'>
 					<div className='flex items-center justify-center h-full w-full'>
 						<div className='bg-white rounded-md shadow fixed overflow-y-auto sm:h-auto w-10/12 md:w-8/12 lg:w-1/2 2xl:w-2/5'>
 							<div className='bg-dark300 rounded-tl-md rounded-tr-md px-4 md:px-8 md:py-4 py-7 flex items-center justify-between'>

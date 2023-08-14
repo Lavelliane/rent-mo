@@ -41,7 +41,7 @@ export default function Listing() {
 
 	return (
 		<>
-			<div className='flex flex-col w-full min-h-screen pb-20 bg-cover bg-no-repeat font-Messina-Sans'>
+			<div className='flex flex-col w-full h-fit pb-20 bg-cover bg-no-repeat font-Messina-Sans'>
 				<Navbar />
 				<div className='absolute w-full h-72 bg-gradient-to-br from-dark700 to-dark900 -z-10'></div>
 				<div className='xl:w-1/2 w-3/4  h-full flex relative items-center justify-center self-center'>
@@ -96,7 +96,7 @@ export default function Listing() {
 								<button
 									onClick={handleNext}
 									className='rounded-full px-4 py-2 bg-yellow hover:shadow-md transition-shadow'>
-									{activeStep ? 'Finish' : 'Next'}
+									{activeStep == 1 || activeStep == 0 ? 'Next' : 'Finish'}
 								</button>
 							</div>
 						</div>
