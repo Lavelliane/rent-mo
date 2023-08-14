@@ -1,9 +1,9 @@
 import express from 'express';
-import { createBooking } from '../controllers/listingController';
-import authenticateUser from '../middleware/auth';
+import { createListing } from '../controllers/listingController';
+
 
 const router = express.Router();
 
-router.route('/new/rental').post(createBooking);
+router.route('/listing/create').post(createListing);
 
 export default router;
