@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* tailwind.css */
+
+/* Custom style for completed step circle */
+.completed-step {
+	@apply text-black; 
+  }
+  
+  /* Custom style for active step circle */
+  .active-step {
+	@apply text-red-500;
+  }
+
 :root {
 	--yellow-0: #fcd116;
 	--yellow-100: #e3bc14;
@@ -170,3 +182,5 @@
 		-moz-appearance: textfield !important;
 	}
 }
+
+

@@ -1,5 +1,5 @@
 import React from 'react';
-import InputBox from '../components/InputBox.tsx';
+import { InputBox } from '../components/InputBox.tsx';
 import { MdClose, MdCloudUpload } from 'react-icons/md';
 
 const UpdateProfile = (props: any) => {
