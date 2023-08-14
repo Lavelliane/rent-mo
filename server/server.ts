@@ -50,7 +50,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/api/v1/auth', authRouter);
-app.use('/api/v1/booking', authenticateUser, listingRouter);
+app.use('/api/v1/host', authenticateUser, listingRouter);
 app.use('/api/v1/user', authenticateUser, userRouter);
 
 app.use(notFoundMiddleware);
