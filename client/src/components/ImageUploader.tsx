@@ -31,7 +31,7 @@ function ImageUploader() {
 					{images.length === 0 ? (
 						<label
 							htmlFor='image-input'
-							className='flex flex-col items-center justify-center w-full h-24 border-2 border-gray-400 border-dashed rounded-lg cursor-pointer bg-white hover:bg-dark100'>
+							className='flex flex-col items-center justify-center w-full h-28 border-2 border-gray-400 border-dashed rounded-lg cursor-pointer bg-white hover:bg-dark100'>
 							<div className='flex flex-col items-center justify-center pt-5 pb-6'>
 								<MdCloudUpload
 									size='30px'
@@ -56,26 +56,28 @@ function ImageUploader() {
 			</div>
 
 			{images.length > 0 && (
-				<div className='h-full flex mb-5'>
+				<div className='h-full w-full flex'>
 					<Carousel
 						showStatus={false}
 						showThumbs={false}
-						showArrows={images.length < 3 ? false : true}
-						infiniteLoop={images.length < 3 ? false : true}
-						centerMode={true}
-						centerSlidePercentage={images.length < 2 ? 100 : images.length === 2 ? 50 : 33.33}
+						showArrows={images.length < 4 ? false : true}
+						infiniteLoop={false}
+						centerMode={images.length < 2 ? false : true}
+						swipeable={true}
+						emulateTouch={true}
+						centerSlidePercentage={images.length === 2 ? 50 : 33.33}
 						className='carousel-container w-full'>
 						{images.map((image, index) => (
 							<div
 								key={index}
-								className='carousel-slide relative'>
+								className='carousel-slide relative hover:scale-[1.02] mx-1 my-2 transition'>
 								<img
 									src={URL.createObjectURL(image)}
 									alt={`Image ${index}`}
-									className='mx-auto h-32 shadow-md object-cover'
+									className='mx-auto h-28 shadow-md object-cover select-none'
 								/>
 								<button
-									className='absolute top-2 right-2 p-1 bg-dark900 rounded-full text-red-100 hover:text-red-300 transition'
+									className='absolute top-3 right-3 p-1 bg-dark900 rounded-full text-red-100 hover:text-red-300 hover:scale-105 transition'
 									onClick={() => handleRemoveImage(index)}>
 									<MdClose size='16px' />
 								</button>
@@ -86,7 +88,7 @@ function ImageUploader() {
 						<div className='flex items-center self-center text-center md:mx-5 mx-3'>
 							<label
 								htmlFor='image-input'
-								className='cursor-pointer hover:text-dark900 transition-colors text-dark500'>
+								className='cursor-pointer hover:text-dark900 transition-all text-dark500 hover:scale-110'>
 								<MdAddCircle size='32px' />
 							</label>
 							<input
