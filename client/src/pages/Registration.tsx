@@ -40,7 +40,7 @@ function Registration() {
 	return (
 		<>
 			<div
-				className='bg-gradient-to-tl bg-cover bg-center w-full h-full py-16 px-0 font-Messina-Sans overflow-x-hidden'
+				className='bg-gradient-to-tl bg-cover bg-center w-full min-h-screen py-16 px-0 font-Messina-Sans overflow-x-hidden'
 				style={{ backgroundImage: `url(${BgHomepage})` }}>
 				<div className='flex flex-col items-center justify-center'>
 					<img

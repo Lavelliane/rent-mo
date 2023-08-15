@@ -5,7 +5,13 @@ interface InputBoxProps {
 	type: string;
 }
 
-const InputBox = ({ placeholder, type }: InputBoxProps) => {
+interface InputBoxDefaultProps {
+	placeholder: string;
+	type: string;
+	defaultValue: string;
+}
+
+export const InputBox = ({ placeholder, type }: InputBoxProps) => {
 	return (
 		<input
 			placeholder={placeholder}
@@ -15,4 +21,13 @@ const InputBox = ({ placeholder, type }: InputBoxProps) => {
 	);
 };
 
-export default InputBox;
+export const InputBox2 = ({ placeholder, type, defaultValue }: InputBoxDefaultProps) => {
+	return (
+		<input
+			placeholder={placeholder}
+			type={type}
+			defaultValue={defaultValue}
+			className='w-full focus:outline-none py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
+		/>
+	);
+};

@@ -6,7 +6,7 @@ const MainPage = () => {
 	return (
 		<div>
 			<HeroPage />
-			<div className='w-full h-screen bg-slate-400'></div>
+			<div className='w-full min-h-screen bg-slate-400'></div>
 			<Footer />
 		</div>
 	);
