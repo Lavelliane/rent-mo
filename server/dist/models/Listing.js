@@ -22,8 +22,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
+const validator_1 = __importDefault(require("validator"));
+const emailValidator = (email) => {
+    return validator_1.default.isEmail(email);
+};
 const ListingSchema = new mongoose_1.Schema({
     brand: {
         type: String,
@@ -40,6 +47,15 @@ const ListingSchema = new mongoose_1.Schema({
     city: {
         type: String,
         required: true,
+    },
+    email: {
+        type: String,
+        required: [true, 'Please provide an email'],
+        validate: {
+            validator: emailValidator,
+            message: 'Please provide a valid email',
+        },
+        unique: true,
     },
     mobileNumber: {
         type: String,

@@ -3,7 +3,7 @@ import { ButtonFillRounded } from './Buttons';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import { TextField, FormControl, InputLabel, InputAdornment, IconButton, Input } from '@mui/material';
+import { TextField, FormControl, InputLabel, InputAdornment, IconButton, OutlinedInput } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { HiLocationMarker } from 'react-icons/hi';
 const theme = createTheme({
@@ -23,12 +23,15 @@ const SearchHero = () => {
 		<ThemeProvider theme={theme}>
 			<LocalizationProvider dateAdapter={AdapterDateFns}>
 				<div className='flex justify-center'>
-					<div className='bg-white shadow-searchbox w-fit h-20 rounded-full content-center items-center p-2 justify-evenly self-center xl:flex hidden '>
+					<div className='bg-white shadow-searchbox w-fit rounded-full content-center items-center p-2 pl-4 justify-evenly self-center xl:flex hidden '>
 						{/* Location */}
-						<div className='flex flex-row justify-start ml-5 items-center'>
-							<FormControl variant='standard'>
+						<div className='flex flex-row justify-start items-center'>
+							<FormControl
+								variant='outlined'
+								sx={{ ml: 2 }}>
 								<InputLabel htmlFor='location'>Location</InputLabel>
-								<Input
+								<OutlinedInput
+									label='Location'
 									id='location'
 									type='text'
 									endAdornment={
@@ -41,22 +44,22 @@ const SearchHero = () => {
 								/>
 							</FormControl>
 						</div>
-						<span className=' w-[1px] h-14 bg-dark300 mx-5 rounded-full'></span>
+						<span className=' w-[1px] h-14 bg-dark300 mx-2 rounded-full'></span>
 						{/* Start Trip */}
 						<div className='flex flex-col justify-start items-start'>
 							<div className='flex gap-2'>
 								<DateTimePicker
 									label='Start Trip'
-									slotProps={{ textField: { variant: 'standard' } }}
+									slotProps={{ textField: { variant: 'outlined' } }}
 								/>
 							</div>
 						</div>
-						<span className=' w-[1px] h-14 bg-dark300 mx-5 rounded-full'></span>
+						<span className=' w-[1px] h-14 bg-dark300 mx-2 rounded-full'></span>
 						{/* End Trip */}
 						<div className='flex flex-col justify-start items-start'>
 							<DateTimePicker
 								label='End Trip'
-								slotProps={{ textField: { variant: 'standard' } }}
+								slotProps={{ textField: { variant: 'outlined' } }}
 							/>
 						</div>
 						<div className='flex self-end ml-4'>
