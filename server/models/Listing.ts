@@ -42,7 +42,7 @@ const ListingSchema: Schema = new Schema({
     required: true,
     validate: {
       validator: function (v: string) {
-        return /^\d{10}$/.test(v); // Validates a 10-digit mobile number
+        return /^(09\d{9})$/.test(v); // Validates a 10-digit mobile number
       },
       message: (props: any) => `${props.value} is not a valid mobile number!`,
     },
@@ -80,7 +80,6 @@ const ListingSchema: Schema = new Schema({
   vehiclePhotos: [
     {
       type: String, // Array of paths or URLs of uploaded photos
-      required: true,
     },
   ],
   user: {
