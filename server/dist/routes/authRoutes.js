@@ -46,4 +46,4 @@ router.route('/current_user').get((req, res) => {
     console.log(user);
 });
 exports.default = router;
-//# sourceMappingURL=authRoutes.js.map
+//# sourceMappingURL=authRoutes.js.mp
