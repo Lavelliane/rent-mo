@@ -9,6 +9,7 @@ import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import xss from 'xss-clean';
 import cookieSession from 'cookie-session';
+import fileUpload from 'express-fileupload'
 
 import authRouter from './routes/authRoutes';
 import listingRouter from './routes/listingRouter';
@@ -34,7 +35,7 @@ if (process.env.NODE_ENV !== 'production') {
 	app.use(morgan('dev'));
 }
 app.use(express.json());
-//app.use(bodyParser.json());
+app.use(fileUpload());
 app.use(cookieParser());
 app.use(helmet());
 app.use(xss());

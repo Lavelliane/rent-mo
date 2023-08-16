@@ -23,6 +23,7 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const helmet_1 = __importDefault(require("helmet"));
 const xss_clean_1 = __importDefault(require("xss-clean"));
 const cookie_session_1 = __importDefault(require("cookie-session"));
+const express_fileupload_1 = __importDefault(require("express-fileupload"));
 const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
 const listingRouter_1 = __importDefault(require("./routes/listingRouter"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
@@ -35,7 +36,7 @@ if (process.env.NODE_ENV !== 'production') {
     app.use((0, morgan_1.default)('dev'));
 }
 app.use(express_1.default.json());
-//app.use(bodyParser.json());
+app.use((0, express_fileupload_1.default)());
 app.use((0, cookie_parser_1.default)());
 app.use((0, helmet_1.default)());
 app.use((0, xss_clean_1.default)());

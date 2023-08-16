@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { Checkbox, FormControlLabel, FormGroup, TextField, ThemeProvider } from '@mui/material';
+import { Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/material';
 import ImageUploader from '../components/ImageUploader';
 import { ICar } from '../../types/types';
 

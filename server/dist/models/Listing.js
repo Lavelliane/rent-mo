@@ -48,21 +48,12 @@ const ListingSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
-    email: {
-        type: String,
-        required: [true, 'Please provide an email'],
-        validate: {
-            validator: emailValidator,
-            message: 'Please provide a valid email',
-        },
-        unique: true,
-    },
     mobileNumber: {
         type: String,
         required: true,
         validate: {
             validator: function (v) {
-                return /^\d{10}$/.test(v); // Validates a 10-digit mobile number
+                return /^(09\d{9})$/.test(v); // Validates a 10-digit mobile number
             },
             message: (props) => `${props.value} is not a valid mobile number!`,
         },
@@ -99,8 +90,7 @@ const ListingSchema = new mongoose_1.Schema({
     },
     vehiclePhotos: [
         {
-            type: String,
-            required: true,
+            type: String, // Array of paths or URLs of uploaded photos
         },
     ],
     user: {
