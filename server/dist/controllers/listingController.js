@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getListingsByUser = exports.getAllListings = exports.createListing = void 0;
+exports.getListingsByUser = exports.getAllListings = exports.updateListing = exports.createListing = void 0;
 const Listing_1 = __importDefault(require("../models/Listing"));
 const http_status_codes_1 = require("http-status-codes");
 const azureStorageConfig_1 = __importDefault(require("../utils/azureStorageConfig"));
@@ -62,14 +62,67 @@ const createListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.createListing = createListing;
+const updateListing = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _c;
+    const listingId = req.params.id; // Assuming you're passing the listing ID as a URL parameter
+    try {
+        let listing = yield Listing_1.default.findById(listingId);
+        if (!listing) {
+            return res.status(http_status_codes_1.StatusCodes.NOT_FOUND).json({ error: 'Listing not found' });
+        }
+        // Update listing properties based on what's provided in the request body
+        for (const [key, value] of Object.entries(req.body)) {
+            if (key === 'carAvailability') {
+                if (typeof value === 'string') {
+                    listing[key] = JSON.parse(value);
+                }
+                else {
+                    throw new Error(`Invalid value for ${key}`);
+                }
+            }
+            else if (key === 'vehiclePhotos') {
+                // Handle updating images here, similar to your original createListing code
+                const { vehiclePhotos } = req.files;
+                const userId = (_c = req.user) === null || _c === void 0 ? void 0 : _c.userId;
+                const containerClient = azureStorageConfig_1.default.getContainerClient('listing-images');
+                const imagePromises = vehiclePhotos.map((image) => __awaiter(void 0, void 0, void 0, function* () {
+                    const imageId = (0, uuid_1.v4)(); // Generate a unique filename
+                    const blobClient = containerClient.getBlockBlobClient(`${userId}/${listingId}/${imageId}`);
+                    yield blobClient.upload(image.data.buffer, image.data.length, {
+                        blobHTTPHeaders: { blobContentType: image.mimetype },
+                    });
+                    return blobClient.url;
+                }));
+                const uploadedImageUrls = yield Promise.all(imagePromises);
+                listing.vehiclePhotos = uploadedImageUrls;
+            }
+            else {
+                if (typeof value === 'string') {
+                    listing[key] = value;
+                }
+                else {
+                    throw new Error(`Invalid value for ${key}`);
+                }
+            }
+        }
+        // Handle vehiclePhotos similar to your previous code
+        yield listing.save();
+        res.status(http_status_codes_1.StatusCodes.OK).json({ listing });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Error updating listing' });
+    }
+});
+exports.updateListing = updateListing;
 const getAllListings = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listings = yield Listing_1.default.find();
     return res.status(http_status_codes_1.StatusCodes.OK).json({ listings });
 });
 exports.getAllListings = getAllListings;
 const getListingsByUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _c;
-    const listingsByUser = yield Listing_1.default.find({ user: (_c = req.user) === null || _c === void 0 ? void 0 : _c.userId });
+    var _d;
+    const listingsByUser = yield Listing_1.default.find({ user: (_d = req.user) === null || _d === void 0 ? void 0 : _d.userId });
     return res.status(http_status_codes_1.StatusCodes.OK).json({ listingsByUser });
 });
 exports.getListingsByUser = getListingsByUser;
