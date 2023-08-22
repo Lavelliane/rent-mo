@@ -1,5 +1,6 @@
 import React from 'react';
 import { InputBox } from '../components/InputBox.tsx';
+import { TextField, Box } from '@mui/material';
 import { MdClose, MdCloudUpload } from 'react-icons/md';
 
 const UpdateProfile = (props: any) => {
@@ -49,47 +50,84 @@ const UpdateProfile = (props: any) => {
 								</div>
 								<form className='mt-11'>
 									<div className='flex flex-col sm:flex-row items-center gap-4'>
-										<InputBox
-											placeholder='First Name'
+										<TextField
+											size='small'
+											label='First Name'
+											variant='outlined'
+											placeholder=''
 											type='text'
+											className='w-full'
 										/>
-										<InputBox
-											placeholder='Last Name'
+										<TextField
+											size='small'
+											label='Last Name'
+											variant='outlined'
+											placeholder=''
 											type='text'
+											className='w-full'
 										/>
-										<input
-											placeholder='Age'
+										<TextField
+											size='small'
+											label='Age'
+											variant='outlined'
+											placeholder=''
 											type='number'
-											min={0}
-											className='sm:w-1/4 w-full focus:outline-none py-3 px-3 text-sm leading-none text-dark700 bg-white border rounded border-dark500'
+											className='sm:w-1/2 w-full'
 										/>
 									</div>
 									<div className='flex flex-col sm:flex-row items-center gap-4 sm:mt-8 mt-4'>
-										<InputBox
-											placeholder='Email'
+										<TextField
+											size='small'
+											label='Email'
+											variant='outlined'
+											placeholder=''
 											type='email'
+											className='w-full'
 										/>
-										<InputBox
-											placeholder='Number'
+										<TextField
+											size='small'
+											label='Number'
+											variant='outlined'
+											placeholder=''
 											type='number'
+											className='w-full'
 										/>
 									</div>
 									<div className='flex flex-col sm:flex-row items-center gap-4 sm:mt-8 mt-4'>
-										<InputBox
-											placeholder='Profession'
+										<TextField
+											size='small'
+											label='Profession'
+											variant='outlined'
+											placeholder=''
 											type='text'
+											className='w-full'
 										/>
-										<InputBox
-											placeholder='Language'
+										<TextField
+											size='small'
+											label='Language'
+											variant='outlined'
+											placeholder=''
 											type='text'
+											className='w-full'
 										/>
 									</div>
 									<div className='mt-4 sm:mt-8'>
-										<textarea
-											placeholder='Tell us about yourself...'
-											className='py-3 pl-3 overflow-y-auto h-24 border rounded border-dark500 w-full resize-none text-dark700 focus:outline-none'
-											defaultValue={''}
-										/>
+										<Box
+											component='form'
+											sx={{
+												'& .MuiTextField-root': { width: 'full' },
+											}}
+											noValidate
+											autoComplete='off'>
+											<TextField
+												id='outlined-multiline-static'
+												label='About Me'
+												multiline
+												rows={4}
+												placeholder='Tell us about yourself...'
+												className='w-full'
+											/>
+										</Box>
 									</div>
 								</form>
 								<div className='flex items-center justify-between mt-9 mb-4'>

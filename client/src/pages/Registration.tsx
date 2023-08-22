@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import BgHomepage from '../assets/images/Rent-mo-hero-bg.png';
 import axios from 'axios';
 import { ButtonLinkFill, ButtonFill, GoogleButton } from '../components/Buttons.tsx';
+import { TextField } from '@mui/material';
 import Footer from '../components/Footer';
 
 interface UserSignUp {
@@ -31,7 +32,6 @@ function Registration() {
 	};
 
 	const handleChange = (e: any) => {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
 		setUser({ ...user, [e.target.name]: e.target.value });
 	};
 
@@ -40,7 +40,7 @@ function Registration() {
 	return (
 		<>
 			<div
-				className='bg-gradient-to-tl bg-cover bg-center w-full min-h-screen py-16 px-0 font-Messina-Sans overflow-x-hidden'
+				className='bg-gradient-to-tl bg-cover bg-center w-full min-h-screen py-10 px-0 font-Messina-Sans overflow-x-hidden'
 				style={{ backgroundImage: `url(${BgHomepage})` }}>
 				<div className='flex flex-col items-center justify-center'>
 					<img
@@ -48,7 +48,7 @@ function Registration() {
 						src='../src/assets/logo/RentMo-logo.svg'></img>
 					<form
 						onSubmit={handleSubmit}
-						className='bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-16'>
+						className='bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-10'>
 						<p
 							tabIndex={0}
 							role='heading'
@@ -64,77 +64,69 @@ function Registration() {
 						</div>
 						<div className='flex flex-col gap-5 sm:flex-row'>
 							<div className='flex flex-col w-full'>
-								<label
-									htmlFor='firstName'
-									className='text-sm font-medium leading-none text-gray-800 ml-1'>
-									First Name
-								</label>
-								<input
+								<TextField
+									size='small'
+									variant='outlined'
+									label='First Name'
+									sx={{ width: '100%', mt: 1 }}
 									onChange={handleChange}
 									value={user.firstName}
-									name='firstName'
+									defaultValue={''}
 									id='firstName'
-									aria-labelledby='text'
+									name='firstName'
 									type='text'
-									className='bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-800 text-gray-800 py-3 w-full pl-3 mt-2'
-									placeholder='e.g: Juan '
+									placeholder='e.g: Juan'
 								/>
 							</div>
 							<div className='flex flex-col w-full'>
-								<label
-									htmlFor='lastName'
-									className='text-sm font-medium leading-none text-gray-800 ml-1'>
-									Last Name
-								</label>
-								<input
+								<TextField
+									size='small'
+									variant='outlined'
+									label='Last Name'
+									sx={{ width: '100%', mt: 1 }}
 									onChange={handleChange}
 									value={user.lastName}
+									defaultValue={' '}
+									id='lastName'
 									name='lastName'
-									aria-labelledby='text'
 									type='text'
-									className='bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-800 text-gray-800 py-3 w-full pl-3 mt-2'
-									placeholder='e.g: Cruz '
+									placeholder='e.g: Cruz'
 								/>
 							</div>
 						</div>
 						<div className='mt-6  w-full'>
-							<label
-								htmlFor='email'
-								className='text-base font-medium leading-none text-dark800'>
-								{' '}
-								Email{' '}
-							</label>
-							<input
+							<TextField
+								size='small'
+								variant='outlined'
+								label='Email'
+								sx={{ width: '100%', mt: 1 }}
 								onChange={handleChange}
 								value={user.email}
+								defaultValue={' '}
+								id='email'
 								name='email'
-								aria-labelledby='email'
 								type='email'
-								className='bg-gray-200 border rounded text-sm font-medium leading-none placeholder-gray-400 text-gray-800 py-3 w-full pl-3 mt-2'
-								placeholder='e.g: john@gmail.com '
+								placeholder='e.g: john@gmail.com'
 							/>
 						</div>
 						<div className='mt-6  w-full'>
-							<label
-								htmlFor='myInput'
-								className='text-base font-medium leading-none text-dark800'>
-								{' '}
-								Password{' '}
-							</label>
-							<div className='relative flex items-center justify-center'>
-								<input
-									onChange={handleChange}
-									value={user.password}
-									name='password'
-									type='password'
-									className='bg-gray-200 border rounded text-sm font-medium leading-none text-gray-800 py-3 w-full px-3 mt-2'
-								/>
-							</div>
+							<TextField
+								size='small'
+								variant='outlined'
+								label='Password'
+								sx={{ width: '100%', mt: 1 }}
+								onChange={handleChange}
+								value={user.password}
+								defaultValue={''}
+								id='password'
+								name='password'
+								type='password'
+								placeholder=''
+							/>
 						</div>
-						<div className='mt-8'>
+
+						<div className='mt-8 flex xl:flex-row flex-col gap-5'>
 							<ButtonFill text='Create my account' />
-						</div>
-						<div className='mt-8 w-full flex'>
 							<ButtonLinkFill
 								text='Return'
 								to='/landing'

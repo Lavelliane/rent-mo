@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import BgHomepage from '../assets/images/Rent-mo-hero-bg.png';
 import axios from 'axios';
 import { ButtonLinkFill, ButtonFill, GoogleButton } from '../components/Buttons.tsx';
+import { TextField } from '@mui/material';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../hooks/zustand/useUser';
@@ -44,14 +45,13 @@ function Login() {
 	};
 
 	const handleChange = (e: any) => {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
 		setUser({ ...user, [e.target.name]: e.target.value });
 	};
 	console.log(user);
 	return (
 		<>
 			<div
-				className=' min-h-screen bg-gradient-to-tl bg-cover bg-center w-full py-16 px-4 font-Messina-Sans'
+				className=' min-h-screen bg-gradient-to-tl bg-cover bg-center w-full py-10 px-4 font-Messina-Sans'
 				style={{ backgroundImage: `url(${BgHomepage})` }}>
 				<div className='flex flex-col items-center justify-center'>
 					<img
@@ -59,7 +59,7 @@ function Login() {
 						src='../src/assets/logo/RentMo-logo.svg'></img>
 					<form
 						onSubmit={handleSubmit}
-						className='bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-16'>
+						className='bg-white shadow rounded lg:w-1/3 md:w-1/2 w-full p-10 mt-10'>
 						<p
 							tabIndex={0}
 							role='heading'
@@ -86,34 +86,34 @@ function Login() {
 							<hr className='w-full bg-dark600' />
 						</div>
 						<div>
-							<label
-								htmlFor='email'
-								className='text-base font-medium leading-none text-dark800 ml-1'>
-								Email
-							</label>
-							<input
+							<TextField
+								size='small'
+								variant='outlined'
+								label='Email'
+								sx={{ width: '100%', mt: 1 }}
 								onChange={handleChange}
 								value={user.email}
+								defaultValue={''}
+								id='email'
 								name='email'
-								aria-labelledby='email'
 								type='email'
-								className='bg-gray-200 border rounded text-sm font-medium leading-none placeholder-gray-400 text-gray-800 py-3 w-full pl-3 mt-2'
-								placeholder='e.g: john@gmail.com '
+								placeholder='e.g: john@gmail.com'
 							/>
 						</div>
 						<div className='mt-6  w-full'>
-							<label
-								htmlFor='myInput'
-								className='text-base font-medium leading-none text-dark800 ml-1'>
-								Password
-							</label>
 							<div className='relative flex items-center justify-center'>
-								<input
+								<TextField
+									size='small'
+									variant='outlined'
+									label='Password'
+									sx={{ width: '100%', mt: 1 }}
 									onChange={handleChange}
 									value={user.password}
+									defaultValue={''}
+									id='password'
 									name='password'
 									type='password'
-									className='bg-gray-200 border rounded text-sm font-medium leading-none text-gray-800 py-3 w-full px-3 mt-2'
+									placeholder=''
 								/>
 							</div>
 							<small className={`text-red-500 ${isFailure ? 'visible' : 'hidden'}`}>Invalid credentials</small>

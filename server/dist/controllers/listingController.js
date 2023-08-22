@@ -33,13 +33,13 @@ const createListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             zipCode,
             licensePlateNumber,
             carRegistrationNumber,
-            //POSTMAN: carAvailability: JSON.parse
-            carAvailability,
-            vehiclePhotos: [""],
+            carAvailability: JSON.parse(carAvailability),
+            //carAvailability,
+            vehiclePhotos: [''],
             user: (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId,
         });
         const listing = yield Listing_1.default.create(newListing);
-        const containerClient = azureStorageConfig_1.default.getContainerClient("listing-images");
+        const containerClient = azureStorageConfig_1.default.getContainerClient('listing-images');
         const userId = (_b = req.user) === null || _b === void 0 ? void 0 : _b.userId;
         const listingId = listing._id.toString();
         const { vehiclePhotos } = req.files;
@@ -58,9 +58,7 @@ const createListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
     catch (error) {
         console.log(error);
-        res
-            .status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR)
-            .json({ error: "Error creating listing" });
+        res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Error creating listing' });
     }
 });
 exports.createListing = createListing;

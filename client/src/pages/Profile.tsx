@@ -55,8 +55,8 @@ const Profile = () => {
 							</div>
 						</div>
 						<div className='flex flex-col sm:flex-row items-center mt-10 justify-center lg:gap-10 gap-5'>
-							<ButtonNoFillRounded text='Report Listing' />
-							<ButtonNoFillRounded text='Terms and Regulations' />
+							{/* <ButtonNoFillRounded text='Report Listing' />
+							<ButtonNoFillRounded text='Terms and Regulations' /> */}
 						</div>
 						<span className='mt-7 mb-5 w-full h-[2px] bg-dark500'></span>
 						<Reviews />

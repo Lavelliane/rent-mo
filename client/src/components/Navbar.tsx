@@ -33,7 +33,7 @@ const Navbar = () => {
 						role='img'
 						href='/landing'>
 						<img
-							className='w-24 lg:w-36 sm:w-32 xl:w-48'
+							className='w-24 lg:w-36 sm:w-32 xl:w-48  hover:scale-105 hover:drop-shadow-md transition-all'
 							src='../src/assets/logo/RentMo-logo.svg'
 							alt='logo'
 						/>
