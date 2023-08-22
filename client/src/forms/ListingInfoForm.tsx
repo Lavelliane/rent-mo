@@ -13,8 +13,34 @@ type Props = {
 
 const ListingInfoForm = ({ handleChange, ListingInfo }: Props) => {
 	const [checked, setChecked] = useState(false);
+
+	//handle date change
+	const handleStartDateChange = (date: Date | null) => {
+		handleChange({
+			target: {
+				name: 'startDate',
+				value: date,
+			},
+		});
+	};
+	const handleEndDateChange = (date: Date | null) => {
+		handleChange({
+			target: {
+				name: 'endDate',
+				value: date,
+			},
+		});
+	};
+
 	const handleCheckboxChange = (event: any) => {
 		setChecked(event.target.checked);
+		if (!checked) {
+			handleEndDateChange(null);
+			handleStartDateChange(new Date(Date.now()));
+		} else {
+			handleEndDateChange(new Date(Date.now()));
+			handleStartDateChange(new Date(Date.now()));
+		}
 	};
 
 	return (
@@ -82,21 +108,21 @@ const ListingInfoForm = ({ handleChange, ListingInfo }: Props) => {
 						<div className='flex flex-row w-full md:gap-8 gap-2'>
 							<DatePicker
 								disabled={checked}
-								onChange={handleChange}
+								onChange={handleStartDateChange}
 								value={ListingInfo.carAvailability.startDate}
 								label='Start Date'
 								className=' w-full'
 								slotProps={{ textField: { size: 'small' } }}
-								defaultValue={''}
+								defaultValue={new Date(Date.now())}
 							/>
 							<DatePicker
 								disabled={checked}
-								onChange={handleChange}
-								value={checked ? '' : ListingInfo.carAvailability.endDate}
+								onChange={handleEndDateChange}
+								value={ListingInfo.carAvailability.endDate}
 								label='End Date'
 								className='w-full'
 								slotProps={{ textField: { size: 'small' } }}
-								defaultValue={''}
+								defaultValue={new Date(Date.now())}
 							/>
 							<FormGroup className='w-1/2'>
 								<FormControlLabel
@@ -121,7 +147,7 @@ const ListingInfoForm = ({ handleChange, ListingInfo }: Props) => {
 				</div>
 			</div>
 			<p className='mt-2 mb-4 text-sm font-semibold leading-none text-dark900'>Upload photo of your vehicle</p>
-			<ImageUploader />
+			<ImageUploader handleChange={handleChange} imageFile={ListingInfo} />
 		</>
 	);
 };

@@ -11,7 +11,7 @@ export interface ICar {
 	licensePlateNumber: string;
 	carRegistrationNumber: string;
 	carAvailability: ICarAvailability;
-	vehiclePhotos: string[];
+	vehiclePhotos: File[];
 }
 
 interface ICarAvailability {

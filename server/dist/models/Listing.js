@@ -81,16 +81,19 @@ const ListingSchema = new mongoose_1.Schema({
     carAvailability: {
         startDate: {
             type: Date,
-            required: true,
+            default: Date.now,
+            required: false,
         },
         endDate: {
             type: Date,
-            required: true,
+            default: Date.now,
+            required: false,
         },
     },
     vehiclePhotos: [
         {
-            type: String, // Array of paths or URLs of uploaded photos
+            type: String,
+            required: false,
         },
     ],
     user: {
