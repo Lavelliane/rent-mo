@@ -1,23 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { CardActionArea, CardMedia, CardContent, Card, Pagination, Typography } from '@mui/material';
+import { CardActionArea, CardContent, Card, Pagination, Typography } from '@mui/material';
 import { Carousel } from 'react-responsive-carousel';
-import { BiPhone, BiMap, BiStar, BiMapPin, BiPhoneCall } from 'react-icons/bi';
 import { ICar } from 'types/types';
-import { BsFillPhoneFill, BsFillStarFill } from 'react-icons/bs';
+import imageUnavailable from '../assets/logo/image_not_available.png';
+import { BsFillStarFill, BsMapFill, BsTelephoneFill, BsCashCoin } from 'react-icons/bs';
 
 const ListingPage = () => {
 	const [data, setData] = useState<ICar[]>([]);
+	const [currentItems, setCurrentItems] = useState<ICar[]>([]);
 	const [currentPage, setCurrentPage] = useState(1);
-	const itemsPerPage = 5; // Number of items to display per page
+	const [count, setCount] = useState(0);
+	const itemsPerPage = 10; // Number of items to display per page
 
-	const indexOfLastItem = currentPage * itemsPerPage;
-	const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-	const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+	useEffect(() => {
+		const indexOfLastItem = currentPage * itemsPerPage;
+		const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+		const toDisplay = Array.isArray(data) ? data.slice(indexOfFirstItem, indexOfLastItem) : [];
+		const displayCount = Math.ceil(data.length / itemsPerPage);
+		setCount(displayCount);
+		setCurrentItems(toDisplay);
+	}, [currentPage, data]);
 
 	useEffect(() => {
 		fetchData();
 	}, []);
+
+	console.log(data);
+	console.log(currentItems);
+	console.log(currentPage);
 
 	const handlePageChange = (newPage: any) => {
 		setCurrentPage(newPage);
@@ -26,194 +37,20 @@ const ListingPage = () => {
 	const fetchData = async () => {
 		try {
 			const response = await axios.get('/api/v1/host/listings'); // Replace with your API endpoint
-			setData(response.data); // Update the 'data' state with fetched data
-			console.log(response.data);
+			setData(response.data.listings); // Update the 'data' state with fetched data
+			console.log('Data fetched:', response.data);
 		} catch (error) {
 			console.error('Error fetching data:', error);
 		}
-		const dummyData = [
-			{
-				brand: 'Toyota',
-				model: 'Vios',
-				street: 'Street 1',
-				city: 'City 1',
-				email: '',
-				mobileNumber: '123456789',
-				state: 'State 1',
-				country: 'Country 1',
-				zipCode: '123456',
-				licensePlateNumber: 'ABC123',
-				carRegistrationNumber: 'ABC123',
-				carAvailability: { startDate: new Date(), endDate: new Date() },
-				vehiclePhotos: [
-					'https://images.squarespace-cdn.com/content/v1/51cdafc4e4b09eb676a64e68/1470951917131-VO6KK2XIFP4LPLCYW7YU/McQueen15.jpg',
-					'https://cdn.motor1.com/images/mgl/mrz1e/s1/4x3/coolest-cars-feature.webp',
-					'https://assets-eu-01.kc-usercontent.com/3b3d460e-c5ae-0195-6b86-3ac7fb9d52db/819061b6-7d77-4e3b-96af-1075fb2de5cb/Bugatti%20Chiron%20Super%20Sport%20300%2B.jpeg?width=800&fm=jpg&auto=format',
-				],
-			},
-			{
-				brand: 'Toyota',
-				model: 'Vios',
-				street: 'Street 1',
-				city: 'City 1',
-				email: '',
-				mobileNumber: '123456789',
-				state: 'State 1',
-				country: 'Country 1',
-				zipCode: '123456',
-				licensePlateNumber: 'ABC123',
-				carRegistrationNumber: 'ABC123',
-				carAvailability: { startDate: new Date(), endDate: new Date() },
-				vehiclePhotos: [
-					'https://images.squarespace-cdn.com/content/v1/51cdafc4e4b09eb676a64e68/1470951917131-VO6KK2XIFP4LPLCYW7YU/McQueen15.jpg',
-					'https://cdn.motor1.com/images/mgl/mrz1e/s1/4x3/coolest-cars-feature.webp',
-					'https://assets-eu-01.kc-usercontent.com/3b3d460e-c5ae-0195-6b86-3ac7fb9d52db/819061b6-7d77-4e3b-96af-1075fb2de5cb/Bugatti%20Chiron%20Super%20Sport%20300%2B.jpeg?width=800&fm=jpg&auto=format',
-				],
-			},
-			{
-				brand: 'Toyota',
-				model: 'Vios',
-				street: 'Street 1',
-				city: 'City 1',
-				email: '',
-				mobileNumber: '123456789',
-				state: 'State 1',
-				country: 'Country 1',
-				zipCode: '123456',
-				licensePlateNumber: 'ABC123',
-				carRegistrationNumber: 'ABC123',
-				carAvailability: { startDate: new Date(), endDate: new Date() },
-				vehiclePhotos: [
-					'https://images.squarespace-cdn.com/content/v1/51cdafc4e4b09eb676a64e68/1470951917131-VO6KK2XIFP4LPLCYW7YU/McQueen15.jpg',
-					'https://cdn.motor1.com/images/mgl/mrz1e/s1/4x3/coolest-cars-feature.webp',
-					'https://assets-eu-01.kc-usercontent.com/3b3d460e-c5ae-0195-6b86-3ac7fb9d52db/819061b6-7d77-4e3b-96af-1075fb2de5cb/Bugatti%20Chiron%20Super%20Sport%20300%2B.jpeg?width=800&fm=jpg&auto=format',
-				],
-			},
-			{
-				brand: 'Toyota',
-				model: 'Vios',
-				street: 'Street 1',
-				city: 'City 1',
-				email: '',
-				mobileNumber: '123456789',
-				state: 'State 1',
-				country: 'Country 1',
-				zipCode: '123456',
-				licensePlateNumber: 'ABC123',
-				carRegistrationNumber: 'ABC123',
-				carAvailability: { startDate: new Date(), endDate: new Date() },
-				vehiclePhotos: [
-					'https://images.squarespace-cdn.com/content/v1/51cdafc4e4b09eb676a64e68/1470951917131-VO6KK2XIFP4LPLCYW7YU/McQueen15.jpg',
-					'https://cdn.motor1.com/images/mgl/mrz1e/s1/4x3/coolest-cars-feature.webp',
-					'https://assets-eu-01.kc-usercontent.com/3b3d460e-c5ae-0195-6b86-3ac7fb9d52db/819061b6-7d77-4e3b-96af-1075fb2de5cb/Bugatti%20Chiron%20Super%20Sport%20300%2B.jpeg?width=800&fm=jpg&auto=format',
-				],
-			},
-			{
-				brand: 'Toyota',
-				model: 'Vios',
-				street: 'Street 1',
-				city: 'City 1',
-				email: '',
-				mobileNumber: '123456789',
-				state: 'State 1',
-				country: 'Country 1',
-				zipCode: '123456',
-				licensePlateNumber: 'ABC123',
-				carRegistrationNumber: 'ABC123',
-				carAvailability: { startDate: new Date(), endDate: new Date() },
-				vehiclePhotos: [
-					'https://images.squarespace-cdn.com/content/v1/51cdafc4e4b09eb676a64e68/1470951917131-VO6KK2XIFP4LPLCYW7YU/McQueen15.jpg',
-					'https://cdn.motor1.com/images/mgl/mrz1e/s1/4x3/coolest-cars-feature.webp',
-					'https://assets-eu-01.kc-usercontent.com/3b3d460e-c5ae-0195-6b86-3ac7fb9d52db/819061b6-7d77-4e3b-96af-1075fb2de5cb/Bugatti%20Chiron%20Super%20Sport%20300%2B.jpeg?width=800&fm=jpg&auto=format',
-				],
-			},
-			{
-				brand: 'Toyota',
-				model: 'Vios',
-				street: 'Street 1',
-				city: 'City 1',
-				email: '',
-				mobileNumber: '123456789',
-				state: 'State 1',
-				country: 'Country 1',
-				zipCode: '123456',
-				licensePlateNumber: 'ABC123',
-				carRegistrationNumber: 'ABC123',
-				carAvailability: { startDate: new Date(), endDate: new Date() },
-				vehiclePhotos: [
-					'https://images.squarespace-cdn.com/content/v1/51cdafc4e4b09eb676a64e68/1470951917131-VO6KK2XIFP4LPLCYW7YU/McQueen15.jpg',
-					'https://cdn.motor1.com/images/mgl/mrz1e/s1/4x3/coolest-cars-feature.webp',
-					'https://assets-eu-01.kc-usercontent.com/3b3d460e-c5ae-0195-6b86-3ac7fb9d52db/819061b6-7d77-4e3b-96af-1075fb2de5cb/Bugatti%20Chiron%20Super%20Sport%20300%2B.jpeg?width=800&fm=jpg&auto=format',
-				],
-			},
-			{
-				brand: 'Toyota',
-				model: 'Vios',
-				street: 'Street 1',
-				city: 'City 1',
-				email: '',
-				mobileNumber: '123456789',
-				state: 'State 1',
-				country: 'Country 1',
-				zipCode: '123456',
-				licensePlateNumber: 'ABC123',
-				carRegistrationNumber: 'ABC123',
-				carAvailability: { startDate: new Date(), endDate: new Date() },
-				vehiclePhotos: [
-					'https://images.squarespace-cdn.com/content/v1/51cdafc4e4b09eb676a64e68/1470951917131-VO6KK2XIFP4LPLCYW7YU/McQueen15.jpg',
-					'https://cdn.motor1.com/images/mgl/mrz1e/s1/4x3/coolest-cars-feature.webp',
-					'https://assets-eu-01.kc-usercontent.com/3b3d460e-c5ae-0195-6b86-3ac7fb9d52db/819061b6-7d77-4e3b-96af-1075fb2de5cb/Bugatti%20Chiron%20Super%20Sport%20300%2B.jpeg?width=800&fm=jpg&auto=format',
-				],
-			},
-			{
-				brand: 'Toyota',
-				model: 'Vios',
-				street: 'Street 1',
-				city: 'City 1',
-				email: '',
-				mobileNumber: '123456789',
-				state: 'State 1',
-				country: 'Country 1',
-				zipCode: '123456',
-				licensePlateNumber: 'ABC123',
-				carRegistrationNumber: 'ABC123',
-				carAvailability: { startDate: new Date(), endDate: new Date() },
-				vehiclePhotos: [
-					'https://images.squarespace-cdn.com/content/v1/51cdafc4e4b09eb676a64e68/1470951917131-VO6KK2XIFP4LPLCYW7YU/McQueen15.jpg',
-					'https://cdn.motor1.com/images/mgl/mrz1e/s1/4x3/coolest-cars-feature.webp',
-					'https://assets-eu-01.kc-usercontent.com/3b3d460e-c5ae-0195-6b86-3ac7fb9d52db/819061b6-7d77-4e3b-96af-1075fb2de5cb/Bugatti%20Chiron%20Super%20Sport%20300%2B.jpeg?width=800&fm=jpg&auto=format',
-				],
-			},
-			{
-				brand: 'Toyota',
-				model: 'Vios',
-				street: 'Street 1',
-				city: 'City 1',
-				email: '',
-				mobileNumber: '123456789',
-				state: 'State 1',
-				country: 'Country 1',
-				zipCode: '123456',
-				licensePlateNumber: 'ABC123',
-				carRegistrationNumber: 'ABC123',
-				carAvailability: { startDate: new Date(), endDate: new Date() },
-				vehiclePhotos: [
-					'https://images.squarespace-cdn.com/content/v1/51cdafc4e4b09eb676a64e68/1470951917131-VO6KK2XIFP4LPLCYW7YU/McQueen15.jpg',
-					'https://cdn.motor1.com/images/mgl/mrz1e/s1/4x3/coolest-cars-feature.webp',
-					'https://assets-eu-01.kc-usercontent.com/3b3d460e-c5ae-0195-6b86-3ac7fb9d52db/819061b6-7d77-4e3b-96af-1075fb2de5cb/Bugatti%20Chiron%20Super%20Sport%20300%2B.jpeg?width=800&fm=jpg&auto=format',
-				],
-			},
-		];
-		setData(dummyData);
 	};
 
 	return (
-		<div className='w-full min-h-fit flex flex-col items-center justify-center px-40 gap-10 pt-40'>
+		<div className='w-full min-h-fit flex flex-col items-center justify-center px-40 gap-10 pt-28'>
 			<h4 className=' font-Messina-Sans font-bold text-3xl self-start'>Featured 4-wheelers</h4>
-			<div className='self-center w-full items-center justify-center flex gap-4'>
+			<div className='self-center w-full items-center justify-center grid grid-cols-5 grid-rows-2 gap-4'>
 				{currentItems.map((item, index) => (
 					<Card
-						className='drop-shadow-lg hover:scale-[102%] hover:rotate-3 hover:transition-transform'
+						className='drop-shadow-lg hover:scale-[102%] hover:transition-transform'
 						sx={{ maxWidth: 345 }}
 						key={index}>
 						<Carousel
@@ -232,6 +69,7 @@ const ListingPage = () => {
 									<img
 										src={image as any}
 										alt={`Image ${index}`}
+										onError={(e: any) => (e.target.src = imageUnavailable)}
 										className='mx-auto h-48 shadow-md object-cover select-none object-center'
 									/>
 								</div>
@@ -246,24 +84,25 @@ const ListingPage = () => {
 									component='div'>
 									{item.brand + ' ' + item.model}
 								</Typography>
+								<span className='w-full h-1 bg-dark500'></span>
 								<Typography
 									className='grid grid-cols-2 justify-between'
 									variant='body1'
 									color='text.primary'>
-									<div className='flex items-center gap-2'>
-										<BiMapPin />
+									<div className='flex items-start justify-start gap-2 h-12'>
+										<BsMapFill className='mt-1' />
 										{item.city + ', ' + item.country}
 									</div>
-									<div className='flex items-center gap-2'>
-										<BiPhone />
+									<div className='flex items-start justify-start gap-2 h-12'>
+										<BsTelephoneFill className='mt-1' />
 										{item.mobileNumber}
 									</div>
-									<div className='flex items-center gap-2'>
-										<BsFillStarFill />
+									<div className='flex items-start justify-start gap-2 h-12'>
+										<BsFillStarFill className='mt-1' />
 										{'Rating'}
 									</div>
-									<div className='flex items-center gap-2'>
-										<BiPhone />
+									<div className='flex items-start justify-start gap-2 h-12'>
+										<BsCashCoin className='mt-1' />
 										{item.mobileNumber}
 									</div>
 								</Typography>
@@ -278,7 +117,7 @@ const ListingPage = () => {
 			</div>
 			<Pagination
 				className=' self-center'
-				count={Math.ceil(data.length / itemsPerPage) as any}
+				count={count}
 				color='standard'
 				shape='rounded'
 				page={currentPage}

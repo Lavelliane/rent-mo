@@ -4,7 +4,7 @@ import Footer from '../components/Footer.tsx';
 import axios from 'axios';
 import PersonalInfoForm from '../forms/PersonalInfoForm.tsx';
 import ListingInfoForm from '../forms/ListingInfoForm.tsx';
-//import BillingInfoForm from '../forms/BillingInfoForm.tsx';
+import BillingInfoForm from '../forms/BillingInfoForm.tsx';
 import { Stepper, Step, Typography } from '@material-tailwind/react';
 import { BsPersonFill, BsCreditCardFill, BsCarFrontFill } from 'react-icons/bs';
 import { initialInfoState } from '../../types/initialInfo';
@@ -72,15 +72,28 @@ export default function Listing() {
 				<div className={`step-${activeStep}`}>
 					{activeStep === 0 && (
 						<div>
-							<PersonalInfoForm handleChange={handleChange} personalInfo={listingInfo} />
+							<PersonalInfoForm
+								handleChange={handleChange}
+								personalInfo={listingInfo}
+							/>
 						</div>
 					)}
 					{activeStep === 1 && (
 						<div>
-							<ListingInfoForm handleChange={handleChange} ListingInfo={listingInfo} />
+							<ListingInfoForm
+								handleChange={handleChange}
+								listingInfo={listingInfo}
+							/>
 						</div>
 					)}
-					{activeStep === 2 && <div>{/* <BillingInfoForm /> */}</div>}
+					{activeStep === 2 && (
+						<div>
+							<BillingInfoForm
+								handleChange={handleChange}
+								billingInfo={listingInfo}
+							/>
+						</div>
+					)}
 				</div>
 			</>
 		);
@@ -94,33 +107,38 @@ export default function Listing() {
 				<div className='xl:w-1/2 w-3/4  h-full flex relative items-center justify-center self-center'>
 					<form
 						onSubmit={handleSubmit}
-						className='flex flex-col min-h-[720px] self-center w-full bg-white px-4 py-10 sm:p-12 shadow-searchbox rounded-lg mt-5 m-2 justify-between'
-					>
+						className='flex flex-col min-h-[720px] self-center w-full bg-white px-4 py-10 sm:p-12 shadow-searchbox rounded-lg mt-5 m-2 justify-between'>
 						<div>
 							<h1
 								tabIndex={0}
 								role='heading'
 								aria-label='profile information'
-								className='focus:outline-none text-3xl font-bold text-dark900'
-							>
+								className='focus:outline-none text-3xl font-bold text-dark900'>
 								List Your Vehicle
 							</h1>
-							<p role='contentinfo' className=' focus:outline-none text-sm font-light leading-tight text-gray-600 mt-4'>
+							<p
+								role='contentinfo'
+								className=' focus:outline-none text-sm font-light leading-tight text-gray-600 mt-4'>
 								Fill in the data for the profile. It will take a couple of minutes. <br />
 							</p>
 							<div className='w-full px-2 pt-5 flex flex-col '>
 								<Stepper
 									activeStep={activeStep}
 									isLastStep={(value) => setIsLastStep(value)}
-									isFirstStep={(value) => setIsFirstStep(value)}
-								>
-									<Step onClick={() => setActiveStep(0)} className=' cursor-pointer'>
+									isFirstStep={(value) => setIsFirstStep(value)}>
+									<Step
+										onClick={() => setActiveStep(0)}
+										className=' cursor-pointer'>
 										<BsPersonFill className='h-5 w-5 rounded-full' />
 									</Step>
-									<Step onClick={() => setActiveStep(1)} className=' cursor-pointer'>
+									<Step
+										onClick={() => setActiveStep(1)}
+										className=' cursor-pointer'>
 										<BsCarFrontFill className='h-5 w-5' />
 									</Step>
-									<Step onClick={() => setActiveStep(2)} className=' cursor-pointer'>
+									<Step
+										onClick={() => setActiveStep(2)}
+										className=' cursor-pointer'>
 										<BsCreditCardFill className='h-5 w-5' />
 									</Step>
 								</Stepper>
@@ -140,8 +158,7 @@ export default function Listing() {
 									type='button'
 									onClick={handlePrev}
 									className='rounded-full px-4 py-2 bg-dark200 ring-dark400 disabled:hidden hover:shadow-md transition-shadow'
-									disabled={isFirstStep}
-								>
+									disabled={isFirstStep}>
 									{'Back'}
 								</button>
 								<div className='flex flex-auto' />
@@ -150,15 +167,13 @@ export default function Listing() {
 									hidden={activeStep == 2}
 									type='button'
 									onClick={handleNext}
-									className='rounded-full px-4 py-2 bg-yellow hover:shadow-md transition-shadow'
-								>
+									className='rounded-full px-4 py-2 bg-yellow hover:shadow-md transition-shadow'>
 									Next
 								</button>
 								<button
 									hidden={activeStep < 2}
 									type='submit'
-									className='rounded-full px-4 py-2 bg-yellow hover:shadow-md transition-shadow'
-								>
+									className='rounded-full px-4 py-2 bg-yellow hover:shadow-md transition-shadow'>
 									Finish
 								</button>
 							</div>
