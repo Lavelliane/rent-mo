@@ -4,6 +4,8 @@ import { StatusCodes } from 'http-status-codes';
 import blobServiceClient from '../utils/azureStorageConfig';
 import multer from 'multer';
 import { v4 as uuidv4 } from 'uuid';
+import { NotFoundError } from '../errors';
+import checkPermissions from '../utils/checkPermissions';
 
 // Configure Multer for image upload
 
@@ -70,6 +72,65 @@ export const createListing = async (req: Request, res: Response) => {
 		res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Error creating listing' });
 	}
 };
+
+export const updateListing = async (req: Request, res: Response) => {
+  const listingId = req.params.id; // Assuming you're passing the listing ID as a URL parameter
+
+  try {
+      let listing = await Listing.findById(listingId) as any;
+
+      if (!listing) {
+          return res.status(StatusCodes.NOT_FOUND).json({ error: 'Listing not found' });
+      }
+
+      // Update listing properties based on what's provided in the request body
+      for (const [key, value] of Object.entries(req.body)) {
+          if (key === 'carAvailability') {
+              if (typeof value === 'string') {
+                  listing[key] = JSON.parse(value);
+              } else {
+                  throw new Error(`Invalid value for ${key}`);
+              }
+          } else if (key === 'vehiclePhotos') {
+            // Handle updating images here, similar to your original createListing code
+            const { vehiclePhotos }: any = (req.files as unknown) as Express.Multer.File[];
+            const userId = req.user?.userId;
+            const containerClient = blobServiceClient.getContainerClient('listing-images');
+            const imagePromises = vehiclePhotos.map(async (image: any) => {
+              const imageId = uuidv4(); // Generate a unique filename
+              const blobClient = containerClient.getBlockBlobClient(`${userId}/${listingId}/${imageId}`);
+        
+              await blobClient.upload(image.data.buffer, image.data.length, {
+                blobHTTPHeaders: { blobContentType: image.mimetype },
+              });
+        
+              return blobClient.url;
+            });
+
+            const uploadedImageUrls = await Promise.all(imagePromises);
+
+            listing.vehiclePhotos = uploadedImageUrls;
+          }
+          else {
+              if (typeof value === 'string') {
+                  listing[key] = value;
+              } else {
+                  throw new Error(`Invalid value for ${key}`);
+              }
+          }
+      }
+
+      // Handle vehiclePhotos similar to your previous code
+
+      await listing.save();
+
+      res.status(StatusCodes.OK).json({ listing });
+  } catch (error) {
+      console.log(error);
+      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Error updating listing' });
+  }
+};
+
 
 export const getAllListings = async (req: Request, res: Response) => {
 	const listings = await Listing.find();
