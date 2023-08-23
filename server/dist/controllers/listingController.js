@@ -35,11 +35,11 @@ const createListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             carRegistrationNumber,
             carAvailability: JSON.parse(carAvailability),
             //carAvailability,
-            vehiclePhotos: [''],
+            vehiclePhotos: [""],
             user: (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId,
         });
         const listing = yield Listing_1.default.create(newListing);
-        const containerClient = azureStorageConfig_1.default.getContainerClient('listing-images');
+        const containerClient = azureStorageConfig_1.default.getContainerClient("listing-images");
         const userId = (_b = req.user) === null || _b === void 0 ? void 0 : _b.userId;
         const listingId = listing._id.toString();
         const { vehiclePhotos } = req.files;
@@ -58,7 +58,9 @@ const createListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
     catch (error) {
         console.log(error);
-        res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Error creating listing' });
+        res
+            .status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR)
+            .json({ error: "Error creating listing" });
     }
 });
 exports.createListing = createListing;
@@ -66,26 +68,30 @@ const updateListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     var _c;
     const listingId = req.params.id; // Assuming you're passing the listing ID as a URL parameter
     try {
-        let listing = yield Listing_1.default.findById(listingId);
+        let listing = (yield Listing_1.default.findById(listingId));
         if (!listing) {
-            return res.status(http_status_codes_1.StatusCodes.NOT_FOUND).json({ error: 'Listing not found' });
+            return res
+                .status(http_status_codes_1.StatusCodes.NOT_FOUND)
+                .json({ error: "Listing not found" });
         }
-        // Update listing properties based on what's provided in the request body
-        for (const [key, value] of Object.entries(req.body)) {
-            if (key === 'carAvailability') {
-                if (typeof value === 'string') {
+        // Combine both req.body and req.files data
+        const formData = Object.assign({}, req.body);
+        const vehiclePhotos = req.files;
+        formData.vehiclePhotos = vehiclePhotos;
+        const ;
+        for (const [key, value] of Object.entries(formData)) {
+            if (key === "carAvailability") {
+                if (typeof value === "string") {
                     listing[key] = JSON.parse(value);
                 }
                 else {
                     throw new Error(`Invalid value for ${key}`);
                 }
             }
-            else if (key === 'vehiclePhotos') {
-                // Handle updating images here, similar to your original createListing code
-                const { vehiclePhotos } = req.files;
+            else if (key === "vehiclePhotos") {
                 const userId = (_c = req.user) === null || _c === void 0 ? void 0 : _c.userId;
-                const containerClient = azureStorageConfig_1.default.getContainerClient('listing-images');
-                const imagePromises = vehiclePhotos.map((image) => __awaiter(void 0, void 0, void 0, function* () {
+                const containerClient = azureStorageConfig_1.default.getContainerClient("listing-images");
+                const imagePromises = formData.vehiclePhotos.vehiclePhotos.map((image) => __awaiter(void 0, void 0, void 0, function* () {
                     const imageId = (0, uuid_1.v4)(); // Generate a unique filename
                     const blobClient = containerClient.getBlockBlobClient(`${userId}/${listingId}/${imageId}`);
                     yield blobClient.upload(image.data.buffer, image.data.length, {
@@ -97,7 +103,7 @@ const updateListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 listing.vehiclePhotos = uploadedImageUrls;
             }
             else {
-                if (typeof value === 'string') {
+                if (typeof value === "string") {
                     listing[key] = value;
                 }
                 else {
@@ -105,13 +111,14 @@ const updateListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 }
             }
         }
-        // Handle vehiclePhotos similar to your previous code
         yield listing.save();
         res.status(http_status_codes_1.StatusCodes.OK).json({ listing });
     }
     catch (error) {
         console.log(error);
-        res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Error updating listing' });
+        res
+            .status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR)
+            .json({ error: "Error updating listing" });
     }
 });
 exports.updateListing = updateListing;
