@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { CardActionArea, CardContent, Card, Pagination, Typography } from '@mui/material';
+import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import { ICar } from 'types/types';
 import imageUnavailable from '../assets/logo/image_not_available.png';
+import { CardActionArea, CardContent, Card, Pagination, Typography } from '@mui/material';
 import { BsFillStarFill, BsMapFill, BsTelephoneFill, BsCashCoin } from 'react-icons/bs';
+import axios from 'axios';
 
-const ListingPage = () => {
+const MyListings = () => {
 	const [data, setData] = useState<ICar[]>([]);
 	const [currentItems, setCurrentItems] = useState<ICar[]>([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [count, setCount] = useState(0);
-	const itemsPerPage = 8; // Number of items to display per page
+	const itemsPerPage = 4; // Number of items to display per page
 
 	useEffect(() => {
 		const indexOfLastItem = currentPage * itemsPerPage;
@@ -43,10 +43,8 @@ const ListingPage = () => {
 			console.error('Error fetching data:', error);
 		}
 	};
-
 	return (
-		<div className='w-full min-h-fit flex flex-col items-center justify-center sm:px-16 p-2 gap-10 pt-28'>
-			<h4 className=' font-Messina-Sans font-bold text-3xl self-start'>Featured 4-wheelers</h4>
+		<div className='w-full h-fit flex flex-col items-center justify-center p-0 gap-10'>
 			<div className='w-full items-center justify-center flex flex-wrap gap-4 mx-auto'>
 				{currentItems.map((item, index) => (
 					<Card className='drop-shadow-lg hover:scale-[102%] hover:transition-transform sm:w-80 w-full' key={index}>
@@ -114,4 +112,4 @@ const ListingPage = () => {
 	);
 };
 
-export default ListingPage;
+export default MyListings;

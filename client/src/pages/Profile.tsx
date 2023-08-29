@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar.tsx';
 import Reviews from '../components/Reviews.tsx';
 import ProfileCard from '../components/ProfileCard.tsx';
 import { ButtonNoFillRounded } from '../components/Buttons.tsx';
+import MyListings from '../components/MyListings.tsx';
 import Footer from '../components/Footer.tsx';
 import { useUser } from '../../hooks/zustand/useUser.ts';
 
@@ -35,7 +36,7 @@ const Profile = () => {
 									className='lg:text-base text-sm no-select px-4 mt-5 w-full h-fit text-justify resize-none disable select-none overflow-hidden'
 									value={aboutMe}></textarea>
 							</div>
-							<div className='flex w-full h-fit text-base mt-5'>
+							<div className='flex flex-col w-full h-fit text-base mt-5'>
 								<div className='flex w-full items-center'>
 									<img
 										className='h-8'
@@ -46,12 +47,8 @@ const Profile = () => {
 										className='block p-2 no-select w-24'
 										name='listing'
 										value={listing + ' Listing/s'}></input>
-									<a
-										href='#view-listings'
-										className='text-xs text-dark600 underline underline-offset-2'>
-										View Listings
-									</a>
 								</div>
+								<MyListings />
 							</div>
 						</div>
 						<div className='flex flex-col sm:flex-row items-center mt-10 justify-center lg:gap-10 gap-5'>

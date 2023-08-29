@@ -6,8 +6,9 @@ import '../index.css';
 const HeroPage = () => {
 	return (
 		<div
-			className=' bg-cover pb-12 overflow-y-hidden h-screen font-Messina-Sans'
-			style={{ minHeight: 700, backgroundImage: `url(${BgHomepage})` }}>
+			className=' bg-cover pb-12 min-h-screen font-Messina-Sans'
+			style={{ minHeight: 700, backgroundImage: `url(${BgHomepage})` }}
+		>
 			{/* Code block starts */}
 			<>
 				<Navbar />
