@@ -66,6 +66,10 @@ const ListingSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
+    price: {
+        type: Number,
+        required: true,
+    },
     zipCode: {
         type: String,
         required: true,
@@ -82,7 +86,7 @@ const ListingSchema = new mongoose_1.Schema({
         startDate: {
             type: Date,
             default: Date.now,
-            required: false,
+            required: true,
         },
         endDate: {
             type: Date,

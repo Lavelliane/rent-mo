@@ -1,0 +1,15 @@
+export const initialInfoState = {
+	brand: '',
+	model: '',
+	street: '',
+	city: '',
+	email: '',
+	mobileNumber: '',
+	state: '',
+	country: '',
+	zipCode: '',
+	licensePlateNumber: '',
+	carRegistrationNumber: '',
+	carAvailability: { startDate: new Date(), endDate: new Date() },
+	vehiclePhotos: [],
+};

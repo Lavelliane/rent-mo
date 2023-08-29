@@ -12,7 +12,7 @@ interface ButtonLinkProps {
 
 export const ButtonFillRounded = ({ text }: ButtonProps) => {
 	return (
-		<button className='text-black rounded-full w-44 h-16 bg-yellow font-bold text-xl shadow-sm hover:shadow-buttonbox transition'>
+		<button className='text-black rounded-full w-44 h-16 bg-yellow font-bold text-xl shadow-md hover:shadow-buttonbox transition'>
 			{text}
 		</button>
 	);

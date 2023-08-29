@@ -18,6 +18,7 @@ export const createListing = async (req: Request, res: Response) => {
     mobileNumber,
     state,
     country,
+    price,
     zipCode,
     licensePlateNumber,
     carRegistrationNumber,
@@ -33,6 +34,7 @@ export const createListing = async (req: Request, res: Response) => {
       mobileNumber,
       state,
       country,
+      price,
       zipCode,
       licensePlateNumber,
       carRegistrationNumber,
@@ -93,13 +95,11 @@ export const updateListing = async (req: Request, res: Response) => {
 
     // Combine both req.body and req.files data
     const formData: any = { ...req.body };
-    const vehiclePhotos: any =
-      req.files as unknown as Express.Multer.File[];
+    const vehiclePhotos: any = req.files as unknown as Express.Multer.File[];
 
     formData.vehiclePhotos = vehiclePhotos;
 
-	const { vehiclePhotosArray } = formData.vehiclePhotos
-
+    const { vehiclePhotosArray } = formData.vehiclePhotos;
 
     for (const [key, value] of Object.entries(formData)) {
       if (key === "carAvailability") {
