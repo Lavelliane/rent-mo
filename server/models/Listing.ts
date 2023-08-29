@@ -15,6 +15,7 @@ interface ICar extends Document {
 	mobileNumber: string;
 	state: string;
 	country: string;
+	price: number;
 	zipCode: string;
 	licensePlateNumber: string;
 	carRegistrationNumber: string;
@@ -57,6 +58,10 @@ const ListingSchema: Schema = new Schema({
 	},
 	country: {
 		type: String,
+		required: true,
+	},
+	price: {
+		type: Number,
 		required: true,
 	},
 	zipCode: {
