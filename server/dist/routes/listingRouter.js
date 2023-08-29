@@ -8,6 +8,6 @@ const listingController_1 = require("../controllers/listingController");
 const router = express_1.default.Router();
 router.route('/listing/create').post(listingController_1.createListing);
 router.route('/listings').get(listingController_1.getAllListings);
-router.route('/listing/:id').patch(listingController_1.updateListing);
+router.route('/listing/:id').patch(listingController_1.updateListing).delete(listingController_1.deleteListing);
 exports.default = router;
 //# sourceMappingURL=listingRouter.js.map
