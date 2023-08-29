@@ -9,12 +9,9 @@ import { useUser } from '../../hooks/zustand/useUser.ts';
 const Profile = () => {
 	const store = useUser();
 	const { user }: any = store?.user;
-	console.log(user);
 	const userName = `${user.firstName + ' ' + user.lastName}`;
 	const yearJoined = `${user.createdAt.split('-')[0]}`;
 	const aboutMe = `${user.aboutMe}`;
-
-	const listing = '5';
 
 	return (
 		<>
@@ -34,20 +31,10 @@ const Profile = () => {
 								<textarea
 									rows={5}
 									className='lg:text-base text-sm no-select px-4 mt-5 w-full h-fit text-justify resize-none disable select-none overflow-hidden'
-									value={aboutMe}></textarea>
+									value={aboutMe}
+								></textarea>
 							</div>
 							<div className='flex flex-col w-full h-fit text-base mt-5'>
-								<div className='flex w-full items-center'>
-									<img
-										className='h-8'
-										src='../src/assets/logo/icons8-car.png'
-										alt='logo'
-									/>
-									<input
-										className='block p-2 no-select w-24'
-										name='listing'
-										value={listing + ' Listing/s'}></input>
-								</div>
 								<MyListings />
 							</div>
 						</div>

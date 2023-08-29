@@ -48,7 +48,7 @@ app.use((0, cookie_session_1.default)({
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
 app.use('/api/v1/auth', authRoutes_1.default);
-app.use('/api/v1/host', auth_1.default, listingRouter_1.default);
+app.use('/api/v1/host', listingRouter_1.default);
 app.use('/api/v1/user', auth_1.default, userRoutes_1.default);
 app.use(not_found_1.default);
 app.use(error_handler_1.default);

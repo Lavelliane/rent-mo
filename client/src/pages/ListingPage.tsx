@@ -26,10 +26,6 @@ const ListingPage = () => {
 		fetchData();
 	}, []);
 
-	console.log(data);
-	console.log(currentItems);
-	console.log(currentPage);
-
 	const handlePageChange = (newPage: any) => {
 		setCurrentPage(newPage);
 	};

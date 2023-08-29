@@ -7,11 +7,36 @@ import { BsFillStarFill, BsMapFill, BsTelephoneFill, BsCashCoin } from 'react-ic
 import axios from 'axios';
 
 const MyListings = () => {
+	const [itemsPerPage, setItemsPerPage] = useState(4); // Number of items to display per page
 	const [data, setData] = useState<ICar[]>([]);
 	const [currentItems, setCurrentItems] = useState<ICar[]>([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [count, setCount] = useState(0);
-	const itemsPerPage = 4; // Number of items to display per page
+
+	useEffect(() => {
+		const updateItemsPerPage = () => {
+			if (window.innerWidth < 600) {
+				setItemsPerPage(1);
+			} else if (window.innerWidth < 1630) {
+				setItemsPerPage(2);
+			} else if (window.innerWidth < 1900) {
+				setItemsPerPage(3);
+			} else {
+				setItemsPerPage(4);
+			}
+		};
+
+		// Initial update
+		updateItemsPerPage();
+
+		// Event listener for window resize
+		window.addEventListener('resize', updateItemsPerPage);
+
+		// Clean up the event listener when component unmounts
+		return () => {
+			window.removeEventListener('resize', updateItemsPerPage);
+		};
+	}, []);
 
 	useEffect(() => {
 		const indexOfLastItem = currentPage * itemsPerPage;
@@ -24,11 +49,7 @@ const MyListings = () => {
 
 	useEffect(() => {
 		fetchData();
-	}, []);
-
-	console.log(data);
-	console.log(currentItems);
-	console.log(currentPage);
+	}, [itemsPerPage]);
 
 	const handlePageChange = (newPage: any) => {
 		setCurrentPage(newPage);
@@ -36,18 +57,22 @@ const MyListings = () => {
 
 	const fetchData = async () => {
 		try {
-			const response = await axios.get('/api/v1/host/listings'); // Replace with your API endpoint
-			setData(response.data.listings); // Update the 'data' state with fetched data
-			console.log('Data fetched:', response.data);
+			const response = await axios.get('/api/v1/host/listing/my-listings'); // Replace with your API endpoint
+			setData(response.data.listingsByUser); // Update the 'data' state with fetched data
+			//console.log('Data fetched:', response.data);
 		} catch (error) {
 			console.error('Error fetching data:', error);
 		}
 	};
 	return (
 		<div className='w-full h-fit flex flex-col items-center justify-center p-0 gap-10'>
-			<div className='w-full items-center justify-center flex flex-wrap gap-4 mx-auto'>
+			<div className='flex w-full items-center'>
+				<img className='h-8' src='../src/assets/logo/icons8-car.png' alt='logo' />
+				<p className='block p-2 no-select w-full'>{data.length + ' Listing/s'}</p>
+			</div>
+			<div className='w-full items-center 2xl:justify-start justify-center flex flex-wrap gap-4 mx-auto'>
 				{currentItems.map((item, index) => (
-					<Card className='drop-shadow-lg hover:scale-[102%] hover:transition-transform sm:w-80 w-full' key={index}>
+					<Card className='drop-shadow-lg hover:scale-[102%] hover:transition-transform sm:w-64 w-full' key={index}>
 						<Carousel
 							showStatus={false}
 							showThumbs={false}
@@ -75,20 +100,20 @@ const MyListings = () => {
 									{item.brand + ' ' + item.model}
 								</Typography>
 								<span className='w-full h-1 bg-dark500'></span>
-								<Typography className='grid grid-cols-2 justify-between' variant='body1' color='text.primary'>
-									<div className='flex items-start justify-start gap-2 h-12'>
+								<Typography className='grid grid-cols-1 justify-between gap-4' variant='body1' color='text.primary'>
+									<div className='flex items-start justify-start gap-2'>
 										<BsMapFill className='mt-1' />
 										{item.city + ', ' + item.country}
 									</div>
-									<div className='flex items-start justify-start gap-2 h-12'>
+									<div className='flex items-start justify-start gap-2'>
 										<BsTelephoneFill className='mt-1' />
 										{item.mobileNumber}
 									</div>
-									<div className='flex items-start justify-start gap-2 h-12'>
+									<div className='flex items-start justify-start gap-2'>
 										<BsFillStarFill className='mt-1' />
 										{'Rating'}
 									</div>
-									<div className='flex items-start justify-start gap-2 h-12'>
+									<div className='flex items-start justify-start gap-2'>
 										<BsCashCoin className='mt-1' />
 										{item.mobileNumber}
 									</div>
