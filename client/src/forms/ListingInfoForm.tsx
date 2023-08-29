@@ -8,10 +8,10 @@ import { ICar } from '../../types/types';
 
 type Props = {
 	handleChange: (e: any) => void;
-	ListingInfo: ICar;
+	listingInfo: ICar;
 };
 
-const ListingInfoForm = ({ handleChange, ListingInfo }: Props) => {
+const listingInfoForm = ({ handleChange, listingInfo }: Props) => {
 	const [checked, setChecked] = useState(false);
 
 	//handle date change
@@ -51,7 +51,7 @@ const ListingInfoForm = ({ handleChange, ListingInfo }: Props) => {
 					<TextField
 						size='small'
 						onChange={handleChange}
-						value={ListingInfo.brand}
+						value={listingInfo.brand}
 						name='brand'
 						id='brand'
 						type='text'
@@ -64,7 +64,7 @@ const ListingInfoForm = ({ handleChange, ListingInfo }: Props) => {
 					<TextField
 						size='small'
 						onChange={handleChange}
-						value={ListingInfo.model}
+						value={listingInfo.model}
 						name='model'
 						id='model'
 						type='text'
@@ -79,7 +79,7 @@ const ListingInfoForm = ({ handleChange, ListingInfo }: Props) => {
 					<TextField
 						size='small'
 						onChange={handleChange}
-						value={ListingInfo.licensePlateNumber}
+						value={listingInfo.licensePlateNumber}
 						name='licensePlateNumber'
 						id='licensePlateNumber'
 						type='text'
@@ -92,7 +92,7 @@ const ListingInfoForm = ({ handleChange, ListingInfo }: Props) => {
 					<TextField
 						size='small'
 						onChange={handleChange}
-						value={ListingInfo.carRegistrationNumber}
+						value={listingInfo.carRegistrationNumber}
 						name='carRegistrationNumber'
 						id='carRegistrationNumber'
 						type='text'
@@ -109,7 +109,7 @@ const ListingInfoForm = ({ handleChange, ListingInfo }: Props) => {
 							<DatePicker
 								disabled={checked}
 								onChange={handleStartDateChange}
-								value={ListingInfo.carAvailability.startDate}
+								value={listingInfo.carAvailability.startDate}
 								label='Start Date'
 								className=' w-full'
 								slotProps={{ textField: { size: 'small' } }}
@@ -118,7 +118,7 @@ const ListingInfoForm = ({ handleChange, ListingInfo }: Props) => {
 							<DatePicker
 								disabled={checked}
 								onChange={handleEndDateChange}
-								value={ListingInfo.carAvailability.endDate}
+								value={listingInfo.carAvailability.endDate}
 								label='End Date'
 								className='w-full'
 								slotProps={{ textField: { size: 'small' } }}
@@ -147,9 +147,12 @@ const ListingInfoForm = ({ handleChange, ListingInfo }: Props) => {
 				</div>
 			</div>
 			<p className='mt-2 mb-4 text-sm font-semibold leading-none text-dark900'>Upload photo of your vehicle</p>
-			<ImageUploader handleChange={handleChange} imageFile={ListingInfo} />
+			<ImageUploader
+				handleChange={handleChange}
+				imageFile={listingInfo}
+			/>
 		</>
 	);
 };
 
-export default ListingInfoForm;
+export default listingInfoForm;

@@ -7,22 +7,7 @@ import ListingInfoForm from '../forms/ListingInfoForm.tsx';
 import BillingInfoForm from '../forms/BillingInfoForm.tsx';
 import { Stepper, Step, Typography } from '@material-tailwind/react';
 import { BsPersonFill, BsCreditCardFill, BsCarFrontFill } from 'react-icons/bs';
-
-const initialInfoState = {
-	brand: '',
-	model: '',
-	street: '',
-	city: '',
-	email: '',
-	mobileNumber: '',
-	state: '',
-	country: '',
-	zipCode: '',
-	licensePlateNumber: '',
-	carRegistrationNumber: '',
-	carAvailability: { startDate: new Date(), endDate: new Date() },
-	vehiclePhotos: [],
-};
+import { initialInfoState } from '../../types/initialInfo';
 
 export default function Listing() {
 	const [activeStep, setActiveStep] = React.useState(0);
@@ -67,14 +52,13 @@ export default function Listing() {
 					'Content-Type': 'multipart/form-data', // Set proper content type
 				},
 			});
-
-			console.log(response.data);
+			//console.log(response.data);
+			window.location.href = '/profile';
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	console.log(listingInfo);
 	const isStepComplete = () => {
 		if (activeStep === 0 && listingInfo.mobileNumber === '') {
 			return false;
@@ -93,10 +77,14 @@ export default function Listing() {
 					)}
 					{activeStep === 1 && (
 						<div>
-							<ListingInfoForm handleChange={handleChange} ListingInfo={listingInfo} />
+							<ListingInfoForm handleChange={handleChange} listingInfo={listingInfo} />
 						</div>
 					)}
-					{activeStep === 2 && <div>{/* <BillingInfoForm /> */}</div>}
+					{activeStep === 2 && (
+						<div>
+							<BillingInfoForm handleChange={handleChange} billingInfo={listingInfo} />
+						</div>
+					)}
 				</div>
 			</>
 		);

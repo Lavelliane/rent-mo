@@ -86,7 +86,7 @@ const ListingSchema = new mongoose_1.Schema({
         startDate: {
             type: Date,
             default: Date.now,
-            required: false,
+            required: true,
         },
         endDate: {
             type: Date,
