@@ -78,7 +78,7 @@ const updateListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         const formData = Object.assign({}, req.body);
         const vehiclePhotos = req.files;
         formData.vehiclePhotos = vehiclePhotos;
-        const ;
+        const { vehiclePhotosArray } = formData.vehiclePhotos;
         for (const [key, value] of Object.entries(formData)) {
             if (key === "carAvailability") {
                 if (typeof value === "string") {
@@ -91,7 +91,7 @@ const updateListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             else if (key === "vehiclePhotos") {
                 const userId = (_c = req.user) === null || _c === void 0 ? void 0 : _c.userId;
                 const containerClient = azureStorageConfig_1.default.getContainerClient("listing-images");
-                const imagePromises = formData.vehiclePhotos.vehiclePhotos.map((image) => __awaiter(void 0, void 0, void 0, function* () {
+                const imagePromises = vehiclePhotosArray.map((image) => __awaiter(void 0, void 0, void 0, function* () {
                     const imageId = (0, uuid_1.v4)(); // Generate a unique filename
                     const blobClient = containerClient.getBlockBlobClient(`${userId}/${listingId}/${imageId}`);
                     yield blobClient.upload(image.data.buffer, image.data.length, {
