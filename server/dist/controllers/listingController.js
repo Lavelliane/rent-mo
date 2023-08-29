@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getListingsByUser = exports.getAllListings = exports.updateListing = exports.createListing = void 0;
+exports.deleteListing = exports.getListingsByUser = exports.getAllListings = exports.updateListing = exports.createListing = void 0;
 const Listing_1 = __importDefault(require("../models/Listing"));
 const http_status_codes_1 = require("http-status-codes");
 const azureStorageConfig_1 = __importDefault(require("../utils/azureStorageConfig"));
@@ -134,4 +134,20 @@ const getListingsByUser = (req, res) => __awaiter(void 0, void 0, void 0, functi
     return res.status(http_status_codes_1.StatusCodes.OK).json({ listingsByUser });
 });
 exports.getListingsByUser = getListingsByUser;
+const deleteListing = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const listingId = req.params.id;
+        const result = yield Listing_1.default.deleteOne({ _id: listingId });
+        if (result.deletedCount === 1) {
+            res.status(http_status_codes_1.StatusCodes.ACCEPTED).json({ message: "Listing deleted successfully" });
+        }
+        else {
+            res.status(http_status_codes_1.StatusCodes.NOT_FOUND).json({ error: "Listing not found" });
+        }
+    }
+    catch (error) {
+        res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({ error: "Error deleting listing" });
+    }
+});
+exports.deleteListing = deleteListing;
 //# sourceMappingURL=listingController.js.map

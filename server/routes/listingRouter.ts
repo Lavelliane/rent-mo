@@ -7,6 +7,6 @@ const router = express.Router();
 router.route('/listing/create').post(authenticateUser, createListing);
 router.route('/listing/my-listings').get(authenticateUser, getListingsByUser);
 router.route('/listings').get(getAllListings);
-router.route('/listing/:id').patch(authenticateUser, updateListing);
+router.route('/listing/:id').patch(authenticateUser, updateListing).delete(authenticateUser, deleteListing);
 
 export default router;
