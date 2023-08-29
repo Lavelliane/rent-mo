@@ -20,7 +20,7 @@ const uuid_1 = require("uuid");
 // Configure Multer for image upload
 const createListing = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
-    const { brand, model, street, city, mobileNumber, state, country, zipCode, licensePlateNumber, carRegistrationNumber, carAvailability, } = req.body;
+    const { brand, model, street, city, mobileNumber, state, country, price, zipCode, licensePlateNumber, carRegistrationNumber, carAvailability, } = req.body;
     try {
         const newListing = new Listing_1.default({
             brand,
@@ -30,6 +30,7 @@ const createListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             mobileNumber,
             state,
             country,
+            price,
             zipCode,
             licensePlateNumber,
             carRegistrationNumber,
