@@ -7,6 +7,7 @@ export interface ICar {
 	mobileNumber: string;
 	state: string;
 	country: string;
+	price: number;
 	zipCode: string;
 	licensePlateNumber: string;
 	carRegistrationNumber: string;

@@ -115,7 +115,7 @@ const MyListings = () => {
 									</div>
 									<div className='flex items-start justify-start gap-2'>
 										<BsCashCoin className='mt-1' />
-										{item.mobileNumber}
+										{item.price}
 									</div>
 								</Typography>
 

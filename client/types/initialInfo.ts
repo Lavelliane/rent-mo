@@ -7,6 +7,7 @@ export const initialInfoState = {
 	mobileNumber: '',
 	state: '',
 	country: '',
+	price: 0,
 	zipCode: '',
 	licensePlateNumber: '',
 	carRegistrationNumber: '',

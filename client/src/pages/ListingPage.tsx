@@ -88,7 +88,7 @@ const ListingPage = () => {
 									</div>
 									<div className='flex items-start justify-start gap-2 h-12'>
 										<BsCashCoin className='mt-1' />
-										{item.mobileNumber}
+										{item.price}
 									</div>
 								</Typography>
 

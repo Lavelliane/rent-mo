@@ -9,15 +9,27 @@ type Props = {
 };
 
 const BillingInfoForm = ({ handleChange, billingInfo }: Props) => {
-	console.log(handleChange);
-	console.log(billingInfo);
 	return (
 		<>
-			<div>
+			<div className='mb-4'>
 				<div>
 					<PaymentCard />
 				</div>
-				<div className='flex items-center gap-8 mt-10'>
+				<div className='flex items-center gap-4 sm:mt-10 mt-6'>
+					<div className='flex flex-col w-full'>
+						<label className='mb-3 text-sm leading-none text-dark900'>Listing Price</label>
+						<TextField
+							size='small'
+							onChange={handleChange}
+							value={billingInfo.price}
+							name='price'
+							id='price'
+							type='number'
+							placeholder='Enter price per day'
+							defaultValue={''}
+							required
+						/>
+					</div>
 					<div className='flex flex-col w-full'>
 						<label className='mb-3 text-sm leading-none text-dark900'>Card Number</label>
 						<TextField
@@ -32,8 +44,8 @@ const BillingInfoForm = ({ handleChange, billingInfo }: Props) => {
 						/>
 					</div>
 				</div>
-				<div className='mt-5 flex items-center gap-8'>
-					<div className='flex flex-col lg:mt-0 mt-5 w-full'>
+				<div className='mt-5 flex items-center gap-4'>
+					<div className='flex flex-col sm:mt-5 mt-0 w-full'>
 						<label className='mb-3 text-sm leading-none text-dark900'>Expiration Date</label>
 						<TextField
 							size='small'
@@ -47,7 +59,7 @@ const BillingInfoForm = ({ handleChange, billingInfo }: Props) => {
 						/>
 					</div>
 
-					<div className='flex flex-col w-full lg:mt-0 mt-5'>
+					<div className='flex flex-col sm:mt-5 mt-0 w-full'>
 						<label className='mb-3 text-sm leading-none text-dark900'>Security Code</label>
 						<TextField
 							size='small'
