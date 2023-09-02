@@ -3,7 +3,6 @@ import BgHomepage from '../assets/images/Rent-mo-hero-bg.png';
 import axios from 'axios';
 import { ButtonLinkFill, ButtonFill, GoogleButton } from '../components/Buttons.tsx';
 import { TextField } from '@mui/material';
-import Footer from '../components/Footer';
 
 interface UserSignUp {
 	firstName: string;
@@ -41,19 +40,17 @@ function Registration() {
 		<>
 			<div
 				className='bg-gradient-to-tl bg-cover bg-center w-full min-h-screen py-10 px-0 font-Messina-Sans overflow-x-hidden'
-				style={{ backgroundImage: `url(${BgHomepage})` }}>
+				style={{ backgroundImage: `url(${BgHomepage})` }}
+			>
 				<div className='flex flex-col items-center justify-center'>
-					<img
-						className=' h-20 inline self-center no-select'
-						src='../src/assets/logo/RentMo-logo.svg'></img>
-					<form
-						onSubmit={handleSubmit}
-						className='bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-10'>
+					<img className=' h-20 inline self-center no-select' src='../src/assets/logo/RentMo-logo.svg'></img>
+					<form onSubmit={handleSubmit} className='bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-10'>
 						<p
 							tabIndex={0}
 							role='heading'
 							aria-label='Login to your account'
-							className='text-2xl font-extrabold leading-6 text-gray-800'>
+							className='text-2xl font-extrabold leading-6 text-gray-800'
+						>
 							Start your journey here
 						</p>
 						<GoogleButton />
@@ -127,15 +124,11 @@ function Registration() {
 
 						<div className='mt-8 flex xl:flex-row flex-col gap-5'>
 							<ButtonFill text='Create my account' />
-							<ButtonLinkFill
-								text='Return'
-								to='/landing'
-							/>
+							<ButtonLinkFill text='Return' to='/landing' />
 						</div>
 					</form>
 				</div>
 			</div>
-			<Footer />
 		</>
 	);
 }

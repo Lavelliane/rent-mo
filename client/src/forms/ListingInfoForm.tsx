@@ -109,7 +109,7 @@ const listingInfoForm = ({ handleChange, listingInfo }: Props) => {
 							<DatePicker
 								disabled={checked}
 								onChange={handleStartDateChange}
-								value={listingInfo.carAvailability.startDate}
+								value={new Date(listingInfo.carAvailability.startDate)}
 								label='Start Date'
 								className=' w-full'
 								slotProps={{ textField: { size: 'small' } }}
@@ -118,7 +118,7 @@ const listingInfoForm = ({ handleChange, listingInfo }: Props) => {
 							<DatePicker
 								disabled={checked}
 								onChange={handleEndDateChange}
-								value={listingInfo.carAvailability.endDate}
+								value={new Date(listingInfo.carAvailability.endDate)}
 								label='End Date'
 								className='w-full'
 								slotProps={{ textField: { size: 'small' } }}
@@ -147,10 +147,7 @@ const listingInfoForm = ({ handleChange, listingInfo }: Props) => {
 				</div>
 			</div>
 			<p className='mt-2 mb-4 text-sm font-semibold leading-none text-dark900'>Upload photo of your vehicle</p>
-			<ImageUploader
-				handleChange={handleChange}
-				imageFile={listingInfo}
-			/>
+			<ImageUploader handleChange={handleChange} imageFile={listingInfo} />
 		</>
 	);
 };

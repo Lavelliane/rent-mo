@@ -3,7 +3,6 @@ import BgHomepage from '../assets/images/Rent-mo-hero-bg.png';
 import axios from 'axios';
 import { ButtonLinkFill, ButtonFill, GoogleButton } from '../components/Buttons.tsx';
 import { TextField } from '@mui/material';
-import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../hooks/zustand/useUser';
 
@@ -52,19 +51,17 @@ function Login() {
 		<>
 			<div
 				className=' min-h-screen bg-gradient-to-tl bg-cover bg-center w-full py-10 px-4 font-Messina-Sans'
-				style={{ backgroundImage: `url(${BgHomepage})` }}>
+				style={{ backgroundImage: `url(${BgHomepage})` }}
+			>
 				<div className='flex flex-col items-center justify-center'>
-					<img
-						className=' h-20 inline self-center no-select'
-						src='../src/assets/logo/RentMo-logo.svg'></img>
-					<form
-						onSubmit={handleSubmit}
-						className='bg-white shadow rounded lg:w-1/3 md:w-1/2 w-full p-10 mt-10'>
+					<img className=' h-20 inline self-center no-select' src='../src/assets/logo/RentMo-logo.svg'></img>
+					<form onSubmit={handleSubmit} className='bg-white shadow rounded lg:w-1/3 md:w-1/2 w-full p-10 mt-10'>
 						<p
 							tabIndex={0}
 							role='heading'
 							aria-label='Login to your account'
-							className='text-2xl font-extrabold leading-6 text-gray-800'>
+							className='text-2xl font-extrabold leading-6 text-gray-800'
+						>
 							Login to your account
 						</p>
 						<p className='text-sm mt-4 font-medium leading-none text-gray-500'>
@@ -74,7 +71,8 @@ function Login() {
 								role='link'
 								href='/register'
 								aria-label='Sign up here'
-								className='text-sm font-medium leading-none underline text-gray-800 cursor-pointer'>
+								className='text-sm font-medium leading-none underline text-gray-800 cursor-pointer'
+							>
 								{' '}
 								Sign up here
 							</a>
@@ -122,15 +120,11 @@ function Login() {
 							<ButtonFill text='Login' />
 						</div>
 						<div className='mt-8 w-full flex'>
-							<ButtonLinkFill
-								text='Return'
-								to='/landing'
-							/>
+							<ButtonLinkFill text='Return' to='/landing' />
 						</div>
 					</form>
 				</div>
 			</div>
-			<Footer />
 		</>
 	);
 }

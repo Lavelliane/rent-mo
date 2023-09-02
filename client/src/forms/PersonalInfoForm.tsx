@@ -13,8 +13,8 @@ const PersonalInfoForm = ({ handleChange, personalInfo }: Props) => {
 		<>
 			<ThemeProvider theme={theme}>
 				<div>
-					<div className=' flex lg:flex-row items-center lg:gap-8 flex-col gap-0 lg:mt-5'>
-						<div className='flex flex-col w-full'>
+					<div className=' flex lg:flex-row items-center lg:gap-8 flex-col gap-0 lg:mt-5 mt-0'>
+						<div className='lg:mt-5 mt-0 flex flex-col w-full'>
 							<label className='mb-3 text-sm leading-none text-dark900'>Mobile Number</label>
 							<TextField
 								variant='outlined'
@@ -43,7 +43,7 @@ const PersonalInfoForm = ({ handleChange, personalInfo }: Props) => {
 							/>
 						</div>
 					</div>
-					<div className='mt-5 flex lg:flex-row items-center lg:gap-8 flex-col gap-0'>
+					<div className='lg:mt-5 mt-0 flex lg:flex-row items-center lg:gap-8 flex-col gap-0'>
 						<div className='flex flex-col lg:mt-0 mt-5 w-full'>
 							<label className='mb-3 text-sm leading-none text-dark900'>Street Address</label>
 							<TextField
@@ -73,7 +73,7 @@ const PersonalInfoForm = ({ handleChange, personalInfo }: Props) => {
 							/>
 						</div>
 					</div>
-					<div className='mt-5 flex lg:flex-row items-center lg:gap-8 flex-col gap-0'>
+					<div className='lg:mt-5 mt-0 flex lg:flex-row items-center lg:gap-8 flex-col gap-0'>
 						<div className='flex flex-col w-full lg:mt-0 mt-5'>
 							<label className='mb-3 text-sm leading-none text-dark900'>Province</label>
 							<TextField

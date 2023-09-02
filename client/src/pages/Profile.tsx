@@ -3,7 +3,6 @@ import Reviews from '../components/Reviews.tsx';
 import ProfileCard from '../components/ProfileCard.tsx';
 import { ButtonNoFillRounded } from '../components/Buttons.tsx';
 import MyListings from '../components/MyListings.tsx';
-import Footer from '../components/Footer.tsx';
 import { useUser } from '../../hooks/zustand/useUser.ts';
 
 const Profile = () => {
@@ -47,7 +46,6 @@ const Profile = () => {
 					</div>
 				</div>
 			</div>
-			<Footer />
 		</>
 	);
 };
