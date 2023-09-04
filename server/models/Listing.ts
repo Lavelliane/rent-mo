@@ -42,6 +42,15 @@ const ListingSchema: Schema = new Schema({
 		type: String,
 		required: true,
 	},
+	email: {
+		type: String,
+		required: [true, 'Please provide an email'],
+		validate: {
+			validator: emailValidator,
+			message: 'Please provide a valid email',
+		},
+		unique: true,
+	},
 	mobileNumber: {
 		type: String,
 		required: true,

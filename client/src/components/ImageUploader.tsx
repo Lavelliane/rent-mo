@@ -1,8 +1,9 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
 import { MdCloudUpload, MdAddCircle, MdClose } from 'react-icons/md';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { ICar } from '../../types/types';
+import { set } from 'date-fns';
 
 type Props = {
 	handleChange: (e: any) => void;
@@ -93,7 +94,7 @@ function ImageUploader({ handleChange, imageFile }: Props) {
 						{imageFile.vehiclePhotos.map((image, index) => (
 							<div key={index} className='carousel-slide relative hover:scale-[1.02] mx-1 my-2 transition'>
 								<img
-									src={URL.createObjectURL(image)}
+									src={typeof image === 'string' ? image : URL.createObjectURL(image)}
 									alt={`Image ${index}`}
 									className='mx-auto h-24 shadow-md object-cover select-none'
 								/>

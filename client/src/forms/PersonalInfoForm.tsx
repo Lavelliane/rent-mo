@@ -13,8 +13,8 @@ const PersonalInfoForm = ({ handleChange, personalInfo }: Props) => {
 		<>
 			<ThemeProvider theme={theme}>
 				<div>
-					<div className=' flex lg:flex-row items-center lg:gap-8 flex-col gap-0 lg:mt-5'>
-						<div className='flex flex-col w-full'>
+					<div className=' flex lg:flex-row items-center lg:gap-8 flex-col gap-0 lg:mt-5 mt-0'>
+						<div className=' flex flex-col lg:mt-0 mt-5 w-full'>
 							<label className='mb-3 text-sm leading-none text-dark900'>Mobile Number</label>
 							<TextField
 								variant='outlined'
@@ -24,8 +24,8 @@ const PersonalInfoForm = ({ handleChange, personalInfo }: Props) => {
 								id='mobileNumber'
 								value={personalInfo.mobileNumber}
 								type='number'
-								placeholder='+63'
-								defaultValue={'+63'}
+								placeholder='09XXXXXXXXX'
+								required
 							/>
 						</div>
 						<div className='flex flex-col lg:mt-0 mt-5 w-full'>
@@ -34,16 +34,16 @@ const PersonalInfoForm = ({ handleChange, personalInfo }: Props) => {
 								variant='outlined'
 								size='small'
 								onChange={handleChange}
-								value={personalInfo.email}
 								name='email'
 								id='email'
+								value={personalInfo.email}
 								type='email'
 								placeholder='rentmo@gmail.com'
-								defaultValue={''}
+								required
 							/>
 						</div>
 					</div>
-					<div className='mt-5 flex lg:flex-row items-center lg:gap-8 flex-col gap-0'>
+					<div className='lg:mt-5 mt-0 flex lg:flex-row items-center lg:gap-8 flex-col gap-0'>
 						<div className='flex flex-col lg:mt-0 mt-5 w-full'>
 							<label className='mb-3 text-sm leading-none text-dark900'>Street Address</label>
 							<TextField
@@ -55,7 +55,7 @@ const PersonalInfoForm = ({ handleChange, personalInfo }: Props) => {
 								value={personalInfo.street}
 								type='text'
 								placeholder='Unit#/Street/Barangay'
-								defaultValue={''}
+								required
 							/>
 						</div>
 						<div className='flex flex-col lg:mt-0 mt-5 w-full'>
@@ -69,11 +69,11 @@ const PersonalInfoForm = ({ handleChange, personalInfo }: Props) => {
 								value={personalInfo.city}
 								type='text'
 								placeholder='Enter City'
-								defaultValue={''}
+								required
 							/>
 						</div>
 					</div>
-					<div className='mt-5 flex lg:flex-row items-center lg:gap-8 flex-col gap-0'>
+					<div className='lg:mt-5 mt-0 flex lg:flex-row items-center lg:gap-8 flex-col gap-0'>
 						<div className='flex flex-col w-full lg:mt-0 mt-5'>
 							<label className='mb-3 text-sm leading-none text-dark900'>Province</label>
 							<TextField
@@ -85,7 +85,7 @@ const PersonalInfoForm = ({ handleChange, personalInfo }: Props) => {
 								value={personalInfo.state}
 								type='text'
 								placeholder='Enter Province'
-								defaultValue={''}
+								required
 							/>
 						</div>
 						<div className='flex flex-col w-full lg:mt-0 mt-5'>
@@ -99,7 +99,7 @@ const PersonalInfoForm = ({ handleChange, personalInfo }: Props) => {
 								value={personalInfo.country}
 								type='text'
 								placeholder='Enter Country'
-								defaultValue={''}
+								required
 							/>
 						</div>
 						<div className='flex flex-col lg:w-1/2 w-full lg:my-0 mt-5 mb-10'>
@@ -113,7 +113,7 @@ const PersonalInfoForm = ({ handleChange, personalInfo }: Props) => {
 								value={personalInfo.zipCode}
 								type='number'
 								placeholder='Zip Code'
-								defaultValue={''}
+								required
 							/>
 						</div>
 					</div>

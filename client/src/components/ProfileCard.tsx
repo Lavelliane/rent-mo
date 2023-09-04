@@ -1,31 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import UpdateProfile from '../forms/UpdateProfileForm.tsx';
-import { useUser } from '../../hooks/zustand/useUser.ts';
 import ProfileCardText from '../components/ProfileCardText.tsx';
+import { Modal } from 'react-responsive-modal';
+import { initialUserProfile } from '../../types/initialInfo';
+import axios from 'axios';
+import 'react-responsive-modal/styles.css';
 
 const ProfileCard = () => {
-	const [buttonPopup, setButtonPopup] = useState(false);
+	const [open, setOpen] = useState(false);
+	const [data, setData] = useState(initialUserProfile);
+	const onOpenModal = () => setOpen(true);
+	const onCloseModal = () => setOpen(false);
 
-	const store = useUser();
-	const { user }: any = store?.user;
+	useEffect(() => {
+		fetchData();
+	}, []);
+	const fetchData = async () => {
+		try {
+			const response = await axios.get('/api/v1/user/my-info'); // Replace with your API endpoint
+			setData(response.data.user);
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		}
+	};
+
 	const reviews = '0 reviews';
-	const userName = `${user.firstName + ' ' + user.lastName}`;
-	const yearJoined = `${user.createdAt.split('-')[0]}`;
-	const profession = user.profession ? `${user.profession}` : 'Unknown'; //
-	const email = `${user.email}`;
+	const userName = `${data.firstName + ' ' + data.lastName}`;
+	const yearJoined = `${data.createdAt.split('-')[0]}`;
+	const profession = data.profession ? `${data.profession}` : 'Unknown'; //
+	const email = `${data.email}`;
 	const location =
-		user.unitAddress || user.city || user.state || user.country
-			? `${user.unitAddress + ', ' + user.city + ', ' + user.state + ', ' + user.country}`
+		data.unitAddress || data.city || data.state || data.country
+			? `${data.unitAddress + ', ' + data.city + ', ' + data.state + ', ' + data.country}`
 			: 'No address provided';
-	const language = user.language ? `${user.language}` : 'Unknown'; //
-	const phoneNumber = `${user.phoneNumber}`;
-	const isLicensed = user.isLicensed ? 'Licensed to Drive' : 'Not Licensed to Drive';
-	const isVerified = user.isVerified ? 'Verified' : 'Not Verified';
-	const badges = user.badge ? user.badge : 'No Badge to Display';
+	const language = data.language ? `${data.language}` : 'Unknown'; //
+	const phoneNumber = `${data.phoneNumber}`;
+	const isLicensed = data.isLicensed ? 'Licensed to Drive' : 'Not Licensed to Drive';
+	const isVerified = data.isVerified ? 'Verified' : 'Not Verified';
+	const badges = data.badge ? data.badge : 'No Badge to Display';
 
 	return (
 		<>
-			<UpdateProfile trigger={buttonPopup} setTrigger={setButtonPopup}></UpdateProfile>
 			<div className='self-start flex flex-col w-full lg:w-fit h-fit bg-white shadow-searchbox rounded-lg text-dark900 pt-10 mt-10 2xl:hover:scale-[102%] transition-all'>
 				<div className='lg:hidden flex flex-col h-fit w-full sm:px-10 px-2 items-center mb-5'>
 					<h1 className='text-3xl font-bold text-center'>{userName}</h1>
@@ -35,7 +50,7 @@ const ProfileCard = () => {
 					<img className='object-cover select-none w-40' src='../src/assets/logo/avatar-logo.png' alt='logo' />
 				</div>
 				<button
-					onClick={() => setButtonPopup(true)}
+					onClick={onOpenModal}
 					className='self-center font-bold text-yellow300 hover:text-yellow transition-colors mt-4'
 				>
 					Update Profile
@@ -53,7 +68,7 @@ const ProfileCard = () => {
 					<span className='self-center my-5 w-full h-[2px] bg-dark500'></span>
 					<div className='flex items-center justify-center w-full  gap-1'>
 						<img className='w-8' src='../src/assets/logo/icons8-verified-badge.png' alt='logo' />
-						<p className='font-bold no-select'>Badges</p>
+						<h1 className='font-bold no-select'>Badges</h1>
 					</div>
 					<div className='flex items-center justify-center w-full mt-5'>
 						<h1>{badges}</h1>
@@ -70,6 +85,9 @@ const ProfileCard = () => {
 					</div>
 				</div>
 			</div>
+			<Modal open={open} onClose={onCloseModal} center>
+				<UpdateProfile />
+			</Modal>
 		</>
 	);
 };

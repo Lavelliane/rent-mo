@@ -1,4 +1,5 @@
 export interface ICar {
+	_id?: string;
 	brand: string;
 	model: string;
 	street: string;
@@ -7,6 +8,7 @@ export interface ICar {
 	mobileNumber: string;
 	state: string;
 	country: string;
+	price: number | null;
 	zipCode: string;
 	licensePlateNumber: string;
 	carRegistrationNumber: string;
@@ -17,4 +19,14 @@ export interface ICar {
 interface ICarAvailability {
 	startDate: Date;
 	endDate: Date;
+}
+
+export interface UserUpdate {
+	firstName: string;
+	lastName: string;
+	email: string;
+	phoneNumber: string;
+	profession: string;
+	language: string;
+	aboutMe: string;
 }
