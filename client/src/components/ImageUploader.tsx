@@ -1,8 +1,9 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
 import { MdCloudUpload, MdAddCircle, MdClose } from 'react-icons/md';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { ICar } from '../../types/types';
+import { set } from 'date-fns';
 
 type Props = {
 	handleChange: (e: any) => void;

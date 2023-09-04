@@ -48,9 +48,7 @@ const GettingStarted = () => {
 						<hr className='w-full border-gray-500 mx-auto' />{' '}
 					</div>
 					<h2 className='font-bold text-2xl mt-8 mb-4'>Related Articles</h2>
-					<a
-						className='font-bold text-xl '
-						href='/setting-up'>
+					<a className='font-bold text-xl ' href='/setting-up'>
 						<u>Setting up your account</u>
 					</a>
 					<p>
@@ -60,9 +58,7 @@ const GettingStarted = () => {
 					<div className='mt-8 mb-8'>
 						<hr className='w-full border-gray-500 mx-auto' />{' '}
 					</div>
-					<a
-						className='font-bold text-xl'
-						href='/manage-account'>
+					<a className='font-bold text-xl' href='/manage-account'>
 						<u>How to access and manage your account</u>
 					</a>
 					<p>
@@ -79,70 +75,16 @@ const GettingStarted = () => {
 							<p className='mt-1 font-semibold text-xl text-gray-800'>
 								Get help with your reservations, account, and more.
 							</p>
-							<a
-								href='/login'
-								className='px-4 py-2 bg-yellow100 mt-3 text-white rounded-xl'>
+							<a href='/login' className='px-4 py-2 bg-yellow100 mt-3 text-white rounded-xl'>
 								Log-in or sign up
 							</a>
 						</div>
 					</div>
 				</div>
 			</div>
-
 			<br />
-
-			<Footer />
 		</div>
 	);
 };
 
 export default GettingStarted;
-
-// import React from "react";
-// import Navbar from "../../components/Navbar.tsx";
-// import Footer from "../../components/Footer.tsx";
-
-// const GettingStarted = () => {
-//   return (
-//     <>
-//       <div className="flex flex-col w-full h-fit pb-20 bg-cover bg-no-repeat font-Messina-Sans">
-//         <Navbar />
-//         <div className="absolute w-full h-32 bg-gradient-to-br from-dark700 to-dark900 -z-10"></div>
-//       </div>
-//       <div className="flex flex-col items-center justify-center w-full h-full">
-//         <h1 className="py-0 text-9xl lg:text-[20px] font-extrabold text-black dark:text-white">
-//           Hi! Need help?
-//         </h1>
-//         <div className="w-full h-fit flex relative items-center justify-center self-center ">
-//           {/* Search bar */}
-//           <input
-//             type="text"
-//             placeholder="     Search how-tos and more"
-//             className="p-3 mt-4 border bg-blue-gray-100 border-gray-300 rounded-full w-full max-w-md placeholder-black"
-//           />
-//         </div>
-//       </div>
-
-//       {/* if not logged in*/}
-//       <div className="flex justify-end">
-//         <div className="w-2/12 mt-8 mx-96 bg-white rounded-lg border border-gray-300 p-8 flex items-center">
-//           <div className="flex flex-col ml-auto">
-//             <p className="mt-1 font-semibold text-xl text-gray-800">
-//               Get help with you reservations, account, and more.
-//             </p>
-//             <a
-//               href="/login"
-//               className="px-4 py-2 bg-yellow100 mt-8 text-white rounded-xl"
-//             >
-//               Log-in or sign up
-//             </a>
-//           </div>
-//         </div>
-//       </div>
-
-//       <br />
-
-//       <Footer />
-//     </>
-//   );
-// };

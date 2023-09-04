@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from '../components/Navbar.tsx';
-import Footer from '../components/Footer.tsx';
 import bg from '../assets/images/chocolate-hills.png';
 import car from '../assets/units/toyota-car@2x.png';
 import bg2 from '../assets/images/rice-terraces.png';
@@ -23,16 +22,8 @@ const HowItWorks = () => {
 			<div className='w-full min-h-max'>
 				<div className='max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 grid grid-col-1 gap-12 lg:grid-cols-2 relative'>
 					<div className='text-center relative'>
-						<img
-							className=' absolute mt-16'
-							src={bg}
-							alt='chocolate hills'
-						/>
-						<img
-							className='absolute mt-80'
-							src={car}
-							alt='hilux'
-						/>
+						<img className=' absolute mt-16' src={bg} alt='chocolate hills' />
+						<img className='absolute mt-80' src={car} alt='hilux' />
 					</div>
 					<div className='mt-24'>
 						<h1 className='py-0 text-9xl lg:text-[40px] font-extrabold text-black dark:text-white'>How RentMo Works</h1>
@@ -60,7 +51,8 @@ const HowItWorks = () => {
 						</p>
 						<a
 							href='/login'
-							className='px-4 py-2 font-bold bg-yellow100 rounded-2xl shadow-md hover:scale-105 transition-transform'>
+							className='px-4 py-2 font-bold bg-yellow100 rounded-2xl shadow-md hover:scale-105 transition-transform'
+						>
 							Log-in or sign up
 						</a>
 					</div>
@@ -72,12 +64,7 @@ const HowItWorks = () => {
 						</h1>
 						<div className='flex gap-7 mt-10'>
 							<div className='py-5'>
-								<img
-									className='rounded-2xl'
-									src={booking}
-									width='200'
-									height='150'
-								/>
+								<img className='rounded-2xl' src={booking} width='200' height='150' />
 							</div>
 							<div className=''>
 								<h2 className='pt-4 mb-2 text-9xl lg:text-[20px] font-extrabold text-black dark:text-white'>
@@ -92,12 +79,7 @@ const HowItWorks = () => {
 
 						<div className='flex gap-7 mt-5'>
 							<div className='py-5'>
-								<img
-									className='rounded-2xl'
-									src={route}
-									width='230'
-									height='150'
-								/>
+								<img className='rounded-2xl' src={route} width='230' height='150' />
 							</div>
 							<div className=''>
 								<h2 className='pt-6 mb-2 text-9xl lg:text-[20px] font-extrabold text-black dark:text-white'>
@@ -112,12 +94,7 @@ const HowItWorks = () => {
 
 						<div className='flex gap-7 mt-5'>
 							<div className='py-5'>
-								<img
-									className='rounded-2xl'
-									src={calendar}
-									width='180'
-									height='150'
-								/>
+								<img className='rounded-2xl' src={calendar} width='180' height='150' />
 							</div>
 							<div className=''>
 								<h2 className=' pt-8 mb-2 text-9xl lg:text-[20px] font-extrabold text-black dark:text-white'>
@@ -131,27 +108,14 @@ const HowItWorks = () => {
 						</div>
 					</div>
 					<div className='text-center relative pt-12'>
-						<img
-							className=' absolute ml-32'
-							src={bg2}
-							alt='rice terraces'
-						/>
-						<img
-							className='absolute mt-72'
-							src={car2}
-							alt='vios'
-						/>
+						<img className=' absolute ml-32' src={bg2} alt='rice terraces' />
+						<img className='absolute mt-72' src={car2} alt='vios' />
 					</div>
 				</div>
 				<div className='flex justify-center items-center pb-32 pt-20'>
 					<div className='flex gap-7 items-center relative'>
 						<div className='relative'>
-							<img
-								className='rounded-2xl items-center'
-								src={host}
-								width='600'
-								alt='Host'
-							/>
+							<img className='rounded-2xl items-center' src={host} width='600' alt='Host' />
 							<div className='absolute inset-0 bg-black opacity-60 rounded-2xl'></div>
 							<img
 								className='absolute inset-0 flex justify-center items-center rounded-2xl pl-64 pt-7'
@@ -164,18 +128,14 @@ const HowItWorks = () => {
 								</p>
 								<a
 									href='/login'
-									className=' mt-6 px-4 py-2 font-bold bg-yellow100 rounded-2xl shadow-buttonbox hover:scale-105 transition-transform'>
+									className=' mt-6 px-4 py-2 font-bold bg-yellow100 rounded-2xl shadow-buttonbox hover:scale-105 transition-transform'
+								>
 									Become a host
 								</a>
 							</div>
 						</div>
 						<div className='relative'>
-							<img
-								className='rounded-2xl'
-								src={ride}
-								width='600'
-								alt='Ride'
-							/>
+							<img className='rounded-2xl' src={ride} width='600' alt='Ride' />
 							<div className='absolute inset-0 bg-yellow100 opacity-80 rounded-2xl'></div>
 							<img
 								className='absolute inset-0 flex justify-center items-center rounded-2xl pl-64 pt-7'
@@ -188,7 +148,8 @@ const HowItWorks = () => {
 								<p className='text-black font-bold text-center  text-xl pl-10 pr-10'>Travel like a boss with RentMo.</p>
 								<a
 									href='/register'
-									className='mt-6 px-4 py-2 font-bold bg-black rounded-2xl text-white shadow-buttonbox hover:scale-105 transition-transform'>
+									className='mt-6 px-4 py-2 font-bold bg-black rounded-2xl text-white shadow-buttonbox hover:scale-105 transition-transform'
+								>
 									Book a ride
 								</a>
 							</div>
@@ -196,8 +157,6 @@ const HowItWorks = () => {
 					</div>
 				</div>
 			</div>
-
-			<Footer />
 		</div>
 	);
 };

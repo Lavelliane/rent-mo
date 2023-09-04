@@ -56,7 +56,7 @@ const listingInfoForm = ({ handleChange, listingInfo }: Props) => {
 						id='brand'
 						type='text'
 						placeholder='Enter car brand'
-						defaultValue={''}
+						required
 					/>
 				</div>
 				<div className='flex flex-col w-full'>
@@ -69,7 +69,7 @@ const listingInfoForm = ({ handleChange, listingInfo }: Props) => {
 						id='model'
 						type='text'
 						placeholder='Enter car model'
-						defaultValue={''}
+						required
 					/>
 				</div>
 			</div>
@@ -84,7 +84,7 @@ const listingInfoForm = ({ handleChange, listingInfo }: Props) => {
 						id='licensePlateNumber'
 						type='text'
 						placeholder='Enter license'
-						defaultValue={''}
+						required
 					/>
 				</div>
 				<div className='flex flex-col w-full'>
@@ -97,7 +97,7 @@ const listingInfoForm = ({ handleChange, listingInfo }: Props) => {
 						id='carRegistrationNumber'
 						type='text'
 						placeholder='Enter VIN'
-						defaultValue={''}
+						required
 					/>
 				</div>
 			</div>
@@ -135,7 +135,6 @@ const listingInfoForm = ({ handleChange, listingInfo }: Props) => {
 											id='isAlways'
 											value={checked}
 											inputProps={{ 'aria-label': 'controlled' }}
-											defaultValue={''}
 										/>
 									}
 									label='Always Available'

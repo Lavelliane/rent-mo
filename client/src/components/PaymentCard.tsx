@@ -3,7 +3,7 @@ import { BsFillCreditCard2FrontFill, BsPaypal, BsWalletFill } from 'react-icons/
 
 const PaymentCard = () => {
 	return (
-		<div className='flex sm:flex-row flex-col justify-evenly items-center gap-2 font-Messina-Sans text-sm h-fit'>
+		<div className='flex sm:flex-row flex-col justify-evenly items-center gap-2 font-Messina-Sans text-sm w-full h-fit'>
 			<a
 				href='#card'
 				className='sm:gap-0 gap-2 sm:w-48 w-full h-fit bg-dark300 rounded-lg shadow-md sm:pt-8 sm:py-0 py-2 sm:px-2 px-4 flex sm:flex-col flex-row items-center sm:justify-center justify-start text-center hover:scale-105 transition-all'

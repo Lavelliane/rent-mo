@@ -1,4 +1,5 @@
 export interface ICar {
+	_id: string;
 	brand: string;
 	model: string;
 	street: string;
@@ -7,7 +8,7 @@ export interface ICar {
 	mobileNumber: string;
 	state: string;
 	country: string;
-	price: number;
+	price: number | null;
 	zipCode: string;
 	licensePlateNumber: string;
 	carRegistrationNumber: string;

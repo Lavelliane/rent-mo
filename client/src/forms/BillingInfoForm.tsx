@@ -11,22 +11,21 @@ type Props = {
 const BillingInfoForm = ({ handleChange, billingInfo }: Props) => {
 	return (
 		<>
-			<div className='mb-4'>
-				<div>
+			<div className='flex flex-col w-full'>
+				<div className='w-full'>
 					<PaymentCard />
 				</div>
-				<div className='flex items-center gap-4 sm:mt-10 mt-6'>
+				<div className='flex items-center gap-4 sm:mt-6 mt-10'>
 					<div className='flex flex-col w-full'>
 						<label className='mb-3 text-sm leading-none text-dark900'>Listing Price</label>
 						<TextField
 							size='small'
 							onChange={handleChange}
-							value={billingInfo.price}
+							value={billingInfo.price ?? ''}
 							name='price'
 							id='price'
 							type='number'
 							placeholder='Enter price per day'
-							defaultValue={''}
 							required
 						/>
 					</div>
@@ -35,27 +34,25 @@ const BillingInfoForm = ({ handleChange, billingInfo }: Props) => {
 						<TextField
 							size='small'
 							//onChange={}
-							//value={}
+							value={''}
 							name='cardNumber'
 							id='cardNumber'
 							type='number'
 							placeholder='Enter card number'
-							defaultValue={''}
 						/>
 					</div>
 				</div>
-				<div className='mt-5 flex items-center gap-4'>
+				<div className='sm:mt-0 mt-5 flex items-center gap-4'>
 					<div className='flex flex-col sm:mt-5 mt-0 w-full'>
 						<label className='mb-3 text-sm leading-none text-dark900'>Expiration Date</label>
 						<TextField
 							size='small'
 							//onChange={}
-							//value={}
+							value=''
 							name='cardExpiration'
 							id='cardExpiration'
 							type='string'
 							placeholder='Enter expiration date'
-							defaultValue={''}
 						/>
 					</div>
 
@@ -64,12 +61,11 @@ const BillingInfoForm = ({ handleChange, billingInfo }: Props) => {
 						<TextField
 							size='small'
 							//onChange={}
-							//value={}
+							value={''}
 							name='securityCode'
 							id='securityCode'
 							type='number'
 							placeholder='Enter CVV'
-							defaultValue={''}
 						/>
 					</div>
 				</div>

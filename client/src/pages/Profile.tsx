@@ -28,6 +28,7 @@ const Profile = () => {
 							<div className='flex flex-col w-full h-fit'>
 								<p className='font-bold'>About me</p>
 								<textarea
+									readOnly
 									rows={5}
 									className='lg:text-base text-sm no-select px-4 mt-5 w-full h-fit text-justify resize-none disable select-none overflow-hidden'
 									value={aboutMe}
@@ -37,10 +38,7 @@ const Profile = () => {
 								<MyListings />
 							</div>
 						</div>
-						<div className='flex flex-col sm:flex-row items-center mt-10 justify-center lg:gap-10 gap-5'>
-							{/* <ButtonNoFillRounded text='Report Listing' />
-							<ButtonNoFillRounded text='Terms and Regulations' /> */}
-						</div>
+						<div className='flex flex-col sm:flex-row items-center mt-10 justify-center lg:gap-10 gap-5'></div>
 						<span className='mt-7 mb-5 w-full h-[2px] bg-dark500'></span>
 						<Reviews />
 					</div>

@@ -53,7 +53,7 @@ const ProfileCard = () => {
 					<span className='self-center my-5 w-full h-[2px] bg-dark500'></span>
 					<div className='flex items-center justify-center w-full  gap-1'>
 						<img className='w-8' src='../src/assets/logo/icons8-verified-badge.png' alt='logo' />
-						<p className='font-bold no-select'>Badges</p>
+						<h1 className='font-bold no-select'>Badges</h1>
 					</div>
 					<div className='flex items-center justify-center w-full mt-5'>
 						<h1>{badges}</h1>

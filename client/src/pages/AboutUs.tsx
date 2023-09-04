@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from '../components/Navbar.tsx';
-import Footer from '../components/Footer.tsx';
 import Mission from '../assets/images/profile-bg.jpg';
 import Vision from '../assets/units/Marcedes S-Class@2x.png';
 
@@ -24,11 +23,7 @@ const AboutUs = () => {
 					</div>
 					<div className='mt-12'>
 						<div className='grid grid-col-1 gap-12 lg:grid-cols-2'>
-							<img
-								className='rounded-lg shadow-lg'
-								src={Mission}
-								alt='Mission'
-							/>
+							<img className='rounded-lg shadow-lg' src={Mission} alt='Mission' />
 							<div className='mt-10 '>
 								<h2 className='text-xl font-semibold text-gray-900'>Our Mission</h2>
 								<p className='mt-2'>
@@ -49,11 +44,7 @@ const AboutUs = () => {
 									or a special occasion, RentMo is here to connect you with the perfect vehicle.
 								</p>
 							</div>
-							<img
-								className='rounded-lg shadow-lg'
-								src={Vision}
-								alt='Vision'
-							/>
+							<img className='rounded-lg shadow-lg' src={Vision} alt='Vision' />
 						</div>
 					</div>
 					<div className='mt-12'>
@@ -87,7 +78,6 @@ const AboutUs = () => {
 					</div>
 				</div>
 			</div>
-			<Footer />
 		</>
 	);
 };
