@@ -141,6 +141,10 @@ const UserSchema = new mongoose_1.Schema({
 //User.js
 UserSchema.pre('save', function () {
     return __awaiter(this, void 0, void 0, function* () {
+        //calling this.modifiedPaths() returns an array of modified paths
+        //check if the password IS NOT modified. if it isn't then just return and don't hash
+        if (!this.isModified('password'))
+            return;
         const salt = yield bcryptjs_1.default.genSalt(10);
         this.password = yield bcryptjs_1.default.hash(this.password, salt);
     });

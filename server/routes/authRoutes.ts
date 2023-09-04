@@ -4,12 +4,13 @@ import passport from 'passport';
 import User from '../models/User.js';
 import attachCookies from '../utils/attachCookies.js';
 import { StatusCodes } from 'http-status-codes';
+import authenticateUser from '../middleware/auth.js';
 
 const router = express.Router();
 
 router.route('/register').post(register);
 router.route('/login').post(login);
-router.route('/updateUser').post(updateUser);
+router.route('/updateUser').patch(authenticateUser, updateUser);
 
 router.route('/google').get(
 	passport.authenticate('google', {
