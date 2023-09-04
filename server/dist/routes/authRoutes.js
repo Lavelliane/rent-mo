@@ -18,10 +18,11 @@ const passport_1 = __importDefault(require("passport"));
 const User_js_1 = __importDefault(require("../models/User.js"));
 const attachCookies_js_1 = __importDefault(require("../utils/attachCookies.js"));
 const http_status_codes_1 = require("http-status-codes");
+const auth_js_1 = __importDefault(require("../middleware/auth.js"));
 const router = express_1.default.Router();
 router.route('/register').post(authController_js_1.register);
 router.route('/login').post(authController_js_1.login);
-router.route('/updateUser').post(authController_js_1.updateUser);
+router.route('/updateUser').patch(auth_js_1.default, authController_js_1.updateUser);
 router.route('/google').get(passport_1.default.authenticate('google', {
     scope: ['email', 'profile'],
 }));
