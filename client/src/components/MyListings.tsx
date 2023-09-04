@@ -1,23 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ICar } from 'types/types';
 import imageUnavailable from '../assets/logo/image_not_available.png';
-import { CardActionArea, CardContent, Card, Pagination } from '@mui/material';
+import { CardContent, Card, Pagination } from '@mui/material';
 import { BsFillStarFill, BsMapFill, BsTelephoneFill, BsCashCoin } from 'react-icons/bs';
 import axios from 'axios';
-import Modal from 'react-modal';
+import Modal from 'react-responsive-modal';
 import ListingStepper from './ListingStepperUpdate.tsx';
 import { initialInfoState } from '../../types/initialInfo';
-
-const customStyles = {
-	content: {
-		top: '50%',
-		left: '50%',
-		right: 'auto',
-		bottom: 'auto',
-		marginRight: '-50%',
-		transform: 'translate(-50%, -50%)',
-	},
-};
+import 'react-responsive-modal/styles.css';
 
 const MyListings = () => {
 	const [update, setUpdate] = useState(false);
@@ -143,14 +133,8 @@ const MyListings = () => {
 								>
 									Remove
 								</button>
-								<Modal
-									ariaHideApp={false}
-									isOpen={modalIsOpen}
-									onRequestClose={() => closeModal()}
-									style={customStyles}
-									contentLabel='Confirm Remove Modal'
-								>
-									<div className='w-52 h-20 font-Messina-Sans'>Are you sure?</div>
+								<Modal open={modalIsOpen} onClose={() => closeModal()} center>
+									<div className='w-64 h-20 font-Messina-Sans'>Are you sure?</div>
 									<div className='flex gap-4 justify-end font-Messina-Sans'>
 										<button
 											onClick={() => handleDelete()}

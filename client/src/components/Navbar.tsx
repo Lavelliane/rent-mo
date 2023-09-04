@@ -15,14 +15,15 @@ const Navbar = () => {
 	const { user = {} }: any = store?.user || {};
 
 	const scrollByScreenHeight = () => {
-		// Get the viewport height (screen height)
-		const screenHeight = window.innerHeight + 80;
+		navigate('/landing');
 
-		// Scroll down by the screen height
-		window.scrollBy({
-			top: screenHeight,
-			behavior: 'smooth',
-		});
+		setTimeout(() => {
+			const screenHeight = window.innerHeight + 80;
+			window.scrollBy({
+				top: screenHeight,
+				behavior: 'smooth',
+			});
+		}, 0); // Use a small timeout to ensure the navigation has taken place
 	};
 
 	async function handleLogout() {

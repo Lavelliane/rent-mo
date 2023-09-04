@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import MainPage from './pages/MainPage.tsx';
 import Registration from './pages/Registration.tsx';
+import Footer from './components/Footer';
 import Login from './pages/Login.tsx';
 import Profile from './pages/Profile.tsx';
 import Host from './pages/Host.tsx';
@@ -61,6 +62,7 @@ function App() {
 					<Route path='/how-it-works' element={<HowItWorks />} />
 					<Route path='/loading' element={<LoadingPage />} />
 				</Routes>
+				<Footer />
 			</BrowserRouter>
 		</>
 	);
