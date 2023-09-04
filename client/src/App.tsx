@@ -18,6 +18,7 @@ import TermsOfService from "./pages/TermsOfService.tsx";
 import ContactUs from "./pages/ContactUs.tsx";
 import AboutUs from "./pages/AboutUs.tsx";
 import HowItWorks from "./pages/HowItWorks.tsx";
+import LoadingPage from "./pages/LoadingPage.tsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -58,6 +59,7 @@ function App() {
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/loading" element={<LoadingPage />} />
         </Routes>
       </BrowserRouter>
     </>
