@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Carousel } from 'react-responsive-carousel';
+import React, { useState, useEffect, useRef } from 'react';
 import { ICar } from 'types/types';
 import imageUnavailable from '../assets/logo/image_not_available.png';
-import { CardActionArea, CardContent, Card, Pagination, Typography } from '@mui/material';
+import { CardActionArea, CardContent, Card, Pagination } from '@mui/material';
 import { BsFillStarFill, BsMapFill, BsTelephoneFill, BsCashCoin } from 'react-icons/bs';
 import axios from 'axios';
-import { CardFooter } from '@material-tailwind/react';
 import Modal from 'react-modal';
 import ListingStepper from './ListingStepperUpdate.tsx';
 import { initialInfoState } from '../../types/initialInfo';
@@ -31,11 +29,14 @@ const MyListings = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [count, setCount] = useState(0);
 	const [modalIsOpen, setIsOpen] = React.useState(false);
+	const updateRef = useRef<HTMLDivElement | null>(null);
 
 	const handleUpdate = (item: any) => {
-		setUpdate(true);
-
+		setUpdate(!update);
 		setUpdateData(item);
+		if (updateRef.current) {
+			updateRef.current.scrollIntoView({ behavior: 'smooth' });
+		}
 	};
 
 	function openModal(item: ICar) {
@@ -108,7 +109,10 @@ const MyListings = () => {
 	};
 	return (
 		<>
-			<div className='w-full h-fit flex flex-col items-center justify-center p-0 gap-10'>
+			<div
+				ref={update ? updateRef : null}
+				className='w-full h-fit flex flex-col items-center justify-center p-0 gap-10'
+			>
 				<div className='flex w-full items-center'>
 					<img className='h-8' src='../src/assets/logo/icons8-car.png' alt='logo' />
 					<p className='block p-2 no-select w-full'>{data.length + ' Listing/s'}</p>
@@ -119,81 +123,56 @@ const MyListings = () => {
 							className='drop-shadow-lg 2xl:hover:-translate-y-2 hover:transition-transform sm:w-64 w-full'
 							key={index}
 						>
-							<div key={index} className='carousel-slide relative hover:scale-[1.02] transition'>
+							<div className='relative hover:scale-[1.02] transition p-2'>
 								<img
-									src={item.vehiclePhotos[0].toString() as any}
+									src={item.vehiclePhotos[0].toString()}
 									alt={`Image ${index}`}
 									onError={(e: any) => (e.target.src = imageUnavailable)}
-									className='mx-auto w-full h-48 shadow-md object-cover select-none object-center'
+									className='mx-auto w-full h-48 object-cover select-none object-center rounded-md'
 								/>
 							</div>
-							<CardActionArea>
-								<CardContent>
-									<Typography gutterBottom variant='h5' fontWeight={700} component='div'>
-										{item.brand + ' ' + item.model}
-									</Typography>
-									<span className='w-full h-1 bg-dark500'></span>
-									<Typography className='grid grid-cols-1 justify-between gap-4' variant='body1' color='text.primary'>
-										<div className='flex items-start justify-start gap-2'>
-											<BsMapFill className='mt-1' />
-											{item.city + ', ' + item.country}
-										</div>
-										<div className='flex items-start justify-start gap-2'>
-											<BsTelephoneFill className='mt-1' />
-											{item.mobileNumber}
-										</div>
-										<div className='flex items-start justify-start gap-2'>
-											<BsFillStarFill className='mt-1' />
-											{'Rating'}
-										</div>
-										<div className='flex items-start justify-start gap-2'>
-											<BsCashCoin className='mt-1' />
-											{item.price}
-										</div>
-									</Typography>
-									<Typography variant='body1' color='text.primary'></Typography>
-								</CardContent>
-								<CardFooter>
-									<div className='flex justify-center items-center gap-2'>
-										<button
-											onClick={() => openModal(item)}
-											className=' hover:bg-red-800 transition-colors bg-none ring-1 ring-red-600 px-4 py-1 rounded-sm'
-										>
-											Remove
-										</button>
-										<Modal
-											ariaHideApp={false}
-											isOpen={modalIsOpen}
-											onRequestClose={() => closeModal()}
-											style={customStyles}
-											contentLabel='Confirm Remove Modal'
-										>
-											<div className='w-52 h-20 font-Messina-Sans'>Are you sure?</div>
-											<div className='flex gap-4 justify-end font-Messina-Sans'>
-												<button
-													onClick={() => handleDelete()}
-													className='transition-colors bg-yellow hover:bg-[#fff8af] text-dark800 px-6 py-1 rounded-sm'
-												>
-													Yes
-												</button>
-												<button
-													onClick={() => closeModal()}
-													className='transition-colors bg-dark500 hover:bg-dark200 text-dark800 px-6 py-1 rounded-sm'
-												>
-													No
-												</button>
-											</div>
-										</Modal>
 
+							<CardContent className='flex flex-col w-full h-12 gap-0 justify-center text-center items-center'>
+								<h4 className='flex text-xl font-extrabold'>{item.brand + ' ' + item.model}</h4>
+								<p className='flex text-md font-semibold'>Php {item.price}/day</p>
+							</CardContent>
+							<div className='flex justify-between items-center p-4'>
+								<button
+									onClick={() => openModal(item)}
+									className=' hover:bg-dark300 transition-colors bg-dark400 px-4 py-1 rounded-sm'
+								>
+									Remove
+								</button>
+								<Modal
+									ariaHideApp={false}
+									isOpen={modalIsOpen}
+									onRequestClose={() => closeModal()}
+									style={customStyles}
+									contentLabel='Confirm Remove Modal'
+								>
+									<div className='w-52 h-20 font-Messina-Sans'>Are you sure?</div>
+									<div className='flex gap-4 justify-end font-Messina-Sans'>
 										<button
-											onClick={() => handleUpdate(item)}
-											className='hover:scale-110 transition-transform bg-yellow100 px-4 py-1 rounded-sm'
+											onClick={() => handleDelete()}
+											className='transition-colors bg-yellow hover:bg-[#fff8af] text-dark800 px-6 py-1 rounded-sm'
 										>
-											Update
+											Yes
+										</button>
+										<button
+											onClick={() => closeModal()}
+											className='transition-colors bg-dark500 hover:bg-dark200 text-dark800 px-6 py-1 rounded-sm'
+										>
+											No
 										</button>
 									</div>
-								</CardFooter>
-							</CardActionArea>
+								</Modal>
+								<button
+									onClick={() => handleUpdate(item)}
+									className='hover:shadow-md transition-transform bg-yellow100 px-4 py-1 rounded-sm'
+								>
+									Update
+								</button>
+							</div>
 						</Card>
 					))}
 				</div>
@@ -206,7 +185,10 @@ const MyListings = () => {
 					onChange={(event, newPage) => handlePageChange(newPage)}
 				/>
 			</div>
-			<div className={`self-center w-fit transition-transform ${update ? 'scale-y-100 h-fit' : 'scale-y-0 h-0'}`}>
+			<div
+				ref={!update ? updateRef : null}
+				className={`self-center w-fit transition-transform ${update ? 'scale-y-100 h-fit' : 'scale-y-0 h-0'}`}
+			>
 				<ListingStepper itemData={updateData} />
 			</div>
 		</>

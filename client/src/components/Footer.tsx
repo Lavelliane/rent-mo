@@ -5,7 +5,7 @@ import { FaFacebook, FaInstagram, FaLinkedinIn } from 'react-icons/fa6';
 const Footer = () => {
 	return (
 		<div className='flex flex-col mx-auto h-fit w-full text-white bg-dark800 shadow-buttonbox font-Messina-Sans 2xl:px-36 px-10 py-10 items-center justify-center'>
-			<div className='flex lg:flex-row flex-col items-center justify-between w-full h-fit self-start'>
+			<div className='flex lg:flex-row flex-col items-center justify-between w-full h-fit pt-32 self-start'>
 				<div className='flex flex-col sm:gap-4 gap-2 items-start justify-start lg:w-1/2 w-full'>
 					<img src={logo} className=' w-44'></img>
 					<p className='text-sm w-full lg:pr-10 pr-0'>

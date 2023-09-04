@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { CardActionArea, CardContent, Card, Pagination, Typography } from '@mui/material';
+import { CardActionArea, CardContent, Card, Pagination } from '@mui/material';
 import { ICar } from 'types/types';
 import imageUnavailable from '../assets/logo/image_not_available.png';
 import {
@@ -12,7 +12,6 @@ import {
 	BsPinMap,
 	BsFillPinMapFill,
 } from 'react-icons/bs';
-import { CardFooter } from '@material-tailwind/react';
 import { ButtonFillRoundedFull } from '../components/Buttons';
 
 const ListingPage = () => {
@@ -43,7 +42,6 @@ const ListingPage = () => {
 		try {
 			const response = await axios.get('/api/v1/host/listings'); // Replace with your API endpoint
 			setData(response.data.listings); // Update the 'data' state with fetched data
-			console.log('Data fetched:', response.data);
 		} catch (error) {
 			console.error('Error fetching data:', error);
 		}
@@ -51,7 +49,7 @@ const ListingPage = () => {
 
 	return (
 		<div className='w-full min-h-fit flex flex-col items-center justify-center sm:px-16 p-2 gap-10'>
-			<h4 className='pl-20 font-bold text-3xl self-start'>Featured 4-wheelers</h4>
+			<h4 className='md:pl-20 font-bold md:text-3xl text-2xl self-start'>Featured 4-wheelers</h4>
 			<div className='w-full items-center justify-center flex flex-wrap gap-4 mx-auto'>
 				{currentItems.map((item, index) => (
 					<Card className='drop-shadow-lg hover:scale-[102%] hover:transition-transform h-fit w-72' key={index}>
@@ -63,25 +61,10 @@ const ListingPage = () => {
 								className='mx-auto w-full h-48 object-cover select-none object-center rounded-md'
 							/>
 						</div>
-						<CardActionArea>
-							<CardContent className='flex flex-col w-full h-12 gap-0 justify-center'>
-								<Typography
-									className='w-full justify-center flex'
-									gutterBottom
-									variant='h6'
-									fontWeight={700}
-									component='div'
-								>
-									{item.brand + ' ' + item.model}
-								</Typography>
-								<Typography className='flex w-full justify-center' variant='body1' color='text.primary'>
-									<div className='flex items-center justify-center gap-2 text-md font-semibold'>
-										Php {item.price}/day
-									</div>
-								</Typography>
-								<Typography variant='body1' color='text.primary'></Typography>
-							</CardContent>
-						</CardActionArea>
+						<CardContent className='flex flex-col w-full h-12 gap-0 justify-center text-center items-center'>
+							<h4 className='flex text-xl font-extrabold'>{item.brand + ' ' + item.model}</h4>
+							<p className='flex text-md font-semibold'>Php {item.price}/day</p>
+						</CardContent>
 						<div className='p-4'>
 							<ButtonFillRoundedFull text='Rent Now' />
 						</div>

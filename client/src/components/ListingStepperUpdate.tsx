@@ -5,7 +5,6 @@ import ListingInfoForm from '../forms/ListingInfoForm.tsx';
 import BillingInfoForm from '../forms/BillingInfoForm.tsx';
 import { Stepper, Step, Typography } from '@material-tailwind/react';
 import { BsPersonFill, BsCreditCardFill, BsCarFrontFill } from 'react-icons/bs';
-import { initialInfoState } from '../../types/initialInfo.ts';
 import { Alert } from '@mui/material';
 import { ICar } from '../../types/types.ts';
 
@@ -37,7 +36,6 @@ export default function ListingStepper({ itemData }: Props) {
 		} else setListingInfo({ ...listingInfo, [e.target.name]: e.target.value });
 	};
 
-	console.log(listingInfo);
 	const handleSubmit = async (e: React.FormEvent): Promise<void> => {
 		e.preventDefault();
 

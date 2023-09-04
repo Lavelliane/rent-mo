@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useUser } from '../../hooks/zustand/useUser';
 import { ButtonLink, ButtonLinkNoFillRounded } from './Buttons';
 import { FaBars, FaXmark } from 'react-icons/fa6';
@@ -14,6 +14,17 @@ const Navbar = () => {
 	const store = useUser();
 	const { user = {} }: any = store?.user || {};
 
+	const scrollByScreenHeight = () => {
+		// Get the viewport height (screen height)
+		const screenHeight = window.innerHeight + 80;
+
+		// Scroll down by the screen height
+		window.scrollBy({
+			top: screenHeight,
+			behavior: 'smooth',
+		});
+	};
+
 	async function handleLogout() {
 		try {
 			const response = await axios.get('/api/v1/auth/logout');
@@ -24,10 +35,6 @@ const Navbar = () => {
 		}
 	}
 
-	const handleNav = () => {
-		navigate('#how-it-works');
-	};
-	window.location.hash = 'how-it-works';
 	return (
 		<>
 			<nav className='w-full border-b 2xl:px-36 px-4 border-none bg-black bg-opacity-0'>
@@ -57,7 +64,7 @@ const Navbar = () => {
 							</button>
 							<ul className='flex text-3xl lg:text-base items-center py-10 lg:flex flex-col lg:flex-row justify-center fixed lg:relative top-0 bottom-0 left-0 right-0 bg-dark900 lg:bg-transparent z-20 transition'>
 								<li className='text-white  cursor-pointer text-xl pt-10 lg:pt-0 transition'>
-									<button onClick={() => handleNav()}>How it works </button>
+									<button onClick={() => scrollByScreenHeight()}>How it works </button>
 								</li>
 								<li className='text-white  cursor-pointer text-xl pt-10 lg:pt-0 lg:ml-5 xl:ml-10 transition'>
 									<ButtonLink text='Support' to='/support' />
