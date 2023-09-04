@@ -19,7 +19,7 @@ const AboutUs = () => {
             </h1>
             <p>
               Welcome to RentMo, the premier platform for peer-to-peer vehicle
-              rentals.At RentMo, we're driving the future of transportation by
+              rentals. At RentMo, we're driving the future of transportation by
               redefining the way people access vehicles. Our platform is more
               than just a rental service; it's a revolutionary concept that
               empowers individuals to share and rent vehicles, creating a
