@@ -30,6 +30,7 @@ export interface IUser extends Document {
 	isVerified: boolean;
 	isLicensed: boolean;
 	aboutMe?: string;
+	[key: string]: any;
 	createJWT: () => string;
 	comparePassword: (password: string) => boolean;
 }
@@ -133,13 +134,17 @@ const UserSchema: Schema<IUser> = new Schema({
 		type: Boolean,
 		default: false,
 	},
+	
 });
 
 //User.js
-UserSchema.pre('save', async function () {
+UserSchema.pre('save', async function(){
+	//calling this.modifiedPaths() returns an array of modified paths
+	//check if the password IS NOT modified. if it isn't then just return and don't hash
+	if(!this.isModified('password')) return;
 	const salt = await bcrypt.genSalt(10);
 	this.password = await bcrypt.hash(this.password, salt);
-});
+  });
 
 UserSchema.methods.createJWT = function () {
 	return jwt.sign(

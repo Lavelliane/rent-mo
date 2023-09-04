@@ -9,7 +9,7 @@ import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import xss from 'xss-clean';
 import cookieSession from 'cookie-session';
-import fileUpload from 'express-fileupload'
+import fileUpload from 'express-fileupload';
 
 import authRouter from './routes/authRoutes';
 import listingRouter from './routes/listingRouter';
@@ -18,7 +18,6 @@ import userRouter from './routes/userRoutes';
 import authenticateUser from './middleware/auth';
 import passport from 'passport';
 import './config/passport';
-
 
 declare const process: {
 	env: {
@@ -51,7 +50,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/api/v1/auth', authRouter);
-app.use('/api/v1/host', authenticateUser, listingRouter);
+app.use('/api/v1/host', listingRouter);
 app.use('/api/v1/user', authenticateUser, userRouter);
 
 app.use(notFoundMiddleware);

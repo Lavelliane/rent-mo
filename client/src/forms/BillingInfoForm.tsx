@@ -1,8 +1,16 @@
 import React from 'react';
 import PaymentCard from '../components/PaymentCard.tsx';
 import { TextField } from '@mui/material';
+import { ICar } from 'types/types';
 
-const BillingInfoForm = () => {
+type Props = {
+	handleChange: (e: any) => void;
+	billingInfo: ICar;
+};
+
+const BillingInfoForm = ({ handleChange, billingInfo }: Props) => {
+	console.log(handleChange);
+	console.log(billingInfo);
 	return (
 		<>
 			<div>

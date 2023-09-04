@@ -15,6 +15,7 @@ interface ICar extends Document {
 	mobileNumber: string;
 	state: string;
 	country: string;
+	price: number;
 	zipCode: string;
 	licensePlateNumber: string;
 	carRegistrationNumber: string;
@@ -45,7 +46,7 @@ const ListingSchema: Schema = new Schema({
 		type: String,
 		required: true,
 		validate: {
-			validator: function (v: string) {
+			validator: function(v: string) {
 				return /^(09\d{9})$/.test(v); // Validates a 10-digit mobile number
 			},
 			message: (props: any) => `${props.value} is not a valid mobile number!`,
@@ -57,6 +58,10 @@ const ListingSchema: Schema = new Schema({
 	},
 	country: {
 		type: String,
+		required: true,
+	},
+	price: {
+		type: Number,
 		required: true,
 	},
 	zipCode: {
@@ -75,7 +80,7 @@ const ListingSchema: Schema = new Schema({
 		startDate: {
 			type: Date,
 			default: Date.now,
-			required: false,
+			required: true,
 		},
 		endDate: {
 			type: Date,
