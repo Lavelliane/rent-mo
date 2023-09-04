@@ -128,7 +128,7 @@ const Footer = () => {
 					</div>
 				</div>
 			</div>
-			<div className='flex sm:flex-row flex-col items-center justify-between w-full mt-4 gap-4'>
+			<div className='flex sm:flex-row flex-col items-center justify-between w-full md:mt-8 mt-4 gap-4'>
 				<div className='flex sm:flex-row flex-col w-full no-select sm:justify-start justify-center text-center'>
 					<p className='text-base leading-4 text-white font-bold w-full sm:w-fit'>
 						<span className=' font-normal'>2023</span>

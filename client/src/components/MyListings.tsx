@@ -26,6 +26,7 @@ const MyListings = () => {
 	const [updateData, setUpdateData] = useState(initialInfoState);
 	const [itemsPerPage, setItemsPerPage] = useState(4); // Number of items to display per page
 	const [data, setData] = useState<ICar[]>([]);
+	const [deleteItem, setDeleteItem] = useState<ICar>();
 	const [currentItems, setCurrentItems] = useState<ICar[]>([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [count, setCount] = useState(0);
@@ -33,31 +34,23 @@ const MyListings = () => {
 
 	const handleUpdate = (item: any) => {
 		setUpdate(true);
-		// Ensure that 'vehiclePhotos' is an array of image URLs
-		const vehiclePhotos: Blob[] = item.vehiclePhotos; // Add the type annotation
 
-		const files = vehiclePhotos.map((blob: Blob, index: any) => {
-			const image = new File([blob], `image${index}.png`, { type: 'image/png' });
-			return image;
-		});
-
-		// Assuming 'item' is your existing data
-		const updatedItem = { ...item, vehiclePhotos: files };
-
-		setUpdateData(updatedItem);
+		setUpdateData(item);
 	};
 
-	function openModal() {
+	function openModal(item: ICar) {
 		setIsOpen(true);
+		setDeleteItem(item);
 	}
 
 	function closeModal() {
 		setIsOpen(false);
 	}
 
-	const handleDelete = async (item: any) => {
+	const handleDelete = async () => {
+		const deleteItemID = deleteItem?._id;
 		try {
-			const response = await axios.delete(`/api/v1/host/listing/${item._id}`);
+			const response = await axios.delete(`/api/v1/host/listing/${deleteItemID}`);
 			window.location.reload();
 		} catch (error) {
 			console.log(error);
@@ -126,27 +119,14 @@ const MyListings = () => {
 							className='drop-shadow-lg 2xl:hover:-translate-y-2 hover:transition-transform sm:w-64 w-full'
 							key={index}
 						>
-							<Carousel
-								showStatus={false}
-								showThumbs={false}
-								infiniteLoop={true}
-								swipeable={true}
-								emulateTouch={true}
-								centerMode={item.vehiclePhotos.length < 2 ? false : true}
-								centerSlidePercentage={100}
-								className='carousel-container w-full'
-							>
-								{item.vehiclePhotos.map((image, index) => (
-									<div key={index} className='carousel-slide relative hover:scale-[1.02] transition'>
-										<img
-											src={image as any}
-											alt={`Image ${index}`}
-											onError={(e: any) => (e.target.src = imageUnavailable)}
-											className='mx-auto h-48 shadow-md object-cover select-none object-center'
-										/>
-									</div>
-								))}
-							</Carousel>
+							<div key={index} className='carousel-slide relative hover:scale-[1.02] transition'>
+								<img
+									src={item.vehiclePhotos[0].toString() as any}
+									alt={`Image ${index}`}
+									onError={(e: any) => (e.target.src = imageUnavailable)}
+									className='mx-auto w-full h-48 shadow-md object-cover select-none object-center'
+								/>
+							</div>
 							<CardActionArea>
 								<CardContent>
 									<Typography gutterBottom variant='h5' fontWeight={700} component='div'>
@@ -176,14 +156,13 @@ const MyListings = () => {
 								<CardFooter>
 									<div className='flex justify-center items-center gap-2'>
 										<button
-											aria-aria-describedby={item._id}
-											id={item._id}
-											onClick={() => openModal()}
+											onClick={() => openModal(item)}
 											className=' hover:bg-red-800 transition-colors bg-none ring-1 ring-red-600 px-4 py-1 rounded-sm'
 										>
 											Remove
 										</button>
 										<Modal
+											ariaHideApp={false}
 											isOpen={modalIsOpen}
 											onRequestClose={() => closeModal()}
 											style={customStyles}
@@ -192,7 +171,7 @@ const MyListings = () => {
 											<div className='w-52 h-20 font-Messina-Sans'>Are you sure?</div>
 											<div className='flex gap-4 justify-end font-Messina-Sans'>
 												<button
-													onClick={() => handleDelete(item)}
+													onClick={() => handleDelete()}
 													className='transition-colors bg-yellow hover:bg-[#fff8af] text-dark800 px-6 py-1 rounded-sm'
 												>
 													Yes

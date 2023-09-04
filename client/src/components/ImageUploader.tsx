@@ -94,7 +94,7 @@ function ImageUploader({ handleChange, imageFile }: Props) {
 						{imageFile.vehiclePhotos.map((image, index) => (
 							<div key={index} className='carousel-slide relative hover:scale-[1.02] mx-1 my-2 transition'>
 								<img
-									src={URL.createObjectURL(image)}
+									src={typeof image === 'string' ? image : URL.createObjectURL(image)}
 									alt={`Image ${index}`}
 									className='mx-auto h-24 shadow-md object-cover select-none'
 								/>

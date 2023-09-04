@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import MainPage from './pages/MainPage.tsx';
 import Registration from './pages/Registration.tsx';
@@ -58,7 +58,6 @@ function App() {
 					<Route path='/terms-of-services' element={<TermsOfService />} />
 					<Route path='/contact-us' element={<ContactUs />} />
 					<Route path='/about-us' element={<AboutUs />} />
-					<Route path='/how-it-works' element={<HowItWorks />} />
 				</Routes>
 			</BrowserRouter>
 			<Footer />

@@ -18,12 +18,21 @@ export const ButtonFillRounded = ({ text }: ButtonProps) => {
 	);
 };
 
+export const ButtonFillRoundedFull = ({ text }: ButtonProps) => {
+	return (
+		<button className='text-black rounded-full w-full py-2 bg-yellow font-bold text-md hover:shadow-md transition'>
+			{text}
+		</button>
+	);
+};
+
 export const ButtonFill = ({ text }: ButtonProps) => {
 	return (
 		<button
 			type='submit'
 			role='button'
-			className='focus:ring-2 focus:ring-offset-2 focus:ring-yellow text-sm font-semibold leading-none text-black focus:outline-none bg-yellow rounded hover:opacity-70 py-4 w-full transition'>
+			className='focus:ring-2 focus:ring-offset-2 focus:ring-yellow text-sm font-semibold leading-none text-black focus:outline-none bg-yellow rounded hover:opacity-70 py-4 w-full transition'
+		>
 			{text}
 		</button>
 	);
@@ -33,7 +42,8 @@ export const ButtonNoFillRounded = ({ text }: ButtonProps) => {
 	return (
 		<a
 			href='#report-listings'
-			className='rounded-full px-4 py-2 ring-1 ring-yellow300 text-yellow300 hover:text-yellow hover:ring-yellow font-bold drop-shadow-sm transition-colors'>
+			className='rounded-full px-4 py-2 ring-1 ring-yellow300 text-yellow300 hover:text-yellow hover:ring-yellow font-bold drop-shadow-sm transition-colors'
+		>
 			{text}
 		</a>
 	);
@@ -41,9 +51,7 @@ export const ButtonNoFillRounded = ({ text }: ButtonProps) => {
 
 export const ButtonLink = ({ text, to }: ButtonLinkProps) => {
 	return (
-		<Link
-			to={to}
-			className=' hover:text-yellow transition'>
+		<Link to={to} className=' hover:text-yellow transition'>
 			{text}
 		</Link>
 	);
@@ -53,16 +61,15 @@ export const ButtonLinkFill = ({ text, to }: ButtonLinkProps) => {
 	return (
 		<a
 			href={to}
-			className=' text-center focus:ring-2 focus:ring-offset-2 focus:ring-yellow text-sm font-semibold leading-none text-white focus:outline-none bg-dark600 rounded hover:opacity-70 py-4 w-full transition'>
+			className=' text-center focus:ring-2 focus:ring-offset-2 focus:ring-yellow text-sm font-semibold leading-none text-white focus:outline-none bg-dark600 rounded hover:opacity-70 py-4 w-full transition'
+		>
 			{text}
 		</a>
 	);
 };
 export const ButtonLinkNoFillRounded = ({ text, to }: ButtonLinkProps) => {
 	return (
-		<Link
-			to={to}
-			className=' hover:text-white hover:ring-white transition ring-yellow ring-2 rounded-full py-4 px-8 '>
+		<Link to={to} className=' hover:text-white hover:ring-white transition ring-yellow ring-2 rounded-full py-4 px-8 '>
 			{text}
 		</Link>
 	);
@@ -74,13 +81,9 @@ export const GoogleButton = () => {
 			href='/api/v1/auth/google'
 			aria-label='Continue with google'
 			role='button'
-			className='focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10'>
-			<svg
-				width={19}
-				height={20}
-				viewBox='0 0 19 20'
-				fill='none'
-				xmlns='http://www.w3.org/2000/svg'>
+			className='focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10'
+		>
+			<svg width={19} height={20} viewBox='0 0 19 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
 				<path
 					d='M18.9892 10.1871C18.9892 9.36767 18.9246 8.76973 18.7847 8.14966H9.68848V11.848H15.0277C14.9201 12.767 14.3388 14.1512 13.047 15.0812L13.0289 15.205L15.905 17.4969L16.1042 17.5173C17.9342 15.7789 18.9892 13.221 18.9892 10.1871Z'
 					fill='#4285F4'
