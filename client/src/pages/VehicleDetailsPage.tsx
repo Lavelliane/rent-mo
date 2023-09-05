@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+
+import '../index.css';
 import { Carousel } from 'react-responsive-carousel';
+import { ICar } from '../../types/types';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import {
 	BsFillStarFill,
@@ -14,6 +18,22 @@ import {
 import axios from 'axios';
 
 const VehicleDetailsPage = () => {
+	const { id } = useParams<{ id: string }>();
+	const [data, setData] = useState<ICar[]>([]);
+
+	useEffect(() => {
+		fetchData();
+	});
+
+	const fetchData = async () => {
+		try {
+			const response = await axios.get('/api/v1/host/listing/:id');
+			setData(response.data.listings);
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		}
+	};
+
 	const imageFile = [
 		'https://images.prismic.io/barnebys/105985ac-c96c-458d-9011-acc988b2f098_1.jpeg?w=900&auto=format%2Ccompress&cs=tinysrgb',
 		'https://qph.cf2.quoracdn.net/main-qimg-7458d545cfd0a575972283f52f913ecd-lq',

@@ -18,14 +18,14 @@ export const ButtonFillRounded = ({ text }: ButtonProps) => {
 	);
 };
 
-export const ButtonFillRoundedFull = ({ text }: ButtonProps) => {
+export const ButtonFillRoundedFull = ({ text, to }: ButtonLinkProps) => {
 	return (
-		<a
-			href='/vehicle/details'
+		<Link
+			to={to}
 			className='text-black rounded-full w-full py-2 bg-yellow font-bold text-md hover:shadow-md transition'
 		>
 			{text}
-		</a>
+		</Link>
 	);
 };
 

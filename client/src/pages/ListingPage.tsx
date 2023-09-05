@@ -57,7 +57,7 @@ const ListingPage = () => {
 							<p className='flex text-md font-semibold'>Php {item.price}/day</p>
 						</CardContent>
 						<div className='px-4 pb-4 pt-2 w-full flex text-center'>
-							<ButtonFillRoundedFull text='Rent Now' />
+							<ButtonFillRoundedFull text='Rent Now' to={`/vehicle/details/${item._id}`} />
 						</div>
 					</Card>
 				))}

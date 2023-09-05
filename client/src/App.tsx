@@ -47,7 +47,7 @@ function App() {
 						}
 					/>
 
-					<Route path='/vehicle/details' element={<VehicleDetailsPage />} />
+					<Route path='/vehicle/details/:id' element={<VehicleDetailsPage />} />
 					<Route path='/listing' element={<Listing />} />
 					<Route path='/support' element={<HelpPage />} />
 					<Route path='/getting-started' element={<GettingStarted />} />
