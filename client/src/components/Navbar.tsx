@@ -106,7 +106,7 @@ const Navbar = () => {
 											</li>
 											<li className='cursor-pointer text-dark800 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-yellow focus:text-yellow focus:outline-none flex items-center transition-colors'>
 												<BiHelpCircle size='20px' color='#131313' />
-												<a href='#help-center' className='w-full hover:text-yellow ml-2'>
+												<a href='/getting-started' className='w-full hover:text-yellow ml-2'>
 													Help Center
 												</a>
 											</li>
@@ -137,7 +137,7 @@ const Navbar = () => {
 											: 'hidden'
 									}
 								>
-									<ButtonLink text='Help Center' to='/Help-center' />
+									<ButtonLink text='Help Center' to='/getting-started' />
 								</li>
 								<li
 									className={

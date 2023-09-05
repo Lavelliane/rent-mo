@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { CardActionArea, CardContent, Card, Pagination } from '@mui/material';
+import { CardContent, Card, Pagination } from '@mui/material';
 import { ICar } from 'types/types';
 import imageUnavailable from '../assets/logo/image_not_available.png';
-import {
-	BsFillStarFill,
-	BsMapFill,
-	BsTelephoneFill,
-	BsCashCoin,
-	BsMap,
-	BsPinMap,
-	BsFillPinMapFill,
-} from 'react-icons/bs';
 import { ButtonFillRoundedFull } from '../components/Buttons';
 
 const ListingPage = () => {
@@ -49,11 +40,11 @@ const ListingPage = () => {
 
 	return (
 		<div className='w-full min-h-fit flex flex-col items-center justify-center sm:px-16 p-2 gap-10'>
-			<h4 className='md:pl-20 font-bold md:text-3xl text-2xl self-start'>Featured 4-wheelers</h4>
+			<h4 className='md:pl-20 font-bold md:text-2xl text-xl self-start'>Featured 4-wheelers</h4>
 			<div className='w-full items-center justify-center flex flex-wrap gap-4 mx-auto'>
 				{currentItems.map((item, index) => (
 					<Card className='drop-shadow-lg hover:scale-[102%] hover:transition-transform h-fit w-72' key={index}>
-						<div className='relative hover:scale-[1.02] transition p-2'>
+						<div className='relative transition p-2'>
 							<img
 								src={item.vehiclePhotos[0].toString()}
 								alt={`Image ${index}`}
@@ -61,12 +52,12 @@ const ListingPage = () => {
 								className='mx-auto w-full h-48 object-cover select-none object-center rounded-md'
 							/>
 						</div>
-						<CardContent className='flex flex-col w-full h-12 gap-0 justify-center text-center items-center'>
+						<CardContent className='flex flex-col w-full h-16 gap-0 justify-center text-center items-center'>
 							<h4 className='flex text-xl font-extrabold'>{item.brand + ' ' + item.model}</h4>
 							<p className='flex text-md font-semibold'>Php {item.price}/day</p>
 						</CardContent>
-						<div className='p-4'>
-							<ButtonFillRoundedFull text='Rent Now' />
+						<div className='px-4 pb-4 pt-2 w-full flex text-center'>
+							<ButtonFillRoundedFull text='Rent Now' to={`/vehicle/details/${item._id}`} />
 						</div>
 					</Card>
 				))}

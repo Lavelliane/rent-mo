@@ -4,10 +4,14 @@ import { TextField, Box } from '@mui/material';
 import { MdCloudUpload } from 'react-icons/md';
 import axios from 'axios';
 import { UserUpdate } from '../../types/types';
+import { useUser } from '../../hooks/zustand/useUser';
 import { initialUserUpdate } from '../../types/initialInfo';
 
 const UpdateProfile = () => {
-	const [data, setData] = useState(initialUserUpdate);
+	const store = useUser();
+	const { user = {} }: any = store?.user || {};
+
+	const [data, setData] = useState(user);
 
 	const handleChange = (e: any) => {
 		setData({ ...data, [e.target.name]: e.target.value });
@@ -17,23 +21,14 @@ const UpdateProfile = () => {
 		try {
 			const response = await axios.patch('/api/v1/auth/updateUser', data);
 			console.log(response);
+			store?.setUser(response.data.data);
 		} catch (error) {
 			console.error(error);
 		}
 		console.log(data);
 		window.location.href = '/profile';
 	};
-	useEffect(() => {
-		fetchData();
-	}, []);
-	const fetchData = async () => {
-		try {
-			const response = await axios.get('/api/v1/user/my-info'); // Replace with your API endpoint
-			setData(response.data.user);
-		} catch (error) {
-			console.error('Error fetching data:', error);
-		}
-	};
+
 	return (
 		<div className='flex flex-col items-center justify-center h-full w-full'>
 			<p className='text-base font-semibold text-dark800'>Update Profile</p>

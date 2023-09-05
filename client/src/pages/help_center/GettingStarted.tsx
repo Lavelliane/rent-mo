@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from '../../components/Navbar.tsx';
-import Footer from '../../components/Footer.tsx';
 
 const GettingStarted = () => {
 	return (
@@ -15,7 +14,7 @@ const GettingStarted = () => {
 					{/* Search bar */}
 					<input
 						type='text'
-						placeholder='     Search how-tos and more'
+						placeholder='Search how-tos and more'
 						className='p-3 mt-4 border bg-blue-gray-100 border-gray-300 rounded-full w-full max-w-md placeholder-black'
 					/>
 				</div>
