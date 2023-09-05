@@ -19,29 +19,30 @@ const HowItWorks = () => {
 
 	return (
 		<div id='how-it-works'>
-			<div className='w-full min-h-screen items-center justify-around xl:p-40 p-20'>
-				<div className='flex xl:flex-row flex-col justify-evenly items-start gap-20'>
-					<div className='w-full flex items-center justify-center'>
+			<div className='w-full min-h-screen items-center justify-center xl:p-20 p-10'>
+				<div className='flex 2xl:flex-row flex-col justify-evenly items-start 2xl:gap-0 gap-10'>
+					<div className='md:w-full self-center flex items-end justify-center 2xl:px-0 lg:px-60 md:px-40 px-0'>
 						<img className='translate-x-[50%] w-[539px] h-fit' src={bg} alt='chocolate hills' />
-						<img className='-translate-x-[40%] translate-y-[50%] w-[650px] h-fit' src={car} alt='hilux' />
+						<img
+							className='md:-translate-x-[46%] -translate-x-[45%] translate-y-[36%]  w-[650px] h-fit'
+							src={car}
+							alt='hilux'
+						/>
 					</div>
-					<div className='w-full flex flex-col'>
+					<div className='w-full self-center flex flex-col gap-2 2xl:px-20 lg:px-40 md:px-20 px-0'>
 						<h1 className='mt-10 text-[40px] font-bold text-black dark:text-white'>How RentMo Works</h1>
-
-						<h2 className='mb-2 text-xl font-bold text-black dark:text-white'>1. Sign Up and Apply</h2>
-						<p className='mb-8 text-base'>
+						<h2 className='text-xl font-bold text-black dark:text-white'>1. Sign Up and Apply</h2>
+						<p className='mb-2 text-base'>
 							All you need to do is fill up the necessary information, provide a valid driver's license, and be approved
 							in a matter of minutes!
 						</p>
-						<h2 className='mb-2 text-xl font-bold text-black dark:text-white'>2. Drive on Demand</h2>
-						<p className='mb-8 text-base'>
+						<h2 className='text-xl font-bold text-black dark:text-white'>2. Drive on Demand</h2>
+						<p className='mb-2 text-base'>
 							Once approved, you can fill ou the required fields for booking. Book a vehicle for a few hours, for the
 							whole day, or for a whole month!
 						</p>
-						<h2 className='mb-2 text-xl font-bold text-black dark:text-white'>
-							3. Hop On The Driver's Seat and Cruise
-						</h2>
-						<p className='mb-8 text-base'>
+						<h2 className='text-xl font-bold text-black dark:text-white'>3. Hop On The Driver's Seat and Cruise</h2>
+						<p className='mb-2 text-base'>
 							Whether you're picking up the car or need it delivered, all you need to do is coordinate with the host and
 							you're good to go!
 						</p>
