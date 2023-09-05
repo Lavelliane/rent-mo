@@ -20,9 +20,12 @@ export const ButtonFillRounded = ({ text }: ButtonProps) => {
 
 export const ButtonFillRoundedFull = ({ text }: ButtonProps) => {
 	return (
-		<button className='text-black rounded-full w-full py-2 bg-yellow font-bold text-md hover:shadow-md transition'>
+		<a
+			href='/vehicle/details'
+			className='text-black rounded-full w-full py-2 bg-yellow font-bold text-md hover:shadow-md transition'
+		>
 			{text}
-		</button>
+		</a>
 	);
 };
 

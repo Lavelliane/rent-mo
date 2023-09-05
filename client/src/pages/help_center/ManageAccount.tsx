@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from '../../components/Navbar.tsx';
-import Footer from '../../components/Footer.tsx';
 
 const ManageAccount = () => {
 	return (
@@ -101,9 +100,7 @@ const ManageAccount = () => {
 					</div>
 
 					<h2 className='font-bold text-2xl mt-8 mb-4'>Related Articles</h2>
-					<a
-						className='font-bold text-xl '
-						href='/getting-started'>
+					<a className='font-bold text-xl ' href='/getting-started'>
 						<u>Getting Started</u>
 					</a>
 					<p>
@@ -113,9 +110,7 @@ const ManageAccount = () => {
 					<div className='mt-8 mb-8'>
 						<hr className='w-full border-gray-500 mx-auto' />{' '}
 					</div>
-					<a
-						className='font-bold text-xl '
-						href='/setting-up'>
+					<a className='font-bold text-xl ' href='/setting-up'>
 						<u>Setting up your account</u>
 					</a>
 					<p>
@@ -132,19 +127,14 @@ const ManageAccount = () => {
 							<p className='mt-1 font-semibold text-xl text-gray-800'>
 								Get help with your reservations, account, and more.
 							</p>
-							<a
-								href='/login'
-								className='px-4 py-2 bg-yellow100 mt-3 text-white rounded-xl'>
+							<a href='/login' className='px-4 py-2 bg-yellow100 mt-3 text-white rounded-xl'>
 								Log-in or sign up
 							</a>
 						</div>
 					</div>
 				</div>
 			</div>
-
 			<br />
-
-			<Footer />
 		</div>
 	);
 };

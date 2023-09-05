@@ -5,7 +5,6 @@ import image_2 from '../assets/images/cdo.png';
 import image_3 from '../assets/images/cebu.png';
 import image_4 from '../assets/images/davao.png';
 import image_5 from '../assets/images/iloilo@2x.png';
-import { useUser } from 'hooks/zustand/useUser.ts';
 
 const HelpPage = () => {
 	const quickGuide = [
@@ -41,8 +40,6 @@ const HelpPage = () => {
 		},
 	];
 
-	// const store = useUser();
-	// const { user = {} }: any = store?.user || {};
 	return (
 		<>
 			<div className='flex flex-col w-full h-fit pb-20 bg-cover bg-no-repeat font-Messina-Sans'>
@@ -70,7 +67,6 @@ const HelpPage = () => {
 				</div>
 
 				<a href='/login' className='px-4 py-2 bg-yellow100 text-white rounded-full'>
-					{/* {store.user ? "Log-in or sign up" : "heheh"} */}
 					Log-in or sign up
 				</a>
 			</div>

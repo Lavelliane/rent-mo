@@ -113,7 +113,7 @@ const MyListings = () => {
 							className='drop-shadow-lg 2xl:hover:-translate-y-2 hover:transition-transform sm:w-64 w-full'
 							key={index}
 						>
-							<div className='relative hover:scale-[1.02] transition p-2'>
+							<div className='relative transition p-2'>
 								<img
 									src={item.vehiclePhotos[0].toString()}
 									alt={`Image ${index}`}
