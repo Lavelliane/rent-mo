@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import {
 	BsFillStarFill,
 	BsMapFill,
@@ -10,6 +11,7 @@ import {
 	BsPinMap,
 	BsFillPinMapFill,
 } from 'react-icons/bs';
+import axios from 'axios';
 
 const VehicleDetailsPage = () => {
 	const imageFile = [

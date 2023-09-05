@@ -162,6 +162,7 @@ const getAllListings = (req, res) =>
 		return res.status(http_status_codes_1.StatusCodes.OK).json({ listings });
 	});
 exports.getAllListings = getAllListings;
+
 const getListingsByUser = (req, res) =>
 	__awaiter(void 0, void 0, void 0, function*() {
 		var _d;
@@ -171,6 +172,7 @@ const getListingsByUser = (req, res) =>
 		return res.status(http_status_codes_1.StatusCodes.OK).json({ listingsByUser });
 	});
 exports.getListingsByUser = getListingsByUser;
+
 const deleteListing = (req, res) =>
 	__awaiter(void 0, void 0, void 0, function*() {
 		try {
