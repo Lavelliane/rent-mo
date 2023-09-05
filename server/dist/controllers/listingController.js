@@ -12,11 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteListing = exports.getListingsByUser = exports.getAllListings = exports.updateListing = exports.createListing = void 0;
+exports.getSpecificListing = exports.deleteListing = exports.getListingsByUser = exports.getAllListings = exports.updateListing = exports.createListing = void 0;
 const Listing_1 = __importDefault(require("../models/Listing"));
 const http_status_codes_1 = require("http-status-codes");
 const azureStorageConfig_1 = __importDefault(require("../utils/azureStorageConfig"));
 const uuid_1 = require("uuid");
+const errors_1 = require("../errors");
 // Configure Multer for image upload
 const createListing = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
@@ -155,4 +156,18 @@ const deleteListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.deleteListing = deleteListing;
+const getSpecificListing = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const listingId = req.params.id;
+        if (!listingId) {
+            throw new errors_1.NotFoundError("Listing not found");
+        }
+        const listing = (yield Listing_1.default.findById(listingId));
+        res.status(http_status_codes_1.StatusCodes.OK).json({ listing });
+    }
+    catch (error) {
+        throw new errors_1.BadRequestError("Bad Request");
+    }
+});
+exports.getSpecificListing = getSpecificListing;
 //# sourceMappingURL=listingController.js.map
