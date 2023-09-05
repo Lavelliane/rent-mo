@@ -37,11 +37,11 @@ const createListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             carRegistrationNumber,
             carAvailability: JSON.parse(carAvailability),
             //carAvailability,
-            vehiclePhotos: [''],
+            vehiclePhotos: [""],
             user: (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId,
         });
         const listing = yield Listing_1.default.create(newListing);
-        const containerClient = azureStorageConfig_1.default.getContainerClient('listing-images');
+        const containerClient = azureStorageConfig_1.default.getContainerClient("listing-images");
         const userId = (_b = req.user) === null || _b === void 0 ? void 0 : _b.userId;
         const listingId = listing._id.toString();
         const { vehiclePhotos } = req.files;
@@ -60,7 +60,9 @@ const createListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
     catch (error) {
         console.log(error);
-        res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Error creating listing' });
+        res
+            .status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR)
+            .json({ error: "Error creating listing" });
     }
 });
 exports.createListing = createListing;
@@ -70,25 +72,27 @@ const updateListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     try {
         let listing = (yield Listing_1.default.findById(listingId));
         if (!listing) {
-            return res.status(http_status_codes_1.StatusCodes.NOT_FOUND).json({ error: 'Listing not found' });
+            return res
+                .status(http_status_codes_1.StatusCodes.NOT_FOUND)
+                .json({ error: "Listing not found" });
         }
         // Combine both req.body and req.files data
         const formData = Object.assign({}, req.body);
         const vehiclePhotos = req.files;
         formData.vehiclePhotos = vehiclePhotos;
-        const { vehiclePhotosArray } = formData.vehiclePhotos;
+        const { vehiclePhotos: vehiclePhotosArray } = formData.vehiclePhotos;
         for (const [key, value] of Object.entries(formData)) {
-            if (key === 'carAvailability') {
-                if (typeof value === 'string') {
+            if (key === "carAvailability") {
+                if (typeof value === "string") {
                     listing[key] = JSON.parse(value);
                 }
                 else {
                     throw new Error(`Invalid value for ${key}`);
                 }
             }
-            else if (key === 'vehiclePhotos') {
+            else if (key === "vehiclePhotos") {
                 const userId = (_c = req.user) === null || _c === void 0 ? void 0 : _c.userId;
-                const containerClient = azureStorageConfig_1.default.getContainerClient('listing-images');
+                const containerClient = azureStorageConfig_1.default.getContainerClient("listing-images");
                 const imagePromises = vehiclePhotosArray.map((image) => __awaiter(void 0, void 0, void 0, function* () {
                     const imageId = (0, uuid_1.v4)(); // Generate a unique filename
                     const blobClient = containerClient.getBlockBlobClient(`${userId}/${listingId}/${imageId}`);
@@ -101,7 +105,7 @@ const updateListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 listing.vehiclePhotos = uploadedImageUrls;
             }
             else {
-                if (typeof value === 'string') {
+                if (typeof value === "string") {
                     listing[key] = value;
                 }
                 else {
@@ -114,7 +118,9 @@ const updateListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
     catch (error) {
         console.log(error);
-        res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Error updating listing' });
+        res
+            .status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR)
+            .json({ error: "Error updating listing" });
     }
 });
 exports.updateListing = updateListing;
@@ -134,14 +140,18 @@ const deleteListing = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         const listingId = req.params.id;
         const result = yield Listing_1.default.deleteOne({ _id: listingId });
         if (result.deletedCount === 1) {
-            res.status(http_status_codes_1.StatusCodes.ACCEPTED).json({ message: 'Listing deleted successfully' });
+            res
+                .status(http_status_codes_1.StatusCodes.ACCEPTED)
+                .json({ message: "Listing deleted successfully" });
         }
         else {
-            res.status(http_status_codes_1.StatusCodes.NOT_FOUND).json({ error: 'Listing not found' });
+            res.status(http_status_codes_1.StatusCodes.NOT_FOUND).json({ error: "Listing not found" });
         }
     }
     catch (error) {
-        res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Error deleting listing' });
+        res
+            .status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR)
+            .json({ error: "Error deleting listing" });
     }
 });
 exports.deleteListing = deleteListing;
