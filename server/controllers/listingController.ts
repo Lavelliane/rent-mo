@@ -4,6 +4,7 @@ import { StatusCodes } from "http-status-codes";
 import blobServiceClient from "../utils/azureStorageConfig";
 import multer from "multer";
 import { v4 as uuidv4 } from "uuid";
+import { BadRequestError, NotFoundError } from "../errors";
 
 // Configure Multer for image upload
 
@@ -175,3 +176,16 @@ export const deleteListing = async (req: Request, res: Response) => {
       .json({ error: "Error deleting listing" });
   }
 };
+
+export const getSpecificListing = async (req: Request, res: Response) => {
+	try {
+		const listingId = req.params.id;
+		if(!listingId){
+			throw new NotFoundError("Listing not found")
+		}
+		const listing = (await Listing.findById(listingId)) as any;
+		res.status(StatusCodes.OK).json({listing})
+	} catch (error) {
+		throw new BadRequestError("Bad Request")
+	}
+}
