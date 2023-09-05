@@ -117,7 +117,7 @@ const updateListing = (req, res) =>
 			const formData = Object.assign({}, req.body);
 			const vehiclePhotos = req.files;
 			formData.vehiclePhotos = vehiclePhotos;
-			const { vehiclePhotosArray } = formData.vehiclePhotos;
+			const { vehiclePhotos: vehiclePhotosArray } = formData.vehiclePhotos;
 			for (const [key, value] of Object.entries(formData)) {
 				if (key === 'carAvailability') {
 					if (typeof value === 'string') {
