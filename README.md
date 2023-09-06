@@ -31,32 +31,81 @@ Welcome to the repository for our MERN (MongoDB, Express, React, Node.js) applic
 
 1.  Clone the repository:
     
-    bashCopy code
-    
-    `git clone https://github.com/your-username/rental-app.git` 
+    `git clone https://github.com/lavelliane/rent-mo.git` 
     
 2.  Install the dependencies for the backend:
-    
-    bashCopy code
-    
+
     `cd server
     npm install` 
     
 3.  Install the dependencies for the frontend:
-    
-    bashCopy code
     
     `cd client
     npm install` 
     
 4.  Start the development server:
     
-    bashCopy code
     
-    `npm run serve` 
-    `npm run dev`
+    Server: `npm run serve` 
+    Client: `npm run dev`
     
     The application will be accessible at `http://localhost:3000`.
+
+## Environment
+
+Reference for the actual .env file is on `server/.env.sample`
+The following are needed for the application to work:
+
+-   **MongoDB connection URL** : Connect a mongoDB atlas account with database
+-   **JWT** : Secret using MD5 256-bit and Lifetime.
+-   **Google Auth** : Client and Secret for the Sign-in with Google function
+-   **Azure Blob Storage** : A connection string for an Azure Blob Container which will house listing assets
+
+## Architecture
+
+### Frontend
+
+The frontend follows a component based pattern with Pages and Components playing the main role. Each page is in the pages directory and reusables
+are in the Components folder.
+
+*Important libraries and configurations*
+
+-   The main UI library used is **Material UI**. Styling is done using **tailwindCSS**. 
+-   Reverse proxy for the client to communicate with the server is setup in `vite.config`
+-   Zustand for state management
+-   Axios for HTTP requests
+
+State Management is done only for the User object using *Zustand*. Zustand doesn't require any provider which means you can create your own hook for each state you want as a global context. In this case you can find the `useUser` hook under `client/hooks/zustand`
+
+### Backend
+
+The backend is an Express application that follows MVC. Rather than a web app structure that contains edge templates, the view in this case is handled by the react client application, separate from the server.
+
+The Models contain the User and Listing schemas with their appropriate interface in TypeScript. The User schema also handles token generation, password salting and hashing, and password verification.
+
+The Controllers are connected to the Routes. Once a route is set up, the appropriate function to handle that route endpoint lives inside the controllers folder. 
+
+-   *authController.ts* : Responsible for authentication and registration
+-   *listingController.ts* : Responsible for CRUD operations on the listing objects.
+
+### Important Backend utils and middleware
+
+1. `middleware/auth.ts` : Middleware responsible for protecting private routes against unauthorized access. This checks the session cookies and uses the jwt.verify function to validate the given token. If valid, this middleware proceeds to the next function. *please check routes folder for actual usage*
+
+2. `utils/attachCookies.ts` : Utility function to attach cookies that are generated using JWT. This happens when a user logs in or registers for the first time. Check authController for more details.
+
+3. `utils/azureStorageConfig.ts` : Utility function that exports the Blob Service Client. The service client is the object we'll refer to and call whenever we want to store images on the blob storage. Please check listingController.create and listingController.update
+
+4. `utils/handleImageUpload.ts` : A supposedly modularized version for the file upload process in the listing controller. This function is not implemented since it isn't finished.
+
+5. `utils/checkPermissions.ts` : Another layer of security for when a user wants to access a resource. This makes sure that only the user can access his/her own resource and he can't access resources of other users. Not implemented since it wasn't tested.
+
+6. Errors directory : Use these custom error classes to make Error code in catch statements more readable.
+
+7. `config/passport.ts` :  passport.js configuration file for Google Sign in. This is also where the function to store a user into the database when he/she signs in with Google is found. If the user does not sign in with Google, the code to store the user is found on the authController.
+
+8. `dist` : This is where typeScript compiles everything. You don't need to do anything in this folder unless any merge conflicts arise.
+
     
 
 ## Contribution
