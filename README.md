@@ -35,19 +35,19 @@ Welcome to the repository for our MERN (MongoDB, Express, React, Node.js) applic
     
 2.  Install the dependencies for the backend:
 
-    `cd server
-    npm install` 
+    `cd server`
+    `npm install` 
     
 3.  Install the dependencies for the frontend:
     
-    `cd client
-    npm install` 
+    `cd client`
+    `npm install` 
     
 4.  Start the development server:
     
     
-    Server: `npm run serve` 
-    Client: `npm run dev`
+    - Server: `npm run serve` 
+    - Client: `npm run dev`
     
     The application will be accessible at `http://localhost:3000`.
 
