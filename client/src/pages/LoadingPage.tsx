@@ -31,7 +31,7 @@ const LoadingPage: React.FC = () => {
 		alignItems: 'center',
 		width: '100vw',
 		height: '100vh',
-		backgroundColor: 'black',
+		backgroundColor: 'dark900',
 		overflow: 'hidden',
 		zIndex: 1000,
 		position: 'fixed',

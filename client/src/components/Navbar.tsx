@@ -6,6 +6,8 @@ import { BiUser, BiHelpCircle, BiLogOut } from 'react-icons/bi';
 import '../index.css';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import logo from '../assets/logo/RentMo-logo.svg';
+import avatar from '../assets/logo/avatar-logo.png';
 
 const Navbar = () => {
 	const navigate = useNavigate();
@@ -18,7 +20,7 @@ const Navbar = () => {
 		navigate('/landing');
 
 		setTimeout(() => {
-			const screenHeight = window.innerHeight + 80;
+			const screenHeight = window.innerHeight;
 			window.scrollBy({
 				top: screenHeight,
 				behavior: 'smooth',
@@ -43,7 +45,7 @@ const Navbar = () => {
 					<a aria-label='Home. logo' role='img' href='/landing'>
 						<img
 							className='w-24 lg:w-36 sm:w-32 xl:w-48  hover:scale-105 hover:drop-shadow-md transition-all'
-							src='../src/assets/logo/RentMo-logo.svg'
+							src={logo}
 							alt='logo'
 						/>
 					</a>
@@ -118,11 +120,7 @@ const Navbar = () => {
 											</li>
 										</ul>
 									)}
-									<img
-										className='h-10 rounded-full invert select-none'
-										src='../src/assets/logo/avatar-logo.png'
-										alt='logo'
-									/>
+									<img className='h-10 rounded-full invert select-none' src={avatar} alt='logo' />
 									<a
 										href='/profile'
 										className='select-none text-white lg:text-lg text-xl ml-2 transition-colors font-bold pointer-events-auto lg:pointer-events-none'

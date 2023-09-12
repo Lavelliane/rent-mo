@@ -6,11 +6,12 @@ import car2 from '../assets/units/vios-car.png';
 import booking from '../assets/sprites/booking.png';
 import route from '../assets/sprites/map-location.png';
 import calendar from '../assets/sprites/canceled.png';
+import { ListingByLocation } from '../pages/ListingPage';
 
 const HowItWorks = () => {
 	return (
 		<div id='how-it-works'>
-			<div className='w-full min-h-screen items-center justify-center xl:p-20 p-10'>
+			<div className='w-full min-h-fit items-center justify-center xl:p-20 p-10'>
 				<div className='flex 2xl:flex-row flex-col justify-evenly items-start 2xl:gap-0 sm:gap-20 gap-16'>
 					<div className='md:w-full self-center flex items-end justify-center 2xl:px-0 lg:px-60 md:px-40 px-0'>
 						<img className='translate-x-[50%] w-[539px] h-fit' src={bg} alt='chocolate hills' />
@@ -21,20 +22,20 @@ const HowItWorks = () => {
 						/>
 					</div>
 					<div className='w-full self-center flex flex-col gap-2 2xl:px-20 lg:px-40 md:px-20 px-0'>
-						<h1 className='md:text-[40px] sm:text-2xl text-xl font-bold text-black dark:text-white'>
+						<h1 className='md:text-[40px] sm:text-2xl text-xl font-bold text-dark900 dark:text-white'>
 							How RentMo Works
 						</h1>
-						<h2 className='md:text-xl text-base font-bold text-black dark:text-white'>1. Sign Up and Apply</h2>
+						<h2 className='md:text-xl text-base font-bold text-dark900 dark:text-white'>1. Sign Up and Apply</h2>
 						<p className='mb-2 md:text-base text-sm'>
 							All you need to do is fill up the necessary information, provide a valid driver's license, and be approved
 							in a matter of minutes!
 						</p>
-						<h2 className='md:text-xl text-base font-bold text-black dark:text-white'>2. Drive on Demand</h2>
+						<h2 className='md:text-xl text-base font-bold text-dark900 dark:text-white'>2. Drive on Demand</h2>
 						<p className='mb-2 md:text-base text-sm'>
 							Once approved, you can fill ou the required fields for booking. Book a vehicle for a few hours, for the
 							whole day, or for a whole month!
 						</p>
-						<h2 className='md:text-xl text-base font-bold text-black dark:text-white'>
+						<h2 className='md:text-xl text-base font-bold text-dark900 dark:text-white'>
 							3. Hop On The Driver's Seat and Cruise
 						</h2>
 						<p className='mb-2 md:text-base text-sm'>
@@ -42,7 +43,7 @@ const HowItWorks = () => {
 							you're good to go!
 						</p>
 						<a
-							href='/login'
+							href='/support'
 							className='px-6 py-4 font-bold text-md bg-yellow w-fit rounded-full shadow-md hover:scale-105 transition-transform'
 						>
 							Learn More
@@ -50,7 +51,8 @@ const HowItWorks = () => {
 					</div>
 				</div>
 			</div>
-			<div className='w-full min-h-screen items-center justify-center xl:p-20 p-10'>
+			<ListingByLocation />
+			<div className='w-full min-h-fit items-center justify-center xl:p-20 p-10'>
 				<div className='flex 2xl:flex-row-reverse flex-col justify-evenly items-start gap-20'>
 					<div className='md:w-full self-center flex items-end justify-center 2xl:px-0 lg:px-60 md:px-40 px-0'>
 						<img className='translate-x-[50%] w-[539px] h-fit' src={bg2} alt='terraces' />
@@ -61,13 +63,13 @@ const HowItWorks = () => {
 						/>
 					</div>
 					<div className='w-full self-center flex flex-col gap-6 2xl:px-20 lg:px-40 md:px-20 px-0'>
-						<h1 className='md:text-[40px] sm:text-2xl text-xl font-bold text-black dark:text-white'>
+						<h1 className='md:text-[40px] sm:text-2xl text-xl font-bold text-dark900 dark:text-white'>
 							Why Choose RentMo?
 						</h1>
 						<div className='flex sm:flex-row flex-col gap-6 h-fit items-center'>
 							<img className='w-20 h-20' src={booking} />
 							<div>
-								<h2 className='mb-1 md:text-xl text-base font-bold text-black dark:text-white'>
+								<h2 className='mb-1 md:text-xl text-base font-bold text-dark900 dark:text-white'>
 									Seamless booking experience
 								</h2>
 								<p className='md:text-base text-sm'>
@@ -80,7 +82,7 @@ const HowItWorks = () => {
 							<img className='w-20 h-20' src={route} />
 
 							<div>
-								<h2 className='mb-1 md:text-xl text-base font-bold text-black dark:text-white'>
+								<h2 className='mb-1 md:text-xl text-base font-bold text-dark900 dark:text-white'>
 									Get your rides, wherever and whenever
 								</h2>
 								<p className='md:text-base text-sm'>
@@ -92,7 +94,7 @@ const HowItWorks = () => {
 						<div className='flex sm:flex-row flex-col gap-6 h-fit items-center'>
 							<img className='w-20 h-20' src={calendar} />
 							<div>
-								<h2 className='mb-1 md:text-xl text-base font-bold text-black dark:text-white'>
+								<h2 className='mb-1 md:text-xl text-base font-bold text-dark900 dark:text-white'>
 									Flexible cancellation
 								</h2>
 								<p className='md:text-base text-sm'>

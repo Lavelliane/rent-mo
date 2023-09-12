@@ -42,58 +42,45 @@ const HelpPage = () => {
 
 	return (
 		<>
-			<div className='flex flex-col w-full h-fit pb-20 bg-cover bg-no-repeat font-Messina-Sans'>
+			<div className='flex flex-col w-full h-fit bg-cover bg-no-repeat font-Messina-Sans'>
 				<Navbar />
 				<div className='absolute w-full h-32 bg-gradient-to-br from-dark700 to-dark900 -z-10'></div>
 			</div>
-			<div className='flex flex-col items-center justify-center w-full h-fit'>
-				<h1 className='py-0 text-9xl lg:text-[20px] font-extrabold text-black dark:text-white'>Hi! Need help?</h1>
-				<div className='w-full h-fit flex relative items-center justify-center self-center '>
-					{/* Search bar */}
-					<input
-						type='text'
-						placeholder='Search how-tos and more'
-						className='p-3 mt-4 border bg-blue-gray-100 border-gray-300 rounded-full w-full max-w-md placeholder-black'
-					/>
+			<div className='flex flex-col gap-12 items-center mt-20 justify-start lg:px-20 px-8 min-h-screen'>
+				<div className='flex flex-col items-center justify-center gap-4 w-96'>
+					<h1 className='text-lg font-bold text-dark900'>Hi! Need help?</h1>
+					<div className='w-full h-fit flex relative items-center justify-center self-center '>
+						<input
+							type='text'
+							placeholder='Search how-tos and more...'
+							className='px-4 py-2 border bg-dark100 rounded-full w-full max-w-md shadow-md outline-none'
+						/>
+					</div>
 				</div>
-			</div>
-			<div className='mt-8'>
-				<hr className='w-9/12 border-gray-500 mx-auto' />{' '}
-			</div>
-			<div className='w-9/12 mt-8 mx-auto bg-white rounded-lg border border-gray-300 p-8 flex justify-between items-center'>
-				<div className='flex relative'>
-					<h2 className='text-xl font-semibold text-gray-800'>Don't fret, we got you!</h2>
-					<p className='ml-10 mt-1'>Get help with you reservations, account, and more.</p>
+				<div className=' rounded-md border border-dark300 flex lg:flex-row flex-col justify-between items-center w-full p-4 gap-4'>
+					<div className='flex lg:flex-row flex-col lg:items-end items-center justify-center gap-2 w-full'>
+						<h2 className='text-xl font-semibold text-dark800'>Don't&#160;fret,&#160;we&#160;got&#160;you!</h2>
+						<p className='text-center'>Get&#160;help&#160;with&#160;you&#160;reservations, account,and more.</p>
+					</div>
+					<a href='/login' className='px-4 py-2 bg-yellow100 text-dark900 rounded-full w-fit'>
+						Login&#160;or&#160;signup
+					</a>
 				</div>
-
-				<a href='/login' className='px-4 py-2 bg-yellow100 text-white rounded-full'>
-					Log-in or sign up
-				</a>
-			</div>
-			<div className='mt-8'>
-				<hr className='w-9/12 border-gray-500 mx-auto' />{' '}
-			</div>
-
-			<div className='mx-auto flex flex-col items-center mt-8 mb-8'>
-				<div className='flex items-center'>
-					<h2 className='text-9xl lg:text-[30px] font-semibold text-gray-800'>Quick starter guide</h2>
-				</div>
-				<div className='flex mt-4'>
-					{quickGuide.map((item, index) => (
-						<div key={index} className='flex flex-col my-auto'>
-							<a
-								className={`w-64 h-64 ${item.color} rounded-xl mb-2 mr-8 hover:shadow-2xl hover:border border-gray justify-between`}
-								href={item.link}
-							>
-								<img className='w-full h-full object-cover rounded-xl' src={item.imageSrc} />
-							</a>
-							<div
-								className={`w-72 self-center h-12 flex items-center justify-left rounded-xl p-2 whitespace-pre-line font-bold`}
-							>
-								{item.description}
+				<div className='flex flex-col justify-start items-start gap-4 w-full pb-10'>
+					<h2 className='text-xl font-bold'>Quick starter guide</h2>
+					<div className='flex w-full flex-wrap justify-evenly items-center'>
+						{quickGuide.map((item, index) => (
+							<div key={index} className='flex flex-col h-[340px]'>
+								<a
+									className={`w-64 h-64 rounded-lg hover:shadow-xl hover:scale-[102%] transition-all`}
+									href={item.link}
+								>
+									<img className='w-full h-full object-cover rounded-xl' src={item.imageSrc} />
+									<p className='font-semibold mt-4'>{item.description}</p>
+								</a>
 							</div>
-						</div>
-					))}
+						))}
+					</div>
 				</div>
 			</div>
 		</>

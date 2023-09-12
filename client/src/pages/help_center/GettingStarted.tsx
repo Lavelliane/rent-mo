@@ -9,20 +9,19 @@ const GettingStarted = () => {
 				<div className='absolute w-full h-32 bg-gradient-to-br from-dark700 to-dark900 -z-10'></div>
 			</div>
 			<div className='flex flex-col items-center justify-center w-full h-full'>
-				<h1 className='py-0 text-9xl lg:text-[20px] font-extrabold text-black dark:text-white '>Hi! Need help?</h1>
-				<div className='w-full h-fit flex relative items-center justify-center self-center '>
+				<h1 className=' text-xl font-bold text-dark900'>Hi! Need help?</h1>
+				<div className='w-full h-fit flex relative items-center justify-center self-center px-4'>
 					{/* Search bar */}
 					<input
 						type='text'
-						placeholder='Search how-tos and more'
-						className='p-3 mt-4 border bg-blue-gray-100 border-gray-300 rounded-full w-full max-w-md placeholder-black'
+						placeholder='Search how-tos and more...'
+						className='p-4 mt-4 border bg-dark300 rounded-full w-full max-w-xl placeholder-dark700'
 					/>
 				</div>
 			</div>
-
-			<div className='flex flex-row justify-between'>
+			<div className='flex md:flex-row flex-col-reverse justify-center w-full'>
 				{/* Left Content */}
-				<div className='w-2/5 p-8 ml-72'>
+				<div className='flex flex-col gap-2 p-14 w-full'>
 					<p className='font-bold mb-1'>How-to</p>
 					<h2 className='font-bold text-2xl mb-0'>Edit your account settings</h2>
 					<p className='mb-8'>
@@ -31,7 +30,7 @@ const GettingStarted = () => {
 					</p>
 					<h2 className='font-bold text-2xl mb-0'>How it works</h2>
 					Just click or tap your profile picture and go to Account, you’ll find:
-					<ul className='list-disc pl-6'>
+					<ul className='list-disc ml-10'>
 						<li>Personal info: Provide personal details and how we can reach you</li>
 						<li>Login and security: Update your password and secure your account</li>
 						<li>Payments and payouts: Review payments, payouts, coupons, and gift cards</li>
@@ -43,9 +42,6 @@ const GettingStarted = () => {
 						<li>Professional hosting tools: Perfect if you manage several vehicles</li>
 						<li>Invite friends: It’s more fun when everyone travels</li>
 					</ul>
-					<div className='mt-8'>
-						<hr className='w-full border-gray-500 mx-auto' />{' '}
-					</div>
 					<h2 className='font-bold text-2xl mt-8 mb-4'>Related Articles</h2>
 					<a className='font-bold text-xl ' href='/setting-up'>
 						<u>Setting up your account</u>
@@ -68,10 +64,10 @@ const GettingStarted = () => {
 				</div>
 
 				{/* Right Content */}
-				<div>
-					<div className='w-2/8 mt-8 mr-52 bg-white rounded-lg border border-gray-300 p-8'>
+				<div className='flex w-full h-fit md:p-14 px-14 pt-14 pb-0 items-center justify-center'>
+					<div className='bg-white rounded-lg border border-dark400 p-8'>
 						<div className='flex flex-col'>
-							<p className='mt-1 font-semibold text-xl text-gray-800'>
+							<p className='mt-1 font-semibold text-xl text-dark900'>
 								Get help with your reservations, account, and more.
 							</p>
 							<a href='/login' className='px-4 py-2 bg-yellow100 mt-3 text-white rounded-xl'>
@@ -81,7 +77,6 @@ const GettingStarted = () => {
 					</div>
 				</div>
 			</div>
-			<br />
 		</div>
 	);
 };
