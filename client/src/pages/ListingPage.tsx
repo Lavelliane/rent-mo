@@ -190,15 +190,15 @@ export const ListingByLocation = () => {
 	const [currentItems, setCurrentItems] = useState<ICar[]>([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [count, setCount] = useState(0);
-	const itemsPerPage = 5; // Number of items to display per page
+	const itemsPerPage = 6; // Number of items to display per page
 
 	const sampleItems: any = [
-		{ vehicleImage: bacolod, name: 'Bacolod' },
-		{ vehicleImage: cdo, name: 'CDO' },
-		{ vehicleImage: cebu, name: 'CEBU' },
-		{ vehicleImage: davao, name: 'DAVAO' },
-		{ vehicleImage: iloilo, name: 'ILOILO' },
-		{ vehicleImage: makati, name: 'MAKATI' },
+		{ vehiclePhotos: bacolod, brand: 'BACOLOD' },
+		{ vehiclePhotos: cdo, brand: 'CDO' },
+		{ vehiclePhotos: cebu, brand: 'CEBU' },
+		{ vehiclePhotos: davao, brand: 'DAVAO' },
+		{ vehiclePhotos: iloilo, brand: 'ILOILO' },
+		{ vehiclePhotos: makati, brand: 'MAKATI' },
 	];
 
 	useEffect(() => {
@@ -236,10 +236,10 @@ export const ListingByLocation = () => {
 					<Card className='drop-shadow-lg hover:scale-[102%] hover:transition-transform h-72 w-64' key={index}>
 						<div className='items-center justify-center h-72 w-64'>
 							<h4 className='w-full h-full absolute z-10 flex text-xl font-extrabold justify-center items-center text-[rgba(0,0,0,0)] hover:text-[rgba(0,0,0,1)] hover:bg-[rgba(255,246,81,0.8)] transition-all duration-300 ease-in-out'>
-								{item.name}
+								{item.brand}
 							</h4>
 							<img
-								src={item.vehicleImage.toString()}
+								src={item.vehiclePhotos.toString()}
 								alt={`Image ${index}`}
 								onError={(e: any) => (e.target.src = imageUnavailable)}
 								className='mx-auto w-64 h-72 object-cover select-none object-center rounded-md'
