@@ -11,7 +11,7 @@ type Props = {
 };
 
 function ImageUploader({ handleChange, imageFile }: Props) {
-	const [images, setImages] = useState<File[]>(imageFile.vehiclePhotos);
+	const [images, setImages] = useState<any>(imageFile.vehiclePhotos);
 
 	const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
 		if (event.target.files) {
@@ -43,7 +43,7 @@ function ImageUploader({ handleChange, imageFile }: Props) {
 	};
 
 	const handleRemoveImage = (indexToRemove: number) => {
-		const updatedImages = images.filter((_, index) => index !== indexToRemove);
+		const updatedImages = images.filter((_: any, index: number) => index !== indexToRemove);
 		setImages(updatedImages);
 		handleChange({ target: { name: 'vehiclePhotos', value: updatedImages } });
 	};
