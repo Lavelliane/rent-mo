@@ -10,7 +10,7 @@ const MainPage = () => {
 			<HeroPage />
 			<HowItWorks />
 			<Listing4Wheel />
-			<Listing2Wheel />
+			{/* <Listing2Wheel /> */}
 			<HostBookCards />
 		</div>
 	);

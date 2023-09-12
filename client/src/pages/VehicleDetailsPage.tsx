@@ -23,7 +23,7 @@ const VehicleDetailsPage = () => {
 	const description = `4-door, 5 seaters, AWD vehicle that will keep you safe and is gas friendly.  Economical and clean.  Great handling with all features including keyless entry, heated seats, Bluetooth, and a nice sunroof for those adventurous drives.`;
 	useEffect(() => {
 		fetchData();
-	});
+	}, []);
 
 	const fetchData = async () => {
 		try {
