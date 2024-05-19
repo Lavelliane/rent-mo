@@ -16,7 +16,6 @@ const authenticateUser = async (req: Request, res: Response<any>, next: NextFunc
 
 	if (!token) {
 		console.log('No token found');
-		// Assuming you are using Express, you can send an error response to the client
 		res.status(401).json({ error: 'Unauthorized' });
 		return; // Return to stop further execution of the code
 	}
